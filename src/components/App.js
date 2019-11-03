@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from '../logo.svg';
 import '../css/App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navigation from './Navigation';
+import Home from './Home';
+import About from './About';
+import Concerts from './Concerts';
+import Discography from './Discography';
+import Media from './Media';
+import Press from './Press';
+import Gallery from './Gallery';
+import Foundation from './Foundation';
+import Commemorating from './Commemorating';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navigation />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/concerts" component={Concerts} />
+        <Route exact path="/discography" component={Discography} />
+        <Route exact path="/media" component={Media} />
+        <Route exact path="/press" component={Press} />
+        <Route exact path="/gallery" component={Gallery} />
+        <Route exact path="/foundation" component={Foundation} />
+        <Route exact path="/commemorating" component={Commemorating} />
+      </Switch>
+    </Router>
   );
 }
 
