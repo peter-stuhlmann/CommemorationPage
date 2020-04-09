@@ -1,39 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../css/Navigation.css';
+import React, { useState } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
+// import '../css/Navigation.css';
 
 export default function Navigation() {
+  const location = useLocation();
+  const [expanded, toggleExpanded] = useState(false);
+  const [active, setActive] = useState(location.pathname.slice(1));
+
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/concerts">Concerts</Link>
-        </li>
-        <li>
-          <Link to="/discography">Discography</Link>
-        </li>
-        <li>
-          <Link to="/media">Media</Link>
-        </li>
-        <li>
-          <Link to="/press">Press</Link>
-        </li>
-        <li>
-          <Link to="/gallery">Gallery</Link>
-        </li>
-        <li>
-          <Link to="/foundation">Foundation</Link>
-        </li>
-        <li>
-          <Link to="/commemorating">Commemorating</Link>
-        </li>
-      </ul>
-    </nav>
+    <Navbar
+      collapseOnSelect
+      expanded={expanded}
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      onToggle={() => {
+        toggleExpanded(!expanded);
+      }}
+    >
+      <Navbar.Brand
+        as={Link}
+        to="/"
+        onClick={() => {
+          toggleExpanded(false);
+          setActive('/');
+        }}
+      >
+        David Shallon
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav
+          className="mr-auto"
+          activeKey={active}
+          onSelect={(selected) => setActive(selected)}
+        >
+          <LinkContainer exact to="/">
+            <Nav.Link>Home</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="about">
+            <Nav.Link>About</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="concerts">
+            <Nav.Link>Concerts</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="discography">
+            <Nav.Link>Discography</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="media">
+            <Nav.Link>Media</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="press">
+            <Nav.Link>Press</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="gallery">
+            <Nav.Link>Gallery</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="foundation">
+            <Nav.Link>Foundation</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="commemorating">
+            <Nav.Link>Commemorating</Nav.Link>
+          </LinkContainer>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
