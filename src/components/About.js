@@ -3,7 +3,7 @@ import React from 'react';
 export default function About() {
   return (
     <div className="App">
-      <div class="container mt-3">
+      <div className="container mt-3">
         <div className="row">
           <div className="col">
             <h2 className="text-left">Biography</h2>
