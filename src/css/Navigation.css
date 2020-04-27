@@ -1,27 +1,13 @@
 nav {
-  background-color: #282c34;
-  box-sizing: border-box;
-  color: white;
+  transition: top 0.6s;
 }
 
-ul {
-  margin: 0;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: 16px;
+nav.navbar-hidden-md {
+  top: -60px;
 }
 
-li {
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-a:visited {
-  color: white;
+@media (min-width: 992px) {
+  nav.navbar-hidden-md {
+    top: 0px;
+  }
 }

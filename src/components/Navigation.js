@@ -3,20 +3,29 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-// import '../css/Navigation.css';
+import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import '../css/Navigation.css';
 
 export default function Navigation() {
   const location = useLocation();
   const [expanded, toggleExpanded] = useState(false);
   const [active, setActive] = useState(location.pathname.slice(1));
+  const [hidden, setHidden] = useState(false);
+
+  useScrollPosition(({ prevPos, currPos }) => {
+    let hide = prevPos.y !== 0 && currPos.y < prevPos.y;
+    setHidden(hide);
+  });
 
   return (
     <Navbar
+      className={hidden ? 'navbar-hidden-md' : ''}
       collapseOnSelect
       expanded={expanded}
       expand="lg"
       bg="dark"
       variant="dark"
+      fixed="top"
       onToggle={() => {
         toggleExpanded(!expanded);
       }}
