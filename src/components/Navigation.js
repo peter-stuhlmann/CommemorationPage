@@ -25,7 +25,7 @@ export default function Navigation() {
       expand="lg"
       bg="dark"
       variant="dark"
-      fixed="top"
+      sticky="top"
       onToggle={() => {
         toggleExpanded(!expanded);
       }}
