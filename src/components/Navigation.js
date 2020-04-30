@@ -10,16 +10,15 @@ export default function Navigation() {
   const location = useLocation();
   const [expanded, toggleExpanded] = useState(false);
   const [active, setActive] = useState(location.pathname.slice(1));
-  const [hidden, setHidden] = useState(false);
+  const [show, setShow] = useState(false);
 
   useScrollPosition(({ prevPos, currPos }) => {
-    let hide = prevPos.y !== 0 && currPos.y < prevPos.y;
-    setHidden(hide);
+    setShow(currPos.y > prevPos.y);
   });
 
   return (
     <Navbar
-      className={hidden ? 'navbar-hidden-md' : ''}
+      className={show ? 'navbar-show-md' : ''}
       collapseOnSelect
       expanded={expanded}
       expand="lg"
