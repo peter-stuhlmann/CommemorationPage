@@ -12,6 +12,23 @@ export default function Navigation() {
   const [active, setActive] = useState(location.pathname.slice(1));
   const [show, setShow] = useState(false);
 
+  const routes = [
+    { path: '/', exact: true, text: 'Home', disabled: false },
+    { path: 'about', exact: false, text: 'About', disabled: false },
+    { path: 'concerts', exact: false, text: 'Concerts', disabled: false },
+    { path: 'discography', exact: false, text: 'Discography', disabled: true },
+    { path: 'media', exact: false, text: 'Media', disabled: true },
+    { path: 'press', exact: false, text: 'Press', disabled: true },
+    { path: 'gallery', exact: false, text: 'Gallery', disabled: true },
+    { path: 'foundation', exact: false, text: 'Foundation', disabled: true },
+    {
+      path: 'commemorating',
+      exact: false,
+      text: 'Commemorating',
+      disabled: true,
+    },
+  ];
+
   useScrollPosition(({ prevPos, currPos }) => {
     setShow(currPos.y > prevPos.y);
   });
@@ -46,33 +63,18 @@ export default function Navigation() {
           activeKey={active}
           onSelect={(selected) => setActive(selected)}
         >
-          <LinkContainer exact to="/">
-            <Nav.Link>Home</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="about">
-            <Nav.Link>About</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="concerts">
-            <Nav.Link>Concerts</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="discography">
-            <Nav.Link>Discography</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="media">
-            <Nav.Link>Media</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="press">
-            <Nav.Link>Press</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="gallery">
-            <Nav.Link>Gallery</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="foundation">
-            <Nav.Link>Foundation</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="commemorating">
-            <Nav.Link>Commemorating</Nav.Link>
-          </LinkContainer>
+          {routes.map((route) => {
+            const { path, exact, text, disabled } = route;
+            return (
+              <LinkContainer
+                exact={exact}
+                to={path}
+                className={disabled ? 'disabled' : ''}
+              >
+                <Nav.Link>{text}</Nav.Link>
+              </LinkContainer>
+            );
+          })}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
