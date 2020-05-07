@@ -1,0 +1,69 @@
+/* Table layout on any screen smaller than 760px and also iPads specifically	*/
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    word-break: break-word;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin: 0 0 1rem 0;
+  }
+
+  tr:nth-child(odd) {
+    background: whitesmoke;
+  }
+
+  td {
+    /* Behave like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding: 0 1% 0 50% !important;
+  }
+
+  td:before {
+    /* Mimic table header */
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  /* Label the data */
+  td:nth-of-type(1):before {
+    content: 'Year';
+  }
+  td:nth-of-type(2):before {
+    content: 'Date';
+  }
+  td:nth-of-type(3):before {
+    content: 'Program';
+  }
+  td:nth-of-type(4):before {
+    content: 'Location';
+  }
+  td:nth-of-type(5):before {
+    content: 'Participants';
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
