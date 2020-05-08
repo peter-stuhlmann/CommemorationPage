@@ -35,7 +35,7 @@ export default function Navigation() {
 
   return (
     <Navbar
-      className={show ? 'navbar-show-md' : ''}
+      className={show || expanded ? 'navbar-show-md' : ''}
       collapseOnSelect
       expanded={expanded}
       expand="lg"
@@ -57,9 +57,12 @@ export default function Navigation() {
         David Shallon
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar.Collapse
+        className="justify-content-end"
+        id="responsive-navbar-nav"
+      >
         <Nav
-          className="mr-auto"
+          // className="mr-auto"
           activeKey={active}
           onSelect={(selected) => setActive(selected)}
         >
@@ -70,6 +73,7 @@ export default function Navigation() {
                 exact={exact}
                 to={path}
                 className={disabled ? 'disabled' : ''}
+                key={path}
               >
                 <Nav.Link>{text}</Nav.Link>
               </LinkContainer>
