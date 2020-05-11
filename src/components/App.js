@@ -11,6 +11,7 @@ import Press from './Press';
 import Gallery from './Gallery';
 import Foundation from './Foundation';
 import Commemorating from './Commemorating';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -26,7 +27,10 @@ function App() {
         <Route exact path="/gallery" component={Gallery} />
         <Route exact path="/foundation" component={Foundation} />
         <Route exact path="/commemorating" component={Commemorating} />
+        <Route exact path="/legal" component={Home} />
+        <Route exact path="/privacy" component={Home} />
       </Switch>
+      <Footer />
     </Router>
   );
 }
