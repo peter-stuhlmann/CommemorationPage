@@ -1,9 +1,10 @@
-## What type of PR is this? _(check all applicable)_
+## What type of pull request is this? _(check all applicable)_
 
 - [ ] Refactor
 - [ ] Feature
 - [ ] Bug Fix
-- [ ] Documentation Update
+- [ ] Assets
+- [ ] Documentation
 
 ## Description
 
