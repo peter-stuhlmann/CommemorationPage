@@ -27,6 +27,7 @@ export default function Navigation(props) {
       text: 'Commemorating',
       disabled: true,
     },
+    { path: 'contact', exact: false, text: 'Contact', disabled: false },
   ];
 
   useEffect(() => {

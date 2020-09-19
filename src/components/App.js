@@ -11,6 +11,7 @@ import Press from './Press';
 import Gallery from './Gallery';
 import Foundation from './Foundation';
 import Commemorating from './Commemorating';
+import Contact from './Contact';
 import Footer from './Footer';
 
 function App() {
@@ -29,8 +30,10 @@ function App() {
         <Route exact path="/gallery" component={Gallery} />
         <Route exact path="/foundation" component={Foundation} />
         <Route exact path="/commemorating" component={Commemorating} />
+        <Route exact path="/contact" component={Contact} />
         <Route exact path="/legal" component={Home} />
         <Route exact path="/privacy" component={Home} />
+        <Route component={() => '404'} />
       </Switch>
       <Footer />
     </Router>
