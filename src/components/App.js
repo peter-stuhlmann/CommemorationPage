@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from './Navigation';
@@ -14,9 +14,11 @@ import Commemorating from './Commemorating';
 import Footer from './Footer';
 
 function App() {
+  const [activePath, setActivePath] = useState(null);
+
   return (
     <Router>
-      <Navigation />
+      <Navigation active={activePath} setActive={setActivePath} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
