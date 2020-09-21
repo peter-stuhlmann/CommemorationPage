@@ -12,6 +12,7 @@ import Gallery from './Gallery';
 import Foundation from './Foundation';
 import Commemorating from './Commemorating';
 import Legal from './Legal';
+import NotFound from './NotFound';
 import { GlobalStyles } from './GlobalStyles';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/commemorating" component={Commemorating} />
         <Route exact path="/legal-notice" component={Legal} />
         <Route exact path="/privacy-policy" component={Legal} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );
