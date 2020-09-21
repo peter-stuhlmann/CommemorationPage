@@ -21,14 +21,14 @@ function App() {
       <Navigation active={activePath} setActive={setActivePath} />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
+        {/* <Route exact path="/about" component={About} /> */}
         <Route exact path="/concerts" component={Concerts} />
-        <Route exact path="/discography" component={Discography} />
+        {/* <Route exact path="/discography" component={Discography} />
         <Route exact path="/media" component={Media} />
-        <Route exact path="/press" component={Press} />
+        <Route exact path="/press" component={Press} /> */}
         <Route exact path="/gallery" component={Gallery} />
-        <Route exact path="/foundation" component={Foundation} />
-        <Route exact path="/commemorating" component={Commemorating} />
+        {/* <Route exact path="/foundation" component={Foundation} /> */}
+        <Route exact path="/memories" component={Commemorating} />
         <Route exact path="/legal" component={Home} />
         <Route exact path="/privacy" component={Home} />
       </Switch>
