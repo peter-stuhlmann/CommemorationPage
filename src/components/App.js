@@ -13,6 +13,7 @@ const Gallery = lazy(() => import('./Gallery'));
 const Foundation = lazy(() => import('./Foundation'));
 const Commemorating = lazy(() => import('./Commemorating'));
 const Legal = lazy(() => import('./Legal'));
+const Orchestras = lazy(() => import('./Orchestras'));
 const NotFound = lazy(() => import('./NotFound'));
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/concerts" component={Concerts} />
+          <Route exact path="/orchestras" component={Orchestras} />
           <Route exact path="/discography" component={Discography} />
           <Route exact path="/media" component={Media} />
           <Route exact path="/press" component={Press} />
