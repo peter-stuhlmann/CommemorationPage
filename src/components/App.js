@@ -11,10 +11,12 @@ import Press from './Press';
 import Gallery from './Gallery';
 import Foundation from './Foundation';
 import Commemorating from './Commemorating';
+import { GlobalStyles } from './GlobalStyles';
 
 function App() {
   return (
     <Router>
+      <GlobalStyles />
       <Navigation />
       <Switch>
         <Route exact path="/" component={Home} />
