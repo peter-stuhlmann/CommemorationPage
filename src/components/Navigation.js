@@ -21,12 +21,12 @@ export default function Navigation(props) {
     // { path: 'press', exact: false, text: 'Press', disabled: true },
     { path: 'gallery', exact: false, text: 'Gallery', disabled: false },
     // { path: 'foundation', exact: false, text: 'Foundation', disabled: true },
-    {
-      path: 'memories',
-      exact: false,
-      text: 'Memories',
-      disabled: false,
-    },
+    // {
+    //   path: 'memories',
+    //   exact: false,
+    //   text: 'Memories',
+    //   disabled: false,
+    // },
   ];
 
   useEffect(() => {
