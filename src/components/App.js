@@ -3,6 +3,7 @@ import '../css/App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from './Navigation';
 import { GlobalStyles } from './GlobalStyles';
+import { Container } from './Container';
 const Home = lazy(() => import('./Home'));
 const About = lazy(() => import('./About'));
 const Concerts = lazy(() => import('./Concerts'));
@@ -22,7 +23,7 @@ function App() {
     <Router>
       <GlobalStyles />
       <Navigation />
-      <Suspense fallback={'Loading...'}>
+      <Suspense fallback={<Container>Loading...</Container>}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
