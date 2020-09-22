@@ -14,19 +14,19 @@ export default function Navigation(props) {
 
   const routes = [
     { path: '/', exact: true, text: 'Home', disabled: false },
-    // { path: 'about', exact: false, text: 'About', disabled: false },
+    { path: 'about', exact: false, text: 'About', disabled: true },
     { path: 'concerts', exact: false, text: 'Concerts', disabled: false },
-    // { path: 'discography', exact: false, text: 'Discography', disabled: true },
-    // { path: 'media', exact: false, text: 'Media', disabled: true },
+    { path: 'discography', exact: false, text: 'Discography', disabled: true },
+    { path: 'media', exact: false, text: 'Media', disabled: true },
     // { path: 'press', exact: false, text: 'Press', disabled: true },
     { path: 'gallery', exact: false, text: 'Gallery', disabled: false },
-    // { path: 'foundation', exact: false, text: 'Foundation', disabled: true },
-    // {
-    //   path: 'memories',
-    //   exact: false,
-    //   text: 'Memories',
-    //   disabled: false,
-    // },
+    { path: 'foundation', exact: false, text: 'Foundation', disabled: true },
+    {
+      path: 'memories',
+      exact: false,
+      text: 'Memories',
+      disabled: true,
+    },
   ];
 
   useEffect(() => {
