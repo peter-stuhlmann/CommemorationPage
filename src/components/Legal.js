@@ -9,10 +9,10 @@ export default function Legal() {
 
   switch (window.location.pathname) {
     case '/legal-notice':
-      api = 'https://david-shallon-api.vercel.app/pages/legal-notice';
+      api = `${process.env.REACT_APP_API_URL}/legal-notice`;
       break;
     case '/privacy-policy':
-      api = 'https://david-shallon-api.vercel.app/pages/privacy-policy';
+      api = `${process.env.REACT_APP_API_URL}/privacy-policy`;
       break;
     default:
   }

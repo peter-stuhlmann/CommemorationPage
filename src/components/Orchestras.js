@@ -5,7 +5,7 @@ import { Heading } from './Headings';
 import { Container } from './Container';
 
 export default function Orchestras() {
-  const content = useFetch('https://david-shallon-api.vercel.app/orchestras');
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/orchestras`);
 
   return (
     <Container>

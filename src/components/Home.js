@@ -5,7 +5,7 @@ import { useFetch } from '../helpers/useFetch';
 import { link, screen, transition } from '../helpers/variables';
 
 export default function Home() {
-  const content = useFetch('https://david-shallon-api.vercel.app/pages/home');
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/home`);
 
   return (
     <StyledHome

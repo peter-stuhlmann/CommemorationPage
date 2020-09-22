@@ -5,7 +5,7 @@ import Carousel, { Modal, ModalGateway } from 'react-images';
 import { useFetch } from '../helpers/useFetch';
 
 export default function Gallery() {
-  const photos = useFetch('https://david-shallon-api.vercel.app/pictures');
+  const photos = useFetch(`${process.env.REACT_APP_API_URL}/pictures`);
 
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);

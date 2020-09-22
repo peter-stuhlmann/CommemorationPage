@@ -5,7 +5,7 @@ import { Heading } from './Headings';
 import { Container } from './Container';
 
 export default function Choirs() {
-  const content = useFetch('https://david-shallon-api.vercel.app/choirs');
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/choirs`);
 
   return (
     <Container>
