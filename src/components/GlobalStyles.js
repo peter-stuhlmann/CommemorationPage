@@ -13,6 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background-color: ${font.color.secondary};
     color: ${font.color.primary};
     font-size: ${font.size.normal};
     line-height: 1.6em;
