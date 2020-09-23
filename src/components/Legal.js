@@ -9,10 +9,10 @@ export default function Legal() {
 
   switch (window.location.pathname) {
     case '/legal-notice':
-      api = `${process.env.REACT_APP_API_URL}/legal-notice`;
+      api = `${process.env.REACT_APP_API_URL}/pages/legal-notice`;
       break;
     case '/privacy-policy':
-      api = `${process.env.REACT_APP_API_URL}/privacy-policy`;
+      api = `${process.env.REACT_APP_API_URL}/pages/privacy-policy`;
       break;
     default:
   }
