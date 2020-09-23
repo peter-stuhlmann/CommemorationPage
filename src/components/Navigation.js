@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import '../css/Navigation.css';
+import styled from 'styled-components';
 
 export default function Navigation(props) {
   const location = useLocation();
@@ -38,7 +38,7 @@ export default function Navigation(props) {
   });
 
   return (
-    <Navbar
+    <StyledNavigation
       className={show || expanded ? 'navbar-show-md' : ''}
       collapseOnSelect
       expanded={expanded}
@@ -84,6 +84,23 @@ export default function Navigation(props) {
           })}
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
+    </StyledNavigation>
   );
 }
+
+const StyledNavigation = styled(Navbar)`
+  &.sticky-top {
+    transition: top 0.6s;
+    top: -60px;
+  }
+
+  &.navbar-show-md {
+    top: 0px;
+  }
+
+  @media (min-width: 992px) {
+    &.sticky-top {
+      top: 0px;
+    }
+  }
+`;
