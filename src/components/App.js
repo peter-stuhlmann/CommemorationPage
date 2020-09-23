@@ -1,7 +1,7 @@
-import React, { lazy, Suspense } from 'react';
-import '../css/App.css';
+import React, { lazy, Suspense, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from './Navigation';
+import Footer from './Footer';
 import { GlobalStyles } from './GlobalStyles';
 import { Container } from './Container';
 const Home = lazy(() => import('./Home'));
@@ -19,10 +19,12 @@ const Choirs = lazy(() => import('./Choirs'));
 const NotFound = lazy(() => import('./NotFound'));
 
 function App() {
+  const [activePath, setActivePath] = useState(null);
+
   return (
     <Router>
       <GlobalStyles />
-      <Navigation />
+      <Navigation active={activePath} setActive={setActivePath} />
       <Suspense fallback={<Container>Loading...</Container>}>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -35,11 +37,12 @@ function App() {
           <Route exact path="/press" component={Press} />
           <Route exact path="/gallery" component={Gallery} />
           <Route exact path="/foundation" component={Foundation} />
-          <Route exact path="/commemorating" component={Commemorating} />
+          <Route exact path="/memories" component={Commemorating} />
           <Route exact path="/legal-notice" component={Legal} />
           <Route exact path="/privacy-policy" component={Legal} />
           <Route component={NotFound} />
         </Switch>
+        <Footer />
       </Suspense>
     </Router>
   );
