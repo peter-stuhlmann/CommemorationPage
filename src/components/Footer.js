@@ -14,10 +14,10 @@ export default function Footer() {
           </Navbar.Text>
           <Navbar.Collapse className="justify-content-end">
             <Nav activeKey={null}>
-              <LinkContainer to="/legal" key="legal">
+              <LinkContainer to="/legal-notice">
                 <Nav.Link>Legal notice</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/privacy" key="privacy">
+              <LinkContainer to="/privacy-policy">
                 <Nav.Link>Privacy policy</Nav.Link>
               </LinkContainer>
             </Nav>
