@@ -25,3 +25,7 @@ yarn-error.log*
 
 # deployment
 .vercel
+
+# static assets
+/public/img
+/src/data
