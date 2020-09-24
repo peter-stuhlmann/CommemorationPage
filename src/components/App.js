@@ -1,9 +1,15 @@
 import React, { lazy, Suspense, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import { GlobalStyles } from './GlobalStyles';
 import { Container } from './Container';
+import { GermanRouter } from './GermanRouter';
 const Home = lazy(() => import('./Home'));
 const About = lazy(() => import('./About'));
 const Concerts = lazy(() => import('./Concerts'));
@@ -40,6 +46,7 @@ function App() {
           <Route exact path="/memories" component={Commemorating} />
           <Route exact path="/legal-notice" component={Legal} />
           <Route exact path="/privacy-policy" component={Legal} />
+          <GermanRouter />
           <Route component={NotFound} />
         </Switch>
       </Suspense>
