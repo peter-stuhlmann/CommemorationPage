@@ -42,8 +42,8 @@ function App() {
           <Route exact path="/privacy-policy" component={Legal} />
           <Route component={NotFound} />
         </Switch>
-        <Footer />
       </Suspense>
+      <Footer />
     </Router>
   );
 }
