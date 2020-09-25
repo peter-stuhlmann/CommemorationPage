@@ -1,29 +1,65 @@
 import React from 'react';
-import '../css/Footer.css';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { LinkContainer } from 'react-router-bootstrap';
+import styled from 'styled-components';
+import { Container } from './Container';
+import { Link } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+
+import useDimensions from '../helpers/useDimensions';
 
 export default function Footer() {
+  const [ref, { height }] = useDimensions();
+
+  const RootStyles = createGlobalStyle`
+    #root {
+      padding-bottom: ${height}px; // footer height
+    }
+  `;
+
   return (
-    <footer className="text-muted position-absolute">
-      <div className="container">
-        <Navbar expand="sm" expanded className="px-0">
-          <Navbar.Text className="mr-auto">
-            Copyright 2020 David Shallon Foundation Berlin
-          </Navbar.Text>
-          <Navbar.Collapse className="justify-content-end">
-            <Nav activeKey={null}>
-              <LinkContainer to="/legal-notice">
-                <Nav.Link>Legal notice</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/privacy-policy">
-                <Nav.Link>Privacy policy</Nav.Link>
-              </LinkContainer>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
-    </footer>
+    <StyledFooter ref={ref}>
+      <RootStyles />
+      <Container footer full>
+        <Copyright>&copy; 2020 David Shallon Foundation Berlin</Copyright>
+        <Navigation>
+          <Link to="/legal-notice">Legal notice</Link>
+          <Link to="/privacy-policy">Privacy policy</Link>
+        </Navigation>
+      </Container>
+    </StyledFooter>
   );
 }
+
+const StyledFooter = styled.footer`
+  background-color: #fff;
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
+    0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+`;
+
+const Copyright = styled.p`
+  margin: 0;
+  padding: 6px 0;
+
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+`;
+
+const Navigation = styled.nav`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  a {
+    padding: 6px 11px;
+
+    // @media (max-width: 768px) {
+    //   flex: 0 0 100%;
+    //   text-align: center;
+    // }
+  }
+`;
