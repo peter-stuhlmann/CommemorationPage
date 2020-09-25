@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container } from './Container';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
 import useDimensions from '../helpers/useDimensions';
@@ -21,8 +21,8 @@ export default function Footer() {
       <Container footer full>
         <Copyright>&copy; 2020 David Shallon Foundation Berlin</Copyright>
         <Navigation>
-          <Link to="/legal-notice">Legal notice</Link>
-          <Link to="/privacy-policy">Privacy policy</Link>
+          <NavLink to="/legal-notice">Legal notice</NavLink>
+          <NavLink to="/privacy-policy">Privacy policy</NavLink>
         </Navigation>
       </Container>
     </StyledFooter>
@@ -56,6 +56,10 @@ const Navigation = styled.nav`
 
   a {
     padding: 6px 11px;
+
+    &.active {
+      font-weight: bold;
+    }
 
     // @media (max-width: 768px) {
     //   flex: 0 0 100%;
