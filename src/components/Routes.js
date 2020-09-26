@@ -2,6 +2,7 @@ import React, { Fragment, lazy, Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import { Container } from './Container';
+import ScrollToTop from './ScrollToTop';
 
 const Home = lazy(() => import('./Home'));
 const About = lazy(() => import('./About'));
@@ -85,6 +86,7 @@ export default function Routes() {
     <Fragment>
       <Redirects />
       <DefaultRoutes />
+      <ScrollToTop />
     </Fragment>
   );
 }
