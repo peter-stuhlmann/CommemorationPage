@@ -70,6 +70,7 @@ const ScrollToTopButton = styled.button`
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 10000;
 
   &:focus {
     outline: 0;
