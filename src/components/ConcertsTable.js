@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { DownIcon } from './Icons';
 
 export default function ConcertsTable(props) {
   const { tableHeaders, concerts } = props;
@@ -45,6 +46,9 @@ function TableHead(props) {
         break;
       case 'participants':
         displayHeaders.push('Orchestra & Soloists');
+        break;
+      case 'attachments':
+        displayHeaders.push('');
         break;
       default:
         displayHeaders.push(header.charAt(0).toUpperCase() + header.slice(1));
@@ -97,7 +101,9 @@ function TableCell(props) {
 
   return (
     <td role="cell" key={property}>
-      {Array.isArray(concert[property]) ? (
+      {property === 'attachments' && concert[property].length > 0 ? (
+        <DownIcon />
+      ) : Array.isArray(concert[property]) ? (
         <ul>
           {concert[property].map((line, i) => (
             <li
