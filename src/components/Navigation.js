@@ -1,17 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import styled, { createGlobalStyle } from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import styled from 'styled-components';
 
-export default function Navigation(props) {
-  const location = useLocation();
-  const [expanded, toggleExpanded] = useState(false);
-  const { active, setActive } = props;
+import { colors, screen, transition } from '../helpers/variables';
+
+const useOnClickOutside = (ref, handler) => {
+  useEffect(() => {
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      handler(event);
+    };
+    document.addEventListener('mousedown', listener);
+    return () => {
+      document.removeEventListener('mousedown', listener);
+    };
+  }, [ref, handler]);
+};
+
+export default function MainNavigation() {
   const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  useScrollPosition(({ prevPos, currPos }) => {
+    setShow(currPos.y > prevPos.y);
+  });
+
+  const node = useRef();
+  useOnClickOutside(node, () => setOpen(false));
+
+  return (
+    <StyledMainNavigation ref={node} className={show ? 'show' : null}>
+      <ToggleButton open={open} setOpen={setOpen} />
+      <div className="site-title-desktop" onClick={() => window.scrollTo(0, 0)}>
+        <Link to="/">David Shallon</Link>
+      </div>
+      <Navbar open={open} setOpen={setOpen} />
+      <div className="site-title-mobile" onClick={() => window.scrollTo(0, 0)}>
+        <Link to="/">David Shallon</Link>
+      </div>
+      <Backdrop open={open} />
+    </StyledMainNavigation>
+  );
+}
+
+function Navbar({ open, setOpen }) {
   const routes = [
     { path: '/', exact: true, text: 'Home', disabled: false },
     { path: 'about', exact: false, text: 'About', disabled: true },
@@ -29,78 +64,220 @@ export default function Navigation(props) {
     },
   ];
 
-  useEffect(() => {
-    setActive(location.pathname.slice(1));
-  }, [location.pathname, setActive]);
-
-  useScrollPosition(({ prevPos, currPos }) => {
-    setShow(currPos.y > prevPos.y);
-  });
-
   return (
-    <StyledNavigation
-      className={show || expanded ? 'navbar-show-md' : ''}
-      collapseOnSelect
-      expanded={expanded}
-      expand="lg"
-      bg="dark"
-      variant="dark"
-      sticky="top"
-      onToggle={() => {
-        toggleExpanded(!expanded);
-      }}
-    >
-      <Navbar.Brand
-        as={Link}
-        to="/"
-        onClick={() => {
-          toggleExpanded(false);
-          setActive('/');
-        }}
-      >
-        David Shallon
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse
-        className="justify-content-end"
-        id="responsive-navbar-nav"
-      >
-        <Nav
-          // className="mr-auto"
-          activeKey={active}
+    <StyledNavbar open={open}>
+      {routes.map((route) => (
+        <NavLink
+          key={route.path}
+          to={route.path}
+          onClick={() => setOpen(false)}
+          exact={true}
+          className={route.disabled ? 'disabled' : null}
         >
-          {routes.map((route) => {
-            const { path, exact, text, disabled } = route;
-            return (
-              <LinkContainer
-                exact={exact}
-                to={path}
-                className={disabled ? 'disabled' : ''}
-                key={path}
-              >
-                <Nav.Link>{text}</Nav.Link>
-              </LinkContainer>
-            );
-          })}
-        </Nav>
-      </Navbar.Collapse>
-    </StyledNavigation>
+          {route.text}
+        </NavLink>
+      ))}
+    </StyledNavbar>
   );
 }
 
-const StyledNavigation = styled(Navbar)`
-  &.sticky-top {
-    transition: top 0.6s;
-    top: -60px;
+function ToggleButton({ open, setOpen }) {
+  return (
+    <StyledToggleButton
+      open={open}
+      onClick={() => setOpen(!open)}
+      aria-label="Open Menu"
+    >
+      <div />
+      <div />
+      <div />
+    </StyledToggleButton>
+  );
+}
+
+const Backdrop = createGlobalStyle`
+  body::after {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: ${(props) => (props.open ? '1' : '0')};
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: ${(props) =>
+      props.open ? 'translateX(0)' : 'translateX(calc(-100%))'};
+    transition: opacity 0.3s ease-in-out;
+    width: 100%;   
+    z-index: 100000;
+  }
+`;
+
+const StyledMainNavigation = styled.div`
+  align-items: center;
+  background-color: ${colors.primary};
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  height: 64px;
+  letter-spacing: 0.5px;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100001;
+  transition: top 0.6s;
+  top: 0;
+
+  @media (max-width: calc(${screen.desktop} - 1px)) {
+    top: -71px;
   }
 
-  &.navbar-show-md {
-    top: 0px;
+  &.show {
+    top: 0;
   }
 
-  @media (min-width: 992px) {
-    &.sticky-top {
-      top: 0px;
+  a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+  }
+
+  .site-title-desktop {
+    white-space: nowrap;
+
+    @media (max-width: calc(${screen.desktop} - 1px)) {
+      display: none;
     }
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .site-title-mobile {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: ${screen.desktop}) {
+      display: none;
+    }
+
+    a {
+      color: #fff;
+    }
+  }
+`;
+
+const StyledNavbar = styled.nav`
+  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.75);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  left: 0;
+  max-width: 80vw;
+  overflow-y: auto;
+  padding: 0;
+  position: fixed;
+  text-align: left;
+  top: 0;
+  transform: ${({ open }) =>
+    open ? 'translateX(0)' : 'translateX(calc(-100% - 7px))'};
+  transition: transform 0.3s ease-in-out;
+  width: 333px;
+
+  @media (max-width: calc(${screen.desktop} - 1px)) {
+    background-color: ${colors.primary};
+  }
+
+  @media (min-width: ${screen.desktop}) {
+    align-items: center;
+    box-shadow: none;
+    flex-direction: row;
+    height: 64px;
+    justify-content: flex-end;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow-y: hidden;
+    position: static;
+    text-align: right;
+    transform: translateX(0);
+    width: 100%;
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.5);
+    padding: 7px 12px;
+    text-decoration: none;
+    transition: ${transition.normal};
+
+    @media (min-width: calc(${screen.desktop} - 1px)) {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    @media (max-width: calc(${screen.desktop} - 1px)) {
+      background-color: ${colors.primary};
+      font-size: 16px;
+
+      &:first-child {
+        margin-top: 60px;
+      }
+    }
+
+    &.disabled {
+      color: rgba(255, 255, 255, 0.25);
+      pointer-events: none;
+    }
+
+    &.active {
+      color: ${colors.secondary};
+    }
+  }
+`;
+
+const StyledToggleButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 27px;
+  justify-content: space-around;
+  padding: 0;
+  position: ${({ open }) => (open ? 'fixed' : 'static')};
+  width: 27px;
+  z-index: 2;
+
+  &:focus {
+    outline: none;
+  }
+
+  div {
+    background-color: ${colors.secondary};
+    border-radius: 10px;
+    height: 3px;
+    position: relative;
+    transform-origin: 1px;
+    transition: all 0.3s linear;
+    width: 27px;
+
+    :first-child {
+      transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ open }) => (open ? '0' : '1')};
+      transform: ${({ open }) => (open ? 'translateX(20px)' : 'translateX(0)')};
+    }
+
+    :nth-child(3) {
+      transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
+    }
+  }
+
+  @media (min-width: ${screen.desktop}) {
+    display: none;
   }
 `;
