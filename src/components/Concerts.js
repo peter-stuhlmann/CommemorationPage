@@ -3,6 +3,7 @@ import '../css/Concerts.css';
 import YearHeading from './YearHeading';
 import ConcertsTable from './ConcertsTable';
 import { useFetch } from '../helpers/useFetch';
+import { FailedToLoad } from './Messages';
 
 export default function Concerts() {
   const [concerts, setConcerts] = useState(null);
@@ -38,7 +39,9 @@ export default function Concerts() {
     }
   }, [concerts]);
 
-  return (
+  return data?.error ? (
+    <FailedToLoad />
+  ) : (
     // TODO: add loading spinner
     <div className="App">
       <div className="container mt-3">
@@ -52,7 +55,7 @@ export default function Concerts() {
           {years &&
             years.map((year, index) => (
               <section key={year}>
-                <YearHeading index={index} year={year} />
+                <YearHeading year={year} />
                 <ConcertsTable
                   tableHeaders={tableHeaders}
                   concerts={concerts.filter((concert) => concert.year === year)}

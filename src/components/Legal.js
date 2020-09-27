@@ -3,6 +3,7 @@ import React from 'react';
 import { Heading } from './Headings';
 import { Container } from './Container';
 import { useFetch } from '../helpers/useFetch';
+import { FailedToLoad } from './Messages';
 
 export default function Legal() {
   let api;
@@ -18,7 +19,9 @@ export default function Legal() {
   }
   const content = useFetch(api);
 
-  return (
+  return content?.error ? (
+    <FailedToLoad />
+  ) : (
     <Container>
       <Heading h1 title={content?.response?.title} />
       <div dangerouslySetInnerHTML={{ __html: content?.response?.content }} />

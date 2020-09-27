@@ -5,6 +5,7 @@ import Tooltip from './Tooltip';
 
 import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
+import { FailedToLoad } from './Messages';
 
 export default function Gallery(e) {
   const photos = useFetch(`${process.env.REACT_APP_API_URL}/pictures`);
@@ -23,7 +24,9 @@ export default function Gallery(e) {
     setViewerIsOpen(false);
   };
 
-  return (
+  return photos?.error ? (
+    <FailedToLoad />
+  ) : (
     photos.response && (
       <Container
         full

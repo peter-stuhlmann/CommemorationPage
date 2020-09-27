@@ -1,3 +1,14 @@
+/* table {
+  z-index: -2;
+}
+thead,
+tbody,
+th,
+td,
+tr {
+  z-index: -1;
+} */
+
 /* Table layout on any screen smaller than 760px and also iPads specifically	*/
 @media only screen and (max-width: 760px),
   (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -88,20 +99,5 @@ div.position-sticky {
 }
 
 .z-index1 {
-  z-index: 100;
-}
-
-.z-index2 {
-  z-index: 200;
-}
-
-.z-index3 {
-  z-index: 300;
-}
-
-.z-index4 {
-  z-index: 400;
-}
-.z-index5 {
-  z-index: 500;
+  z-index: 1;
 }

@@ -3,11 +3,14 @@ import styled from 'styled-components';
 
 import { useFetch } from '../helpers/useFetch';
 import { boxShadow, link, screen, transition } from '../helpers/variables';
+import { FailedToLoad } from './Messages';
 
 export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/home`);
 
-  return (
+  return content?.error ? (
+    <FailedToLoad />
+  ) : (
     <StyledHome
       dangerouslySetInnerHTML={{ __html: content?.response?.content }}
     />
