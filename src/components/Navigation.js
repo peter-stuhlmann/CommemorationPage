@@ -109,7 +109,7 @@ const Backdrop = createGlobalStyle`
       props.open ? 'translateX(0)' : 'translateX(calc(-100%))'};
     transition: opacity 0.3s ease-in-out;
     width: 100%;   
-    z-index: 100000;
+    z-index: 1020;
   }
 `;
 
@@ -124,7 +124,7 @@ const StyledMainNavigation = styled.div`
   padding: 16px;
   position: sticky;
   top: 0;
-  z-index: 100001;
+  z-index: 1021;
   transition: top 0.6s;
   top: 0;
 
