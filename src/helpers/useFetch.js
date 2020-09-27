@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import pRetry from 'p-retry';
 
 export const useFetch = (url, options) => {
   const [response, setResponse] = useState(null);
@@ -9,12 +10,20 @@ export const useFetch = (url, options) => {
       try {
         const res = await fetch(url);
         const json = await res.json();
-        setResponse(json);
+        return json;
+      } catch (error) {
+        throw new Error();
+      }
+    };
+
+    (async () => {
+      try {
+        const result = await pRetry(fetchData, { retries: 5 });
+        setResponse(result);
       } catch (error) {
         setError(error);
       }
-    };
-    fetchData();
+    })();
   }, [options, url]);
 
   return { response, error };
