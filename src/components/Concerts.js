@@ -55,7 +55,7 @@ export default function Concerts() {
           {years &&
             years.map((year, index) => (
               <section key={year}>
-                <YearHeading index={index} year={year} />
+                <YearHeading year={year} />
                 <ConcertsTable
                   tableHeaders={tableHeaders}
                   concerts={concerts.filter((concert) => concert.year === year)}
