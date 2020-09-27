@@ -27,11 +27,23 @@ export default function ScrollToTop(props) {
     scroll();
   }, [pathname]);
 
-  useScrollPosition(({ prevPos, currPos }) => {
+  useScrollPosition(({ currPos }) => {
     setScrollPosition(currPos.y);
   });
 
   const { label } = props;
+
+  const footerStartsAtThisScrollPosition =
+    (document.body.clientHeight - 72 - window.innerHeight) * -1;
+
+  let bottom = 20;
+
+  if (scrollPosition < footerStartsAtThisScrollPosition) {
+    bottom =
+      72 -
+      (document.body.clientHeight - window.innerHeight + scrollPosition) +
+      20;
+  }
 
   return (
     <ScrollToTopButton
@@ -41,6 +53,7 @@ export default function ScrollToTop(props) {
       style={{
         visibility: scrollPosition < -300 ? 'visible' : 'hidden',
         transform: scrollPosition < -300 ? 'none' : 'scale(0)',
+        bottom: bottom + 'px',
       }}
     >
       <span>{label || <ArrowTopIcon />}</span>
@@ -68,7 +81,6 @@ const ScrollToTopButton = styled.button`
   border-radius: 50%;
   background-color: ${colors.primary};
   position: fixed;
-  bottom: 20px;
   right: 20px;
   z-index: 10000;
 
