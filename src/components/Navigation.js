@@ -213,7 +213,8 @@ const StyledNavbar = styled.nav`
 
     @media (min-width: calc(${screen.desktop} - 1px)) {
       &:hover {
-        opacity: 0.7;
+        color: ${colors.secondary};
+        opacity: 0.8;
       }
     }
 
@@ -233,6 +234,11 @@ const StyledNavbar = styled.nav`
 
     &.active {
       color: ${colors.secondary};
+
+      &:hover {
+        color: ${colors.secondary};
+        opacity: 1;
+      }
     }
   }
 `;
