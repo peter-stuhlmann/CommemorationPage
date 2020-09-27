@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useFetch } from '../helpers/useFetch';
-import { link, screen, transition } from '../helpers/variables';
+import { boxShadow, link, screen, transition } from '../helpers/variables';
 
 export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/home`);
@@ -36,7 +36,7 @@ const StyledHome = styled.div`
     }
 
     img {
-      box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.6);
+      box-shadow: ${boxShadow.primary};
       max-height: 75vh;
       max-width: 100%;
       border-radius: 10px;
