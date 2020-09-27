@@ -7,7 +7,7 @@ import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 
-export default function Gallery(e) {
+export default function Gallery() {
   const photos = useFetch(`${process.env.REACT_APP_API_URL}/pictures`);
 
   const [currentImage, setCurrentImage] = useState(0);
