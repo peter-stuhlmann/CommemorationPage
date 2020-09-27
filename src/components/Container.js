@@ -3,7 +3,7 @@ import { link, screen, transition } from '../helpers/variables';
 
 export const Container = styled.div`
   margin: 50px auto;
-  max-width: ${screen.desktop};
+  max-width: ${(props) => (props.full ? `100%` : `${screen.desktop}`)};
   padding: 16px;
   width: 100%;
 
@@ -24,4 +24,9 @@ export const Container = styled.div`
       opacity: 0.7;
     }
   }
+
+  ${(props) =>
+    props.footer
+      ? `display: flex; margin: 0 auto; padding: 16px; justify-content: space-between; flex-flow: row wrap; @media (max-width: ${screen.tablet}) { justify-content: center; }`
+      : null}
 `;

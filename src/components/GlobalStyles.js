@@ -19,5 +19,11 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 1.6em;
     margin: 0;
     font-family: ${font.family.primary};
+
+    #root {
+      min-height: 100vh;
+      position: relative;
+      // padding bottom is defined in Footer.js (= height of footer)
+    }
   }
 `;

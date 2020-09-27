@@ -3,6 +3,7 @@ import PhotoGallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
 import { useFetch } from '../helpers/useFetch';
+import { Container } from './Container';
 
 export default function Gallery() {
   const photos = useFetch(`${process.env.REACT_APP_API_URL}/pictures`);
@@ -22,7 +23,7 @@ export default function Gallery() {
 
   return (
     photos.response && (
-      <Fragment>
+      <Container full style={{ marginTop: 0 }}>
         <PhotoGallery photos={photos.response} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
@@ -38,7 +39,7 @@ export default function Gallery() {
             </Modal>
           ) : null}
         </ModalGateway>
-      </Fragment>
+      </Container>
     )
   );
 }
