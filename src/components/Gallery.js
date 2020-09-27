@@ -1,9 +1,10 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PhotoGallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
 import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
+import { FailedToLoad } from './Messages';
 
 export default function Gallery() {
   const photos = useFetch(`${process.env.REACT_APP_API_URL}/pictures`);
@@ -21,7 +22,9 @@ export default function Gallery() {
     setViewerIsOpen(false);
   };
 
-  return (
+  return photos?.error ? (
+    <FailedToLoad />
+  ) : (
     photos.response && (
       <Container full style={{ marginTop: 0 }}>
         <PhotoGallery photos={photos.response} onClick={openLightbox} />
