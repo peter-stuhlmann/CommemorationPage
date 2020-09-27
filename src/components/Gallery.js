@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import PhotoGallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
+import Tooltip from './Tooltip';
 
 import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
@@ -11,6 +12,7 @@ export default function Gallery() {
 
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const openLightbox = useCallback((event, { index }) => {
     setCurrentImage(index);
@@ -26,7 +28,18 @@ export default function Gallery() {
     <FailedToLoad />
   ) : (
     photos.response && (
-      <Container full style={{ marginTop: 0 }}>
+      <Container
+        full
+        style={{
+          margin: '2px 0 5px 0',
+          padding: 0,
+        }}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          setMousePosition({ x: e.clientX, y: e.clientY });
+        }}
+      >
+        <Tooltip label="&copy; davidshallon.com" position={mousePosition} />
         <PhotoGallery photos={photos.response} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
