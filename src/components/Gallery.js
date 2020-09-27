@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PhotoGallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
@@ -23,7 +23,13 @@ export default function Gallery() {
 
   return (
     photos.response && (
-      <Container full style={{ marginTop: 0 }}>
+      <Container
+        full
+        style={{
+          margin: '2px 0 5px 0',
+          padding: 0,
+        }}
+      >
         <PhotoGallery photos={photos.response} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
