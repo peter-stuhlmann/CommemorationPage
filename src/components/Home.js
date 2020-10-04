@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useFetch } from '../helpers/useFetch';
-import { boxShadow, link, screen, transition } from '../helpers/variables';
+import {
+  boxShadow,
+  font,
+  link,
+  screen,
+  transition,
+} from '../helpers/variables';
 import { FailedToLoad } from './Messages';
 
 export default function Home() {
@@ -43,6 +49,11 @@ const StyledHome = styled.div`
       max-height: 75vh;
       max-width: 100%;
       border-radius: 10px;
+    }
+
+    .caption {
+      font-size: ${font.size.small};
+      opacity: 0.8;
     }
   }
 
@@ -95,7 +106,7 @@ const StyledHome = styled.div`
   }
 
   .container {
-    margin: 70px auto;
+    margin: 10px auto 70px auto;
     max-width: ${screen.desktop};
     padding: 16px;
     width: 100%;
@@ -120,6 +131,14 @@ const StyledHome = styled.div`
       &:hover {
         opacity: 0.7;
       }
+    }
+
+    .info {
+      font-size: ${font.size.normal};
+      font-style: italic;
+      line-height: 1.4;
+      opacity: 0.8;
+      margin-top: 40px;
     }
   }
 `;
