@@ -13,6 +13,7 @@ export default function Gallery() {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [copyright, setCopyright] = useState(null);
 
   const openLightbox = useCallback((event, { index }) => {
     setCurrentImage(index);
@@ -36,10 +37,16 @@ export default function Gallery() {
         }}
         onContextMenu={(e) => {
           e.preventDefault();
+          const imgClicked = e.target.getAttribute('src');
+          const imgCopyright = photos.response
+            .filter((photo) => photo.src === imgClicked)
+            .map((photo) => photo.copyright)
+            .join('');
+          setCopyright(imgCopyright);
           setMousePosition({ x: e.clientX, y: e.clientY });
         }}
       >
-        <Tooltip label="&copy; davidshallon.com" position={mousePosition} />
+        <Tooltip label={`Photo: ${copyright}`} position={mousePosition} />
         <PhotoGallery photos={photos.response} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
