@@ -46,7 +46,9 @@ export default function Gallery() {
           setMousePosition({ x: e.clientX, y: e.clientY });
         }}
       >
-        <Tooltip label={`Photo: ${copyright}`} position={mousePosition} />
+        {copyright && (
+          <Tooltip label={`Photo: ${copyright}`} position={mousePosition} />
+        )}
         <PhotoGallery photos={photos.response} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
