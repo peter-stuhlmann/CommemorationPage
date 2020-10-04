@@ -19,7 +19,7 @@ export default function Footer() {
     <StyledFooter ref={ref}>
       <RootStyles />
       <Container footer full>
-        <Copyright>&copy; 2020 David Shallon Foundation Berlin</Copyright>
+        <Copyright>&copy; 2020 Tabea Zimmermann</Copyright>
         <Navigation>
           <NavLink to="/legal-notice">Legal notice</NavLink>
           <NavLink to="/privacy-policy">Privacy policy</NavLink>
