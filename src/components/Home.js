@@ -50,6 +50,11 @@ const StyledHome = styled.div`
       max-width: 100%;
       border-radius: 10px;
     }
+
+    .caption {
+      font-size: ${font.size.small};
+      opacity: 0.8;
+    }
   }
 
   .right-column {
