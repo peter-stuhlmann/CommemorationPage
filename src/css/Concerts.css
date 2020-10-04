@@ -50,6 +50,7 @@ tr {
     /* border-bottom: 1px solid #eee; */
     position: relative;
     padding: 0 1% 0 35% !important;
+    min-height: 28px;
   }
 
   .table td:first-child {
@@ -81,6 +82,9 @@ tr {
     content: 'Location';
   }
   td:nth-of-type(5):before {
+    content: 'Venue';
+  }
+  td:nth-of-type(6):before {
     content: 'Participants';
   }
 }
