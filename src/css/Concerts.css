@@ -38,7 +38,7 @@
     border: none;
     /* border-bottom: 1px solid #eee; */
     position: relative;
-    padding: 0 1% 0 35% !important;
+    padding: 0 1% 0 30% !important;
     min-height: 29px;
   }
 
@@ -55,6 +55,8 @@
     padding-right: 10px;
     white-space: nowrap;
     font-weight: bold;
+    font-size: smaller;
+    color: rgba(0, 0, 0, 0.6);
   }
 
   /* Label the data */
