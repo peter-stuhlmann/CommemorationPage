@@ -125,6 +125,8 @@ function createInnerHtml(content, seperator) {
   const text =
     typeof content === 'string'
       ? content
-      : Object.values(content).join(`${seperator} `);
+      : Object.values(content)
+          .filter((val) => val !== '')
+          .join(`${seperator} `);
   return { __html: text };
 }
