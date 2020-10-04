@@ -15,11 +15,14 @@ export default function Footer() {
     }
   `;
 
+  const currentYear =
+    new Date().getFullYear() !== 2020 ? ` - ${new Date().getFullYear()}` : null;
+
   return (
     <StyledFooter ref={ref}>
       <RootStyles />
       <Container footer full>
-        <Copyright>&copy; 2020 Tabea Zimmermann</Copyright>
+        <Copyright>&copy; 2020 {currentYear} Tabea Zimmermann</Copyright>
         <Navigation>
           <NavLink to="/legal-notice">Legal notice</NavLink>
           <NavLink to="/privacy-policy">Privacy policy</NavLink>
