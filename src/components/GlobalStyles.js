@@ -25,5 +25,10 @@ export const GlobalStyles = createGlobalStyle`
       position: relative;
       // padding bottom is defined in Footer.js (= height of footer)
     }
+
+    img {
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
   }
 `;
