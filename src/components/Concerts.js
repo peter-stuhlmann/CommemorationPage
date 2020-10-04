@@ -4,6 +4,8 @@ import YearHeading from './YearHeading';
 import ConcertsTable from './ConcertsTable';
 import { useFetch } from '../helpers/useFetch';
 import { FailedToLoad } from './Messages';
+import { Container } from './Container';
+import { Heading } from './Headings';
 
 export default function Concerts() {
   const [concerts, setConcerts] = useState(null);
@@ -43,27 +45,19 @@ export default function Concerts() {
     <FailedToLoad />
   ) : (
     // TODO: add loading spinner
-    <div className="App">
-      <div className="container mt-3">
-        <header className="row">
-          <div className="col">
-            <h2 className="text-left">Concerts</h2>
-            {!years && <p>Loading...</p>}
-          </div>
-        </header>
-        <main>
-          {years &&
-            years.map((year, index) => (
-              <section key={year}>
-                <YearHeading year={year} />
-                <ConcertsTable
-                  tableHeaders={tableHeaders}
-                  concerts={concerts.filter((concert) => concert.year === year)}
-                />
-              </section>
-            ))}
-        </main>
-      </div>
-    </div>
+    <Container full>
+      <Heading h1 title="Concerts" />
+      {!years && <p>Loading...</p>}
+      {years &&
+        years.map((year, index) => (
+          <section key={year}>
+            <YearHeading year={year} />
+            <ConcertsTable
+              tableHeaders={tableHeaders}
+              concerts={concerts.filter((concert) => concert.year === year)}
+            />
+          </section>
+        ))}
+    </Container>
   );
 }
