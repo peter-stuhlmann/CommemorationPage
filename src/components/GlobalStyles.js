@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { font } from '../helpers/variables';
+import { colors, font } from '../helpers/variables';
 import LatoRegular from '../assets/fonts/lato/lato-regular.ttf';
 
 export const GlobalStyles = createGlobalStyle`
@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${font.color.secondary};
+    background-color: ${colors.tertiary};
     color: ${font.color.primary};
     font-size: ${font.size.normal};
     line-height: 1.6em;

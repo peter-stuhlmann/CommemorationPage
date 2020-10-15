@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { colors, screen, transition } from '../helpers/variables';
+import { colors, font, screen, transition } from '../helpers/variables';
 
 const useOnClickOutside = (ref, handler) => {
   useEffect(() => {
@@ -115,11 +115,12 @@ const Backdrop = createGlobalStyle`
 
 const StyledMainNavigation = styled.div`
   align-items: center;
-  background-color: ${colors.primary};
+  background-color: rgba(0, 0, 0, 0.6);
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   height: 64px;
+  margin-bottom: -64px;
   letter-spacing: 0.5px;
   padding: 16px;
   position: sticky;
@@ -149,7 +150,7 @@ const StyledMainNavigation = styled.div`
     }
 
     a {
-      color: #fff;
+      color: ${colors.senary};
     }
   }
 
@@ -163,7 +164,7 @@ const StyledMainNavigation = styled.div`
     }
 
     a {
-      color: #fff;
+      color: ${colors.senary};
     }
   }
 `;
@@ -206,20 +207,19 @@ const StyledNavbar = styled.nav`
   }
 
   a {
-    color: rgba(255, 255, 255, 0.5);
+    color: ${font.color.tertiary};
     padding: 7px 12px;
     text-decoration: none;
     transition: ${transition.normal};
 
     @media (min-width: calc(${screen.desktop} - 1px)) {
       &:hover {
-        color: ${colors.secondary};
+        color: ${font.color.secondary};
         opacity: 0.8;
       }
     }
 
     @media (max-width: calc(${screen.desktop} - 1px)) {
-      background-color: ${colors.primary};
       font-size: 16px;
 
       &:first-child {
@@ -228,15 +228,16 @@ const StyledNavbar = styled.nav`
     }
 
     &.disabled {
-      color: rgba(255, 255, 255, 0.25);
+      color: ${font.color.tertiary};
       pointer-events: none;
+      opacity: 0.5;
     }
 
     &.active {
-      color: ${colors.secondary};
+      color: ${font.color.secondary};
 
       &:hover {
-        color: ${colors.secondary};
+        color: ${font.color.secondary};
         opacity: 1;
       }
     }
@@ -261,7 +262,7 @@ const StyledToggleButton = styled.button`
   }
 
   div {
-    background-color: ${colors.secondary};
+    background-color: ${font.color.secondary};
     border-radius: 10px;
     height: 3px;
     position: relative;

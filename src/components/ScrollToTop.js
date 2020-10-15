@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { colors } from '../helpers/variables';
+import { colors, font } from '../helpers/variables';
 
 const ArrowTopIcon = () => {
   return (
     <svg viewBox="0 0 24 24" style={{ width: '40px' }}>
       <path
-        fill={colors.secondary}
+        fill={font.color.secondary}
         d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
       ></path>
     </svg>

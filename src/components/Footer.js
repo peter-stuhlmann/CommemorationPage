@@ -4,6 +4,7 @@ import { Container } from './Container';
 import { NavLink } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
+import { colors, font } from '../helpers/variables';
 import useDimensions from '../helpers/useDimensions';
 
 export default function Footer() {
@@ -33,7 +34,7 @@ export default function Footer() {
 }
 
 const StyledFooter = styled.footer`
-  background-color: #fff;
+  background-color: ${colors.senary};
   box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
     0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
   position: absolute;
@@ -43,6 +44,7 @@ const StyledFooter = styled.footer`
 `;
 
 const Copyright = styled.p`
+  color: ${font.color.quaternary};
   margin: 0;
   padding: 6px 0;
 
@@ -58,6 +60,7 @@ const Navigation = styled.nav`
   justify-content: center;
 
   a {
+    color: ${font.color.quaternary};
     padding: 6px 11px;
 
     &.active {
