@@ -46,7 +46,7 @@ export default function Archive() {
   ) : (
     // TODO: add loading spinner
     <Container full>
-      <Heading h1 title="Concerts" />
+      <Heading h1 title="Archive" />
       {!years && <p>Loading...</p>}
       {years &&
         years.map((year, index) => (
