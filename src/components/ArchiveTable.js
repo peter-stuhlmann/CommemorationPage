@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DownIcon } from './Icons';
 
-export default function ConcertsTable(props) {
+export default function ArchiveTable(props) {
   const { tableHeaders, concerts } = props;
   const [headers, setHeaders] = useState([]);
 

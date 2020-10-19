@@ -1,63 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import '../css/Concerts.css';
-import YearHeading from './YearHeading';
-import ConcertsTable from './ConcertsTable';
-import { useFetch } from '../helpers/useFetch';
-import { FailedToLoad } from './Messages';
-import { Container } from './Container';
+import React from 'react';
+
 import { Heading } from './Headings';
+import { Container } from './Container';
 
 export default function Concerts() {
-  const [concerts, setConcerts] = useState(null);
-  const [years, setYears] = useState(null);
-  const [tableHeaders, setTableHeaders] = useState(null);
-
-  // TODO: lazyload
-  const data = useFetch(`${process.env.REACT_APP_API_URL}/concerts`);
-
-  const getYears = (concerts) => {
-    const years = [];
-    concerts.forEach((concert) => {
-      if (years.indexOf(concert.year) === -1) {
-        years.push(concert.year);
-      }
-    });
-    setYears(years);
-  };
-
-  useEffect(() => {
-    if (data.response) {
-      setConcerts(data.response);
-    }
-  }, [data.response]);
-
-  useEffect(() => {
-    if (concerts) {
-      const filteredHeaders = Object.keys(concerts[0]).filter(
-        (header) => header !== 'id' && header !== 'date'
-      );
-      setTableHeaders(filteredHeaders);
-      getYears(concerts);
-    }
-  }, [concerts]);
-
-  return data?.error ? (
-    <FailedToLoad />
-  ) : (
-    // TODO: add loading spinner
-    <Container full>
+  return (
+    <Container>
       <Heading h1 title="Concerts" />
-      {!years && <p>Loading...</p>}
-      {years &&
-        years.map((year, index) => (
-          <section key={year}>
-            <YearHeading year={year} />
-            <ConcertsTable
-              tableHeaders={tableHeaders}
-              concerts={concerts.filter((concert) => concert.year === year)}
-            />
-          </section>
-        ))}
+      <p>Lorem ipsum.</p>
     </Container>
   );
 }
