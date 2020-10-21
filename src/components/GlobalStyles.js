@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { colors, font } from '../helpers/variables';
+import { boxShadow, colors, font, transition } from '../helpers/variables';
 import LatoRegular from '../assets/fonts/lato/lato-regular.ttf';
 
 export const GlobalStyles = createGlobalStyle`
@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${colors.tertiary};
+    background-color: ${colors.senary};
     color: ${font.color.primary};
     font-size: ${font.size.normal};
     line-height: 1.6em;
@@ -29,6 +29,44 @@ export const GlobalStyles = createGlobalStyle`
     img {
       -webkit-user-select: none;
       -webkit-touch-callout: none;
+    }
+
+    button {
+      background-color: ${colors.secondary};
+      border: 0;
+      border-radius: 4px;
+      box-shadow: ${boxShadow.primary};
+      box-sizing: border-box;
+      color: ${font.color.quinary};
+      font-size: ${font.size.small};
+      letter-spacing: 0.05em;
+      margin: 8px;
+      padding: 6px 16px;
+      transition: ${transition.normal};;
+      text-transform: uppercase;
+
+      &:hover {
+        opacity: 0.85;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    blockquote {
+      color: ${font.color.quinary} !important;
+      font-family: ${font.family.secondary};
+      font-size: calc(${font.size.normal} * 2);
+      text-align: center;
+
+      span {
+        color: ${font.color.quaternary};
+        display: block;
+        font-family: ${font.family.primary};
+        font-size: ${font.size.normal};
+        margin-top: 1em;
+      }
     }
   }
 `;
