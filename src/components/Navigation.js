@@ -115,12 +115,11 @@ const Backdrop = createGlobalStyle`
 
 const StyledMainNavigation = styled.div`
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${colors.senary};
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   height: 64px;
-  margin-bottom: -64px;
   letter-spacing: 0.5px;
   padding: 16px;
   position: sticky;
@@ -138,7 +137,7 @@ const StyledMainNavigation = styled.div`
   }
 
   a {
-    color: rgba(255, 255, 255, 0.5);
+    color: ${font.color.primary};
     text-decoration: none;
   }
 
@@ -150,12 +149,12 @@ const StyledMainNavigation = styled.div`
     }
 
     a {
-      color: ${colors.senary};
+      color: ${font.color.primary};
     }
   }
 
   .site-title-mobile {
-    color: #fff;
+    color: ${font.color.primary};
     text-align: center;
     width: 100%;
 
@@ -164,7 +163,7 @@ const StyledMainNavigation = styled.div`
     }
 
     a {
-      color: ${colors.senary};
+      color: ${font.color.primary};
     }
   }
 `;
@@ -188,7 +187,7 @@ const StyledNavbar = styled.nav`
   width: 333px;
 
   @media (max-width: calc(${screen.desktop} - 1px)) {
-    background-color: ${colors.primary};
+    background-color: ${colors.senary};
   }
 
   @media (min-width: ${screen.desktop}) {
@@ -214,7 +213,7 @@ const StyledNavbar = styled.nav`
 
     @media (min-width: calc(${screen.desktop} - 1px)) {
       &:hover {
-        color: ${font.color.secondary};
+        color: ${colors.secondary};
         opacity: 0.8;
       }
     }
@@ -228,16 +227,15 @@ const StyledNavbar = styled.nav`
     }
 
     &.disabled {
-      color: ${font.color.tertiary};
+      color: ${font.color.quaternary};
       pointer-events: none;
-      opacity: 0.5;
     }
 
     &.active {
-      color: ${font.color.secondary};
+      color: ${font.color.primary};
 
       &:hover {
-        color: ${font.color.secondary};
+        color: ${font.color.primary};
         opacity: 1;
       }
     }
@@ -262,7 +260,7 @@ const StyledToggleButton = styled.button`
   }
 
   div {
-    background-color: ${font.color.secondary};
+    background-color: ${font.color.primary};
     border-radius: 10px;
     height: 3px;
     position: relative;
