@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Heading } from './Headings';
@@ -6,8 +6,21 @@ import { Heading } from './Headings';
 export default function HeaderImage(props) {
   const { content } = props;
 
+  const headerImage = React.createRef();
+
+  useEffect(() => {
+    window.onscroll = () => {
+      headerImage.current.style.backgroundPositionY = `${
+        window.pageYOffset * 0.3
+      }px`;
+    };
+  }, [headerImage]);
+
   return (
-    <StyledHeaderImage backgroundImage={content.response?.img.size}>
+    <StyledHeaderImage
+      ref={headerImage}
+      backgroundImage={content.response?.img.size}
+    >
       <div>
         <div>
           {content.response?.title && (
