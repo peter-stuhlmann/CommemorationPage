@@ -5,7 +5,7 @@ import { Heading } from './Headings';
 import { screen, font } from '../helpers/variables';
 
 export default function HeaderImage(props) {
-  const { content } = props;
+  const { data } = props;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const headerImage = React.createRef();
@@ -27,15 +27,13 @@ export default function HeaderImage(props) {
   return (
     <StyledHeaderImage
       ref={headerImage}
-      backgroundImage={content.response?.img.size}
+      backgroundImage={data.response?.img.size}
       width={windowWidth}
     >
       <div>
         <div>
-          {content.response?.title && (
-            <Heading h1 title={content.response.title} />
-          )}
-          {content.response?.subTtitle && <p>{content.response.subTtitle}</p>}
+          {data.response?.title && <Heading h1 title={data.response.title} />}
+          {data.response?.subTtitle && <p>{data.response.subTtitle}</p>}
         </div>
       </div>
     </StyledHeaderImage>
