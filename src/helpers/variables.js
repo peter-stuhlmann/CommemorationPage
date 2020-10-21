@@ -19,6 +19,7 @@ export const font = {
   },
   family: {
     primary: "'Lato Regular', sans-serif",
+    secondary: "'Kalam Regular', cursive",
   },
   size: {
     small: '15px',

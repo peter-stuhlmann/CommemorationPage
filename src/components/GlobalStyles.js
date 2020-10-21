@@ -1,11 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
+
 import { boxShadow, colors, font, transition } from '../helpers/variables';
 import LatoRegular from '../assets/fonts/lato/lato-regular.ttf';
+import KalamRegular from '../assets/fonts/kalam/kalam-regular.ttf';
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Lato Regular';
     src: url(${LatoRegular});
+  }
+
+  @font-face {
+    font-family: 'Kalam Regular';
+    src: url(${KalamRegular});
   }
 
   html {
