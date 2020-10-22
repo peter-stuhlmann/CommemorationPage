@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { boxShadow, colors, font, transition } from '../helpers/variables';
+import {
+  boxShadow,
+  colors,
+  font,
+  transition,
+  screen,
+} from '../helpers/variables';
 import LatoRegular from '../assets/fonts/lato/lato-regular.ttf';
 import KalamRegular from '../assets/fonts/kalam/kalam-regular.ttf';
 
@@ -67,6 +73,11 @@ export const GlobalStyles = createGlobalStyle`
       font-size: calc(${font.size.normal} * 2);
       line-height: 1.3;
       text-align: center;
+
+      @media (max-width: ${screen.tablet}) {
+        font-size: calc(${font.size.normal} * 1.5);
+
+      }
 
       span {
         color: ${font.color.quaternary};

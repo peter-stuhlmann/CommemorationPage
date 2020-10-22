@@ -31,24 +31,59 @@ export default function Home() {
 const StyledHome = styled.div`
   .entry {
     background-image: url('./img/1999-david-in-birstein-1000x658.jpg');
-    background-position: center;
+    background-position: left center;
     background-size: cover;
     display: flex;
     align-items: center;
-    height: calc(100vh);
+    height: calc(100vh - 64px);
     width: 100%;
+
+    @media (max-width: ${screen.desktop}) {
+      align-items: flex-end;
+      background-position: center;
+      justify-content: center;
+    }
 
     .entry-content {
       color: ${font.color.quinary};
-      padding: 80px;
+      padding: 60px;
       text-align: center;
+      text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+
+      @media (max-width: ${screen.tablet}) {
+        padding: 40px;
+      }
 
       h1 {
         font-size: 90px;
+
+        @media (max-width: 1800px) {
+          font-size: 70px;
+        }
+
+        @media (max-width: ${screen.desktop}) {
+          font-size: 70px;
+        }
+
+        @media (max-width: ${screen.tablet}) {
+          font-size: 55px;
+        }
+
+        @media (max-width: ${screen.mobile}) {
+          font-size: 45px;
+        }
       }
 
       p {
-        font-size: 40px;
+        font-size: 38px;
+
+        @media (max-width: ${screen.tablet}) {
+          font-size: 30px;
+        }
+
+        @media (max-width: ${screen.mobile}) {
+          font-size: 24px;
+        }
       }
     }
   }
@@ -63,6 +98,10 @@ const StyledHome = styled.div`
       flex: 0 0 50%;
       padding: 16px;
 
+      @media (max-width: ${screen.tablet}) {
+        flex: 0 0 100%;
+      }
+
       img {
         width: 100%;
       }
@@ -75,6 +114,12 @@ const StyledHome = styled.div`
       align-items: center;
       justify-content: center;
       flex-flow: column;
+      padding: 16px;
+
+      @media (max-width: ${screen.tablet}) {
+        flex: 0 0 100%;
+        margin-bottom: 40px;
+      }
     }
   }
 
@@ -106,4 +151,9 @@ const StyledHome = styled.div`
 
 const StyledFlexCards = styled(FlexCards)`
   margin: 70px 0 30px 0;
+
+  h3,
+  p {
+    color: ${font.color.quinary};
+  }
 `;
