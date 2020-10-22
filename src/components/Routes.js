@@ -15,6 +15,7 @@ const Foundation = lazy(() => import('./Foundation'));
 const Commemorating = lazy(() => import('./Commemorating'));
 const Legal = lazy(() => import('./Legal'));
 const Orchestras = lazy(() => import('./Orchestras'));
+const Repertoire = lazy(() => import('./Repertoire'));
 const Choirs = lazy(() => import('./Choirs'));
 const NotFound = lazy(() => import('./NotFound'));
 
@@ -27,6 +28,7 @@ function DefaultRoutes() {
         <Route exact path="/concerts" component={Concerts} />
         <Route exact path="/choirs" component={Choirs} />
         <Route exact path="/orchestras" component={Orchestras} />
+        <Route exact path="/concerts/repertoire" component={Repertoire} />
         <Route exact path="/discography" component={Discography} />
         <Route exact path="/media" component={Media} />
         <Route exact path="/press" component={Press} />
