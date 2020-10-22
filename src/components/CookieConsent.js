@@ -18,19 +18,52 @@ export default function CookieConsent() {
     Cookies.set('cookie-opt-in', false, { expires: 90 });
   };
 
+  // Detect browser language
+  let browserLanguage = navigator.language;
+  switch (browserLanguage.toLowerCase()) {
+    case 'de':
+    case 'de-at':
+    case 'de-ch':
+    case 'de-de':
+    case 'de-li':
+    case 'de-lu':
+      browserLanguage = 'german';
+      break;
+    default:
+      browserLanguage = 'english';
+  }
+
+  const content = {
+    de: {
+      text:
+        'Wir nutzen auf dieser Website Cookies. Einige von ihnen sind essentiell, während andere uns helfen, diese Website und dadurch Ihre Nutzererfahrung zu verbessern. Weitere Informationen finden Sie in der ',
+      link: 'Datenschutzerklärung',
+      accept: 'Alle speichern',
+      decline: 'Nur essentielle Cookies speichern',
+    },
+    en: {
+      text:
+        'We use cookies on this website. Some of them are essential, while others help us improve this website and thereby improve your user experience. You can find more information in the ',
+      link: 'privacy policy',
+      accept: 'Accept all',
+      decline: 'Save only essential cookies',
+    },
+  };
+
   return cookieOptIn === undefined ? (
     <CookieConsentBanner>
       <p>
-        We use cookies on this website. Some of them are essential, while others
-        help us improve this website and thereby improve your user experience.
-        You can find more information in the{' '}
-        <Link to="/privacy-policy">privacy policy</Link>.
+        {browserLanguage === 'german' ? content.de.text : content.en.text}
+        <Link to="/privacy-policy">
+          {browserLanguage === 'german' ? content.de.link : content.en.link}
+        </Link>
+        .
       </p>
       <button type="button" className="decline" onClick={() => optOut()}>
-        Save only essential cookies
+        {browserLanguage === 'german' ? content.de.decline : content.en.decline}
       </button>
       <button type="button" className="accept" onClick={() => optIn()}>
-        Accept all
+        {browserLanguage === 'german' ? content.de.accept : content.en.accept}
       </button>
     </CookieConsentBanner>
   ) : null;
@@ -48,7 +81,7 @@ const CookieConsentBanner = styled.div`
   bottom: 50px;
   right: 50px;
   margin: auto;
-  max-width: 500px;
+  max-width: 550px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
