@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { colors, screen, transition } from '../helpers/variables';
+import { colors, font, screen, transition } from '../helpers/variables';
 
 const useOnClickOutside = (ref, handler) => {
   useEffect(() => {
@@ -115,7 +115,7 @@ const Backdrop = createGlobalStyle`
 
 const StyledMainNavigation = styled.div`
   align-items: center;
-  background-color: ${colors.primary};
+  background-color: ${colors.senary};
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   display: flex;
@@ -137,7 +137,7 @@ const StyledMainNavigation = styled.div`
   }
 
   a {
-    color: rgba(255, 255, 255, 0.5);
+    color: ${font.color.primary};
     text-decoration: none;
   }
 
@@ -149,12 +149,12 @@ const StyledMainNavigation = styled.div`
     }
 
     a {
-      color: #fff;
+      color: ${font.color.primary};
     }
   }
 
   .site-title-mobile {
-    color: #fff;
+    color: ${font.color.primary};
     text-align: center;
     width: 100%;
 
@@ -163,7 +163,7 @@ const StyledMainNavigation = styled.div`
     }
 
     a {
-      color: #fff;
+      color: ${font.color.primary};
     }
   }
 `;
@@ -187,7 +187,7 @@ const StyledNavbar = styled.nav`
   width: 333px;
 
   @media (max-width: calc(${screen.desktop} - 1px)) {
-    background-color: ${colors.primary};
+    background-color: ${colors.senary};
   }
 
   @media (min-width: ${screen.desktop}) {
@@ -206,7 +206,7 @@ const StyledNavbar = styled.nav`
   }
 
   a {
-    color: rgba(255, 255, 255, 0.5);
+    color: ${font.color.tertiary};
     padding: 7px 12px;
     text-decoration: none;
     transition: ${transition.normal};
@@ -219,7 +219,6 @@ const StyledNavbar = styled.nav`
     }
 
     @media (max-width: calc(${screen.desktop} - 1px)) {
-      background-color: ${colors.primary};
       font-size: 16px;
 
       &:first-child {
@@ -228,15 +227,15 @@ const StyledNavbar = styled.nav`
     }
 
     &.disabled {
-      color: rgba(255, 255, 255, 0.25);
+      color: ${font.color.quaternary};
       pointer-events: none;
     }
 
     &.active {
-      color: ${colors.secondary};
+      color: ${font.color.primary};
 
       &:hover {
-        color: ${colors.secondary};
+        color: ${font.color.primary};
         opacity: 1;
       }
     }
@@ -246,11 +245,13 @@ const StyledNavbar = styled.nav`
 const StyledToggleButton = styled.button`
   background-color: transparent;
   border: none;
+  box-shadow: none;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 27px;
   justify-content: space-around;
+  margin: 0;
   padding: 0;
   position: ${({ open }) => (open ? 'fixed' : 'static')};
   width: 27px;
@@ -261,7 +262,7 @@ const StyledToggleButton = styled.button`
   }
 
   div {
-    background-color: ${colors.secondary};
+    background-color: ${font.color.primary};
     border-radius: 10px;
     height: 3px;
     position: relative;
