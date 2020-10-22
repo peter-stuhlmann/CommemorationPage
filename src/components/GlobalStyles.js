@@ -27,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: ${colors.senary};
-    color: ${font.color.primary};
+    color: ${font.color.senary};
     font-size: ${font.size.normal};
     line-height: 1.6em;
     margin: 0;
@@ -55,7 +55,7 @@ export const GlobalStyles = createGlobalStyle`
       letter-spacing: 0.05em;
       margin: 8px;
       padding: 6px 16px;
-      transition: ${transition.normal};;
+      transition: ${transition.normal};
       text-transform: uppercase;
 
       &:hover {
@@ -76,7 +76,6 @@ export const GlobalStyles = createGlobalStyle`
 
       @media (max-width: ${screen.tablet}) {
         font-size: calc(${font.size.normal} * 1.5);
-
       }
 
       span {
