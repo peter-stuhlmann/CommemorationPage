@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Cookies from 'js-cookie';
-import { font, boxShadow } from '../helpers/variables';
+import { font, boxShadow, screen } from '../helpers/variables';
 
 export default function CookieConsent() {
   const [cookieOptIn, setCookieOptIn] = useState(Cookies.get('cookie-opt-in'));
@@ -86,6 +86,12 @@ const CookieConsentBanner = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
 
+  @media (max-width: ${screen.tablet}) {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+  }
+
   p {
     flex: 0 0 100%;
     line-height: 1.5;
@@ -113,6 +119,10 @@ const CookieConsentBanner = styled.div`
       flex: 0 0 49%;
       font-size: 16px;
 
+      @media (max-width: ${screen.mobile}) {
+        flex: 0 0 100%;
+      }
+
       &:hover {
         background-color: #006500;
       }
@@ -122,6 +132,11 @@ const CookieConsentBanner = styled.div`
       background-color: #e1dfdf;
       color: #474747;
       flex: 0 0 49%;
+
+      @media (max-width: ${screen.mobile}) {
+        flex: 0 0 100%;
+        margin-bottom: 10px;
+      }
 
       &:hover {
         background-color: #cdcdcd;
