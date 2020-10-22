@@ -1,144 +1,159 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import FlexCards from 'flex-cards';
 
 import { useFetch } from '../helpers/useFetch';
-import {
-  boxShadow,
-  font,
-  link,
-  screen,
-  transition,
-} from '../helpers/variables';
+import { colors, font, screen } from '../helpers/variables';
 import { FailedToLoad } from './Messages';
 
 export default function Home() {
-  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/home`);
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
+  const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards`);
 
   return content?.error ? (
     <FailedToLoad />
   ) : (
-    <StyledHome
-      dangerouslySetInnerHTML={{ __html: content?.response?.content }}
-    />
+    <Fragment>
+      <StyledHome
+        dangerouslySetInnerHTML={{ __html: content?.response?.content }}
+      />
+      {cards.response && (
+        <StyledFlexCards
+          cards={cards.response}
+          maxWidth={screen.desktop}
+          cardColor={colors.quaternary}
+        />
+      )}
+    </Fragment>
   );
 }
 
 const StyledHome = styled.div`
   .entry {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .left-column {
+    background-image: url('./img/1999-david-in-birstein-1000x658.jpg');
+    background-position: left center;
     background-size: cover;
     display: flex;
-    flex: 0 0 40%;
     align-items: center;
-    justify-content: center;
-    height: calc(100vh - 54px);
-    padding: 16px;
+    height: calc(100vh - 64px);
+    width: 100%;
 
-    @media (max-width: 930px) {
-      flex: 0 0 100%;
-    }
-
-    img {
-      box-shadow: ${boxShadow.primary};
-      max-height: 75vh;
-      max-width: 100%;
-      border-radius: 10px;
-    }
-
-    .caption {
-      font-size: ${font.size.small};
-      opacity: 0.8;
-    }
-  }
-
-  .right-column {
-    color: #000;
-    flex: 0 0 60%;
-    height: calc(100vh - 54px);
-    padding: calc(15vh - 27px) 16px calc(15vh - 27px) 50px;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: flex-start;
-
-    @media (max-width: 930px) {
-      flex: 0 0 100%;
-      height: auto;
-      align-items: center;
-      padding: 16px;
+    @media (max-width: ${screen.desktop}) {
+      align-items: flex-end;
+      background-position: center;
+      justify-content: center;
     }
 
     .entry-content {
-      display: inline-block;
+      color: ${font.color.quinary};
+      padding: 60px;
       text-align: center;
+      text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+
+      @media (max-width: ${screen.tablet}) {
+        padding: 40px;
+      }
+
+      h1 {
+        font-size: 90px;
+
+        @media (max-width: 1800px) {
+          font-size: 70px;
+        }
+
+        @media (max-width: ${screen.desktop}) {
+          font-size: 70px;
+        }
+
+        @media (max-width: ${screen.tablet}) {
+          font-size: 55px;
+        }
+
+        @media (max-width: ${screen.mobile}) {
+          font-size: 45px;
+        }
+      }
+
+      p {
+        font-size: 38px;
+
+        @media (max-width: ${screen.tablet}) {
+          font-size: 30px;
+        }
+
+        @media (max-width: ${screen.mobile}) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .two-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+
+    div:first-child {
+      background-color: ${colors.senary};
+      flex: 0 0 50%;
+      padding: 16px;
+
+      @media (max-width: ${screen.tablet}) {
+        flex: 0 0 100%;
+      }
+
+      img {
+        width: 100%;
+      }
     }
 
-    h1 {
-      font-size: 130px;
-      margin-bottom: 40px;
+    div:nth-child(2) {
+      flex: 0 0 50%;
+      background-color: ${colors.senary};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+      padding: 16px;
 
-      @media (max-width: 1650px) {
-        font-size: 100px;
-      }
-
-      @media (max-width: 1400px) {
-        font-size: 70px;
-      }
-    }
-
-    .data {
-      font-size: 50px;
-
-      @media (max-width: 1650px) {
-        font-size: 40px;
-      }
-
-      @media (max-width: 1400px) {
-        font-size: 30px;
+      @media (max-width: ${screen.tablet}) {
+        flex: 0 0 100%;
+        margin-bottom: 40px;
       }
     }
   }
 
   .container {
-    margin: 10px auto 70px auto;
-    max-width: ${screen.desktop};
+    background-color: ${colors.tertiary};
+    width: 100%;
+    max-width: 100%;
+    color: ${font.color.senary};
+    padding: 16px;
+  }
+
+  .textblock {
+    margin: 70px 0;
+  }
+
+  .wrapper {
+    color: ${font.color.senary};
+    margin: 0 auto;
+    max-width: 1170px;
     padding: 16px;
     width: 100%;
+  }
 
-    @media (max-width: 930px) {
-      margin: 0 auto 50px 0;
-    }
+  .info {
+    color: ${font.color.quinary};
+    font-style: italic;
+  }
+`;
 
-    h1 {
-      margin-bottom: 50px;
-    }
+const StyledFlexCards = styled(FlexCards)`
+  margin: 70px 0 30px 0;
 
-    h2 {
-      margin: 70px 0 35px 0;
-    }
-
-    a {
-      color: ${link.primary};
-      text-decoration: none;
-      transition: ${transition.fast};
-
-      &:hover {
-        opacity: 0.7;
-      }
-    }
-
-    .info {
-      font-size: ${font.size.normal};
-      font-style: italic;
-      line-height: 1.4;
-      opacity: 0.8;
-      margin-top: 40px;
-    }
+  h3,
+  p {
+    color: ${font.color.quinary};
   }
 `;

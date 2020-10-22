@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container } from './Container';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
+import { colors, font } from '../helpers/variables';
 import useDimensions from '../helpers/useDimensions';
 
 export default function Footer() {
@@ -22,7 +23,9 @@ export default function Footer() {
     <StyledFooter ref={ref}>
       <RootStyles />
       <Container footer full>
-        <Copyright>&copy; 2020 {currentYear} Tabea Zimmermann</Copyright>
+        <Copyright>
+          &copy; 2020 {currentYear} <Link to="/">Tabea Zimmermann</Link>
+        </Copyright>
         <Navigation>
           <NavLink to="/legal-notice">Legal notice</NavLink>
           <NavLink to="/privacy-policy">Privacy policy</NavLink>
@@ -33,7 +36,7 @@ export default function Footer() {
 }
 
 const StyledFooter = styled.footer`
-  background-color: #fff;
+  background-color: ${colors.senary};
   box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
     0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
   position: absolute;
@@ -43,12 +46,17 @@ const StyledFooter = styled.footer`
 `;
 
 const Copyright = styled.p`
+  color: ${font.color.tertiary};
   margin: 0;
   padding: 6px 0;
 
   @media (max-width: 768px) {
     flex: 0 0 100%;
     text-align: center;
+  }
+
+  a {
+    color: ${font.color.tertiary};
   }
 `;
 
@@ -58,6 +66,7 @@ const Navigation = styled.nav`
   justify-content: center;
 
   a {
+    color: ${font.color.tertiary};
     padding: 6px 11px;
 
     &.active {

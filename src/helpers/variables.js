@@ -1,17 +1,25 @@
 export const colors = {
-  primary: '#343A40',
-  secondary: '#FBFAF2',
-  tertiary: '#000',
+  primary: '#072B73', // deep blue
+  secondary: '#CE6C00', // orange
+  tertiary: '#194073', // dull blue
+  quaternary: '#5E728C', // soft blue
+  quinary: '#9BABBF', // light grayish blue
+  senary: '#fff', // white
+  septenary: '#000', // black
 };
 
 export const font = {
   color: {
-    primary: colors.primary,
-    secondary: colors.secondary,
-    tertiary: colors.tertiary,
+    primary: colors.primary, // deep blue
+    secondary: colors.secondary, // orange
+    tertiary: colors.quaternary, // soft blue
+    quaternary: colors.quinary, // light grayish blue
+    quinary: colors.senary, // white
+    senary: colors.septenary, // black
   },
   family: {
     primary: "'Lato Regular', sans-serif",
+    secondary: "'Kalam Regular', cursive",
   },
   size: {
     small: '15px',
