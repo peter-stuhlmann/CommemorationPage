@@ -245,11 +245,13 @@ const StyledNavbar = styled.nav`
 const StyledToggleButton = styled.button`
   background-color: transparent;
   border: none;
+  box-shadow: none;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 27px;
   justify-content: space-around;
+  margin: 0;
   padding: 0;
   position: ${({ open }) => (open ? 'fixed' : 'static')};
   width: 27px;

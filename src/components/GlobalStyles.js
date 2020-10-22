@@ -65,6 +65,7 @@ export const GlobalStyles = createGlobalStyle`
       color: ${font.color.quinary} !important;
       font-family: ${font.family.secondary};
       font-size: calc(${font.size.normal} * 2);
+      line-height: 1.3;
       text-align: center;
 
       span {
