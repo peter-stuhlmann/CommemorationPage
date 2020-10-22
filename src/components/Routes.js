@@ -6,6 +6,7 @@ import ScrollToTop from './ScrollToTop';
 
 const Home = lazy(() => import('./Home'));
 const About = lazy(() => import('./About'));
+const Archive = lazy(() => import('./Archive'));
 const Concerts = lazy(() => import('./Concerts'));
 const Discography = lazy(() => import('./Discography'));
 const Media = lazy(() => import('./Media'));
@@ -26,8 +27,9 @@ function DefaultRoutes() {
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
         <Route exact path="/concerts" component={Concerts} />
-        <Route exact path="/choirs" component={Choirs} />
-        <Route exact path="/orchestras" component={Orchestras} />
+        <Route exact path="/concerts/archive" component={Archive} />
+        <Route exact path="/concerts/choirs" component={Choirs} />
+        <Route exact path="/concerts/orchestras" component={Orchestras} />
         <Route exact path="/concerts/repertoire" component={Repertoire} />
         <Route exact path="/discography" component={Discography} />
         <Route exact path="/media" component={Media} />
