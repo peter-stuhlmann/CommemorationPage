@@ -86,5 +86,11 @@ export const GlobalStyles = createGlobalStyle`
         margin-top: 1em;
       }
     }
+
+    [class^="react-images"] {
+      button {
+        box-shadow: none
+      }
+    }
   }
 `;
