@@ -53,7 +53,6 @@ export const GlobalStyles = createGlobalStyle`
       color: ${font.color.quinary};
       font-size: ${font.size.small};
       letter-spacing: 0.05em;
-      margin: 8px;
       padding: 6px 16px;
       transition: ${transition.normal};
       text-transform: uppercase;
