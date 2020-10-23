@@ -110,21 +110,23 @@ const CookieConsentBanner = styled.div`
     border-radius: 3px;
     cursor: pointer;
     line-height: 1.4;
+    margin: 0;
     padding: 8px;
+    text-transform: none;
     transition: 0.2s;
 
     &.accept {
       background-color: #008000;
       color: #fff;
       flex: 0 0 49%;
-      font-size: 16px;
+      font-size: 18px;
 
       @media (max-width: ${screen.mobile}) {
         flex: 0 0 100%;
       }
 
       &:hover {
-        background-color: #006500;
+        background-color: #015201;
       }
     }
 
@@ -132,6 +134,7 @@ const CookieConsentBanner = styled.div`
       background-color: #e1dfdf;
       color: #474747;
       flex: 0 0 49%;
+      font-size: 14px;
 
       @media (max-width: ${screen.mobile}) {
         flex: 0 0 100%;
