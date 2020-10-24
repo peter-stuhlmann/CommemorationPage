@@ -90,6 +90,11 @@ export const GlobalStyles = createGlobalStyle`
       button {
         box-shadow: none
       }
+
+      // Lightbox image
+      .css-1cm5myo {
+        max-height: calc(100vh - (2 * 16px));
+      }
     }
   }
 `;
