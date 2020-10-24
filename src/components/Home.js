@@ -37,6 +37,7 @@ const StyledHome = styled.div`
     align-items: center;
     height: calc(100vh - 64px);
     width: 100%;
+    margin-bottom: -5px;
 
     @media (max-width: ${screen.desktop}) {
       align-items: flex-end;
@@ -86,6 +87,12 @@ const StyledHome = styled.div`
         }
       }
     }
+  }
+
+  .copyright {
+    color: ${font.color.tertiary};
+    font-size: 13px;
+    padding: 16px;
   }
 
   .two-columns {
