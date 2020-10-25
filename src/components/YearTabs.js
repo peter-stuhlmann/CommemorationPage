@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ConcertsTable from './ConcertsTable';
+import ArchiveTable from './ArchiveTable';
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -76,7 +76,7 @@ export default function ScrollableTabsButtonAuto(props) {
       </AppBar>
       {years.map((year, index) => (
         <TabPanel value={value} key={year} index={index}>
-          <ConcertsTable year={year} />
+          <ArchiveTable year={year} />
         </TabPanel>
       ))}
     </div>
