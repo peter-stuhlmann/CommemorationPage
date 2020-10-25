@@ -16,7 +16,7 @@ export default function Repertoire() {
       <Heading h1 title="Repertoire" />
       <UnorderedList>
         {content?.response?.map((repertoire) => (
-          <li key={repertoire.piece}>{repertoire.piece}</li>
+          <li key={repertoire.piece} dangerouslySetInnerHTML={{ __html: repertoire.piece }} />
         ))}
       </UnorderedList>
     </Container>
