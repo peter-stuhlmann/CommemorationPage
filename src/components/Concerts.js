@@ -1,47 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Concerts.css';
-import YearHeading from './YearHeading';
-import ConcertsTable from './ConcertsTable';
-import { useFetch } from '../helpers/useFetch';
-import { FailedToLoad } from './Messages';
+import YearTabs from './YearTabs';
 
 export default function Concerts() {
-  const [concerts, setConcerts] = useState(null);
   const [years, setYears] = useState(null);
-  const [tableHeaders, setTableHeaders] = useState(null);
 
   // TODO: lazyload
-  const data = useFetch(`${process.env.REACT_APP_API_URL}/concerts`);
-
-  const getYears = (concerts) => {
-    const years = [];
-    concerts.forEach((concert) => {
-      if (years.indexOf(concert.year) === -1) {
-        years.push(concert.year);
-      }
-    });
-    setYears(years);
-  };
-
   useEffect(() => {
-    if (data.response) {
-      setConcerts(data.response);
+    const archiveYears = [];
+    for (let i = 2000; i >= 1975; i--) {
+      archiveYears.push(i);
     }
-  }, [data.response]);
+    setYears(archiveYears);
+  }, []);
 
-  useEffect(() => {
-    if (concerts) {
-      const filteredHeaders = Object.keys(concerts[0]).filter(
-        (header) => header !== 'id' && header !== 'date'
-      );
-      setTableHeaders(filteredHeaders);
-      getYears(concerts);
-    }
-  }, [concerts]);
-
-  return data?.error ? (
-    <FailedToLoad />
-  ) : (
+  return (
     // TODO: add loading spinner
     <div className="App">
       <div className="container mt-3">
@@ -51,18 +24,7 @@ export default function Concerts() {
             {!years && <p>Loading...</p>}
           </div>
         </header>
-        <main>
-          {years &&
-            years.map((year, index) => (
-              <section key={year}>
-                <YearHeading year={year} />
-                <ConcertsTable
-                  tableHeaders={tableHeaders}
-                  concerts={concerts.filter((concert) => concert.year === year)}
-                />
-              </section>
-            ))}
-        </main>
+        <main>{years?.length && <YearTabs years={years} />}</main>
       </div>
     </div>
   );
