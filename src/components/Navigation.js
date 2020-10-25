@@ -35,11 +35,11 @@ export default function MainNavigation() {
     <StyledMainNavigation ref={node} className={show ? 'show' : null}>
       <ToggleButton open={open} setOpen={setOpen} />
       <div className="site-title-desktop" onClick={() => window.scrollTo(0, 0)}>
-        <Link to="/"><img src="./img/logo.png" alt="Logo" height="36" /></Link>
+        <Link to="/"><img src="img/logo.png" alt="Logo" height="36" /></Link>
       </div>
       <Navbar open={open} setOpen={setOpen} />
       <div className="site-title-mobile" onClick={() => window.scrollTo(0, 0)}>
-        <Link to="/"><img src="./img/logo.png" alt="Logo" height="36" /></Link>
+        <Link to="/"><img src="img/logo.png" alt="Logo" height="36" /></Link>
       </div>
       <Backdrop open={open} />
     </StyledMainNavigation>
