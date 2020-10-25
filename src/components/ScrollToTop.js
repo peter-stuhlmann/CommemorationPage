@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { colors } from '../helpers/variables';
+import { colors, font } from '../helpers/variables';
 
 const ArrowTopIcon = () => {
   return (
     <svg viewBox="0 0 24 24" style={{ width: '40px' }}>
       <path
-        fill={colors.secondary}
+        fill={font.color.quinary}
         d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
       ></path>
     </svg>
@@ -75,6 +75,7 @@ const ScrollToTopButton = styled.button`
   box-sizing: border-box;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    filter: 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     visibility 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border: none;
@@ -82,13 +83,15 @@ const ScrollToTopButton = styled.button`
   background-color: ${colors.primary};
   position: fixed;
   right: 20px;
-  z-index: 10000;
+  transition: none;
+  z-index: 1000;
 
   &:focus {
     outline: 0;
   }
 
   &:hover {
-    background-color: #212223;
+    filter: brightness(75%);
+    opacity: 1;
   }
 `;

@@ -3,7 +3,7 @@ import { DownIcon } from './Icons';
 import { useFetch } from '../helpers/useFetch';
 import Spinner from './Spinner';
 
-export default function ConcertsTable(props) {
+export default function ArchiveTable(props) {
   const { year } = props;
   const [concerts, setConcerts] = useState(null);
   const [tableHeaders, setTableHeaders] = useState(null);
@@ -47,25 +47,26 @@ function TableHead(props) {
     switch (header) {
       case 'id':
       case 'date':
+      case 'attachments':
         break;
       case 'displayDate':
-        displayHeaders.push('Month, Day');
+        displayHeaders.push('Date');
         break;
-      case 'program':
-        displayHeaders.push('Composer, Work');
-        break;
-      case 'location':
-        displayHeaders.push('City, State');
-        break;
-      case 'venue':
-        displayHeaders.push('Promoter, Venue');
-        break;
-      case 'participants':
-        displayHeaders.push('Orchestra & Soloists');
-        break;
-      case 'attachments':
-        displayHeaders.push('');
-        break;
+      // case 'program':
+      //   displayHeaders.push('Composer, Work');
+      //   break;
+      // case 'location':
+      //   displayHeaders.push('City, State');
+      //   break;
+      // case 'venue':
+      //   displayHeaders.push('Promoter, Venue');
+      //   break;
+      // case 'participants':
+      //   displayHeaders.push('Orchestra & Soloists');
+      //   break;
+      // case 'attachments':
+      //   displayHeaders.push('');
+      //   break;
       default:
         displayHeaders.push(header.charAt(0).toUpperCase() + header.slice(1));
     }
@@ -139,6 +140,8 @@ function createInnerHtml(content, seperator) {
   const text =
     typeof content === 'string'
       ? content
-      : Object.values(content).join(`${seperator} `);
+      : Object.values(content)
+          .filter((val) => val !== '')
+          .join(`${seperator} `);
   return { __html: text };
 }

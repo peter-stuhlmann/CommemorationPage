@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Concerts.css';
+import { Container } from './Container';
+import { Heading } from './Headings';
 import YearTabs from './YearTabs';
 
 export default function Archive() {
@@ -16,16 +18,13 @@ export default function Archive() {
 
   return (
     // TODO: add loading spinner
-    <div className="App">
-      <div className="container mt-3">
-        <header className="row">
-          <div className="col">
-            <h2 className="text-left">Concerts</h2>
-            {!years && <p>Loading...</p>}
-          </div>
-        </header>
+    <Container full>
+      <Heading h1 title="Archive" />
+      {!years ? (
+        <p>Loading...</p>
+      ) : (
         <main>{years?.length && <YearTabs years={years} />}</main>
-      </div>
-    </div>
+      )}
+    </Container>
   );
 }

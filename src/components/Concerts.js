@@ -1,31 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import '../css/Concerts.css';
-import YearTabs from './YearTabs';
+import React, { Fragment } from 'react';
+import FlexCards from 'flex-cards';
+
+import { Heading } from './Headings';
+import { Container } from './Container';
+import { useFetch } from '../helpers/useFetch';
+import { FailedToLoad } from './Messages';
+import { screen } from '../helpers/variables';
 
 export default function Concerts() {
-  const [years, setYears] = useState(null);
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/cards`);
 
-  // TODO: lazyload
-  useEffect(() => {
-    const archiveYears = [];
-    for (let i = 2000; i >= 1975; i--) {
-      archiveYears.push(i);
-    }
-    setYears(archiveYears);
-  }, []);
-
-  return (
-    // TODO: add loading spinner
-    <div className="App">
-      <div className="container mt-3">
-        <header className="row">
-          <div className="col">
-            <h2 className="text-left">Concerts</h2>
-            {!years && <p>Loading...</p>}
-          </div>
-        </header>
-        <main>{years?.length && <YearTabs years={years} />}</main>
-      </div>
-    </div>
+  return content?.error ? (
+    <FailedToLoad />
+  ) : (
+    <Fragment>
+      <Container margin="50px auto 0 auto">
+        <Heading h1 title="Concerts" />
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </Container>
+      {content.response && (
+        <FlexCards
+          cards={content.response}
+          maxWidth={screen.desktop}
+          containerColor="transparent"
+        />
+      )}
+      <Container>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </Container>
+    </Fragment>
   );
 }

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { link, screen, transition } from '../helpers/variables';
 
 export const Container = styled.div`
-  margin: 50px auto;
+  margin: ${(props) => props.margin || '50px auto'};
   max-width: ${(props) => (props.full ? `100%` : `${screen.desktop}`)};
   padding: 16px;
   width: 100%;
