@@ -29,4 +29,11 @@ export const Container = styled.div`
     props.footer
       ? `display: flex; margin: 0 auto; padding: 16px; justify-content: space-between; flex-flow: row wrap; @media (max-width: ${screen.tablet}) { justify-content: center; }`
       : null}
+
+  ${(props) =>
+    props.fixedCenter
+      ? `position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+      display: flex; justify-content: center; align-items: center
+      `
+      : null}
 `;
