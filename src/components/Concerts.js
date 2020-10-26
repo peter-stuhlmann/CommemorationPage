@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import FlexCards from 'flex-cards';
+import styled from 'styled-components';
 
 import { Heading } from './Headings';
 import { Container } from './Container';
 import { useFetch } from '../helpers/useFetch';
 import { FailedToLoad } from './Messages';
-import { screen } from '../helpers/variables';
+import { colors, font, screen } from '../helpers/variables';
 
 export default function Concerts() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/concerts`);
@@ -20,7 +21,7 @@ export default function Concerts() {
         <div dangerouslySetInnerHTML={{ __html: content.response?.content[0]}} />
       </Container>
       {cards.response && (
-        <FlexCards
+        <StyledFlexCards
           cards={cards.response}
           maxWidth={screen.desktop}
           containerColor="transparent"
@@ -32,3 +33,18 @@ export default function Concerts() {
     </Fragment>
   );
 }
+
+const StyledFlexCards = styled(FlexCards)`
+  li {
+    transition: 0.2s;
+
+    &:hover {
+      background-color: ${colors.secondary};
+
+      h3, 
+      p {
+        color: ${font.color.quinary};
+      }
+    }
+  }
+`;
