@@ -206,7 +206,7 @@ const StyledNavbar = styled.nav`
   }
 
   a {
-    color: ${font.color.tertiary};
+    color: ${font.color.primary};
     padding: 7px 12px;
     text-decoration: none;
     transition: ${transition.normal};
@@ -232,10 +232,10 @@ const StyledNavbar = styled.nav`
     }
 
     &.active {
-      color: ${font.color.primary};
+      color: ${font.color.secondary};
 
       &:hover {
-        color: ${font.color.primary};
+        color: ${font.color.secondary};
         opacity: 1;
       }
     }
