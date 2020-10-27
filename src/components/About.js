@@ -38,7 +38,7 @@ export default function About() {
                     <p>{event.date}, {event.title}</p>
                     {event.media.map((mediaItem) => (
                       <Fragment>
-                        {mediaItem.format === "pdf" && <a href={mediaItem.path}><PdfIcon /> {mediaItem.title} (PDF)</a>}
+                        {mediaItem.format === "pdf" && <a href={mediaItem.path} target="_blank" rel="noopener noreferrer"><PdfIcon /> {mediaItem.title} (pdf)</a>}
                         {mediaItem.format === "jpg" && <img src={mediaItem.path} alt={mediaItem.title} title={mediaItem.title} />}               
                       </Fragment>
                     ))}
