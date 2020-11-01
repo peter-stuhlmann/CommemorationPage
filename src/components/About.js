@@ -12,7 +12,7 @@ export default function About() {
   const data = useFetch(`${process.env.REACT_APP_API_URL}/cv`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/about`);
 
-  return data?.error ? (
+  return data?.error || content?.error ? (
     <FailedToLoad />
   ) : (
     <Fragment>
