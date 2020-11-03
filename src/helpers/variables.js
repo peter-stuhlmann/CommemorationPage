@@ -16,6 +16,7 @@ export const font = {
     quaternary: colors.quinary, // light grayish blue
     quinary: colors.senary, // white
     senary: colors.septenary, // black
+    septenary: colors.tertiary, // dull blue
   },
   family: {
     primary: "'Lato Regular', sans-serif",
