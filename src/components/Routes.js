@@ -9,6 +9,7 @@ const About = lazy(() => import('./About'));
 const Archive = lazy(() => import('./Archive'));
 const Concerts = lazy(() => import('./Concerts'));
 const Discography = lazy(() => import('./Discography'));
+const Album = lazy(() => import('./Album'));
 const Media = lazy(() => import('./Media'));
 const Press = lazy(() => import('./Press'));
 const Gallery = lazy(() => import('./Gallery'));
@@ -32,6 +33,7 @@ function DefaultRoutes() {
         <Route exact path="/concerts/orchestras" component={Orchestras} />
         <Route exact path="/concerts/repertoire" component={Repertoire} />
         <Route exact path="/discography" component={Discography} />
+        <Route exact path="/discography/:number" component={Album} />
         <Route exact path="/media" component={Media} />
         <Route exact path="/press" component={Press} />
         <Route exact path="/gallery" component={Gallery} />
