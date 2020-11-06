@@ -15,7 +15,7 @@ export default function Concerts() {
   );
   const cardsOrder = ['Archive', 'Repertoire', 'Orchestras', 'Choirs'];
 
-  return content?.error ? (
+  return content?.error || cards?.error ? (
     <FailedToLoad />
   ) : (
     <Fragment>
