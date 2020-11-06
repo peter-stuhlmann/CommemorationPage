@@ -10,7 +10,10 @@ import { colors, font, screen } from '../helpers/variables';
 
 export default function Concerts() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/concerts`);
-  const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards?tags=concerts`);
+  const cards = useFetch(
+    `${process.env.REACT_APP_API_URL}/cards?tags=concerts`
+  );
+  const cardsOrder = ['Archive', 'Repertoire', 'Orchestras', 'Choirs'];
 
   return content?.error ? (
     <FailedToLoad />
@@ -18,17 +21,23 @@ export default function Concerts() {
     <Fragment>
       <Container margin="50px auto 0 auto">
         <Heading h1 title={content.response?.title} />
-        <div dangerouslySetInnerHTML={{ __html: content.response?.content[0]}} />
+        <div
+          dangerouslySetInnerHTML={{ __html: content.response?.content[0] }}
+        />
       </Container>
       {cards.response && (
         <StyledFlexCards
-          cards={cards.response}
+          cards={cards.response.sort(
+            (a, b) => cardsOrder.indexOf(a.title) - cardsOrder.indexOf(b.title)
+          )}
           maxWidth={screen.desktop}
           containerColor="transparent"
         />
       )}
       <Container>
-        <div dangerouslySetInnerHTML={{ __html: content.response?.content[1]}} />
+        <div
+          dangerouslySetInnerHTML={{ __html: content.response?.content[1] }}
+        />
       </Container>
     </Fragment>
   );
@@ -41,7 +50,7 @@ const StyledFlexCards = styled(FlexCards)`
     &:hover {
       background-color: ${colors.secondary};
 
-      h3, 
+      h3,
       p {
         color: ${font.color.quinary};
       }
