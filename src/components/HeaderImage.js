@@ -27,7 +27,7 @@ export default function HeaderImage(props) {
   return (
     <StyledHeaderImage
       ref={headerImage}
-      backgroundImage={data.response?.img.size}
+      backgroundImage={data.response?.img?.size}
       width={windowWidth}
     >
       <div>
