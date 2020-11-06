@@ -14,7 +14,7 @@ export default function Discography() {
   const albumCover = albums?.response?.map((album) => {
     album.img.src = album.img.small;
     album.img.alt = album.title;
-    album.href = 'discography/' + album.number.toString();
+    album.href = '/discography/' + album.number.toString();
     return album;
   });
 
