@@ -20,23 +20,39 @@ export default function About() {
       <Container>
         {data.response?.map((cv) => {
           return (
-            <StyledList>
+            <StyledList key={cv.year}>
               <div>{cv.year}</div>
               <ul>
                 {cv.events.map((event) => (
-                  <li>
-                    <p>{event.date}, {event.title}</p>
+                  <li key={event.title}>
+                    <p>
+                      {event.date}, {event.title}
+                    </p>
                     {event.media.map((mediaItem) => (
-                      <Fragment>
-                        {mediaItem.format === "pdf" && <a href={mediaItem.path} target="_blank" rel="noopener noreferrer"><PdfIcon /> {mediaItem.title} (pdf)</a>}
-                        {mediaItem.format === "jpg" && <img src={mediaItem.path} alt={mediaItem.title} title={mediaItem.title} />}               
+                      <Fragment key={mediaItem.title}>
+                        {mediaItem.format === 'pdf' && (
+                          <a
+                            href={mediaItem.path}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <PdfIcon /> {mediaItem.title} (pdf)
+                          </a>
+                        )}
+                        {mediaItem.format === 'jpg' && (
+                          <img
+                            src={mediaItem.path}
+                            alt={mediaItem.title}
+                            title={mediaItem.title}
+                          />
+                        )}
                       </Fragment>
                     ))}
                   </li>
                 ))}
               </ul>
             </StyledList>
-          )
+          );
         })}
       </Container>
     </Fragment>
@@ -59,11 +75,11 @@ const StyledList = styled.div`
     }
   }
 
-  ul { 
+  ul {
     flex: 1;
     margin-bottom: 0;
     padding: 0;
-   
+
     @media (max-width: 480px) {
       flex: 0 0 100%;
     }
