@@ -9,7 +9,7 @@ import { Heading } from './Headings';
 import { font } from '../helpers/variables';
 
 export default function Album() {
-  const album = useFetch(`${process.env.REACT_APP_API_URL}/discography/1`).response;
+  const album = useFetch(`${process.env.REACT_APP_API_URL}${window.location.pathname}`).response;
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/discography`);
 
   return album?.error || content?.error ? (
