@@ -12,15 +12,29 @@ export default function Album() {
   const album = useFetch(`${process.env.REACT_APP_API_URL}${window.location.pathname}`).response;
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/discography`);
 
+  const headerImageContent = {
+    response: {
+      title: content?.response?.title,
+      subTtitle: album?.title,
+      img: {
+        size: {
+          small: content?.response?.img.size.small,
+          medium: content?.response?.img.size.medium,
+          large: content?.response?.img.size.large,
+        }
+      }
+    }
+  }
+
   return album?.error || content?.error ? (
     <FailedToLoad />
   ) : (
     <Fragment>
-      <HeaderImage data={content} />
+      <HeaderImage data={headerImageContent} />
       <Container>
             {album && <StyledAlbum key={album.number}>
               <div>
-                <img src={'/' + album.img.large} alt={`${album.number} | ${album.title}`} />
+                <img src={album.img.large} alt={`${album.number} | ${album.title}`} />
               </div>
               <div>
                 <Heading h2 title={album.title} />
