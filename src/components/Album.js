@@ -6,7 +6,7 @@ import HeaderImage from './HeaderImage';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { Heading } from './Headings';
-import { font } from '../helpers/variables';
+import { font, screen } from '../helpers/variables';
 
 export default function Album() {
   const album = useFetch(`${process.env.REACT_APP_API_URL}${window.location.pathname}`).response;
@@ -80,63 +80,93 @@ export default function Album() {
 
 const StyledAlbum = styled.li`
   display: flex;
+  flex-flow: row wrap;
 
   div {
     &:first-child {
       flex: 0 0 300px;
       margin-right: 1em;
 
+      @media (max-width: calc(${screen.tablet} - 1px)) {
+        flex: 0 0 200px;
+      }
+
+      @media (max-width: 666px) {
+        flex: 0 0 150px;
+      }
+
+      @media (max-width: calc(${screen.mobile} - 1px)) {
+        flex: 0 0 100%;
+        margin-bottom: 32px;
+      }
+
       img {
         width: 100%;
       }
     }
-  }
 
-  h2 {
-    margin: 0;
-  }
+    &:nth-child(2) {
+      flex: 0 0 calc(100% - 300px - 1em);
 
-  .meta {
-    color: ${font.color.tertiary};
-    font-size: ${font.size.small};
-  }
+      @media (max-width: calc(${screen.tablet} - 1px)) {
+        flex: 0 0 calc(100% - 200px - 1em);
+      }
 
-  ul {
-    margin: 0;
-    padding: 0;
+      @media (max-width: 666px) {
+        flex: 0 0 calc(100% - 150px - 1em);
+      }
 
-    &.artists {
-      margin-bottom: 48px; 
+      @media (max-width: calc(${screen.mobile} - 1px)) {
+        flex: 0 0 100%;
+      }
 
-      li {
-        color: ${font.color.senary};
+      h2 {
+        margin: 0;
+      }
+
+      .meta {
+        color: ${font.color.tertiary};
+        font-size: ${font.size.small};
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+
+        &.artists {
+          margin-bottom: 48px; 
+
+          li {
+            color: ${font.color.senary};
+          }
+        }
+
+        &.works {
+          margin-bottom: 24px;
+
+          li {
+            color: ${font.color.senary};
+            font-size: ${font.size.normal};
+          }
+        }
+
+        li {
+          color: ${font.color.tertiary};
+          font-size: ${font.size.normal};
+          list-style-type: none;
+        }
+      }
+
+      ol {
+        li {
+          color: ${font.color.tertiary};
+          list-style-type: upper-roman;
+        }
+      }
+
+      h3 {
+        margin-top: 32px;
       }
     }
-
-    &.works {
-      margin-bottom: 24px;
-
-      li {
-        color: ${font.color.senary};
-        font-size: ${font.size.normal};
-      }
-    }
-
-    li {
-      color: ${font.color.tertiary};
-      font-size: ${font.size.normal};
-      list-style-type: none;
-    }
-  }
-
-  ol {
-    li {
-      color: ${font.color.tertiary};
-      list-style-type: upper-roman;
-    }
-  }
-
-  h3 {
-    margin-top: 32px;
   }
 `
