@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import { Container } from './Container';
 import Box from '@material-ui/core/Box';
 import ArchiveTable from './ArchiveTable';
+import { colors, font } from '../helpers/variables';
 
 function TabPanel(props) {
   const { children, value, index } = props;
-
   return (
     <div
       role="tabpanel"
@@ -18,11 +18,7 @@ function TabPanel(props) {
       id={`scrollable-auto-tabpanel-${index}`}
       aria-labelledby={`scrollable-auto-tab-${index}`}
     >
-      {value === index && (
-        <Box>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -40,45 +36,69 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    // backgroundColor: theme.palette.background.paper,
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: 'white',
+  position: 'sticky',
+  top: '64px',
+  zIndex: 1010,
+  transition: 'top 0.6s',
+  left: 0,
+  right: 0,
+  '& button': {
+    boxShadow: 'none',
   },
-}));
+});
+
+const StyledTabs = styled(Tabs)({
+  '& .MuiTab-textColorInherit': {
+    color: font.color.primary,
+    opacity: 1,
+  },
+  '& .Mui-selected': {
+    color: font.color.secondary,
+  },
+  '& .MuiTabs-indicator': {
+    backgroundColor: colors.secondary,
+  },
+});
 
 export default function ScrollableTabsButtonAuto(props) {
   const { years } = props;
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const yearTabBar = useRef(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="sticky" color="default">
-        <Tabs
+    <Fragment>
+      <StyledAppBar
+        color="default"
+        ref={yearTabBar}
+        onClick={() => {
+          window.scrollTo(0, 200);
+        }}
+      >
+        <StyledTabs
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
           variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs"
+          scrollButtons="on"
+          aria-label="scrollable year tabs"
         >
           {years.map((year, index) => (
             <Tab label={year} {...a11yProps(index)} key={year} />
           ))}
-        </Tabs>
-      </AppBar>
+        </StyledTabs>
+      </StyledAppBar>
       {years.map((year, index) => (
         <TabPanel value={value} key={year} index={index}>
-          <ArchiveTable year={year} />
+          <Container full>
+            <ArchiveTable year={year} />
+          </Container>
         </TabPanel>
       ))}
-    </div>
+    </Fragment>
   );
 }
