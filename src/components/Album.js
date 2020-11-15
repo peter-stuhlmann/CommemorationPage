@@ -45,7 +45,7 @@ export default function Album() {
       <Container>
             {album && <StyledAlbum key={album.number}>
               <div>
-                <img src={albumcoverImage} alt={`${album.number} | ${album.title}`} />
+                <img src={'/img/covers/' + albumcoverImage} alt={`${album.number} | ${album.title}`} />
               </div>
               <div>
                 <Heading h2 title={album.title} />
