@@ -8,7 +8,7 @@ import { FailedToLoad } from './Messages';
 
 export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
-  const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards`);
+  const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards?tags=home`);
 
   return content?.error ? (
     <FailedToLoad />
