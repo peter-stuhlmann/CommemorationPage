@@ -16,7 +16,8 @@ export default function ArchiveTable(props) {
     if (data.response) {
       setConcerts(data.response);
       const filteredHeaders = Object.keys(data.response[0]).filter(
-        (header) => header !== 'id' && header !== 'date'
+        (header) =>
+          header !== 'id' && header !== 'date' && header !== 'attachments'
       );
       setTableHeaders(filteredHeaders);
     }
@@ -52,21 +53,6 @@ function TableHead(props) {
       case 'displayDate':
         displayHeaders.push('Date');
         break;
-      // case 'program':
-      //   displayHeaders.push('Composer, Work');
-      //   break;
-      // case 'location':
-      //   displayHeaders.push('City, State');
-      //   break;
-      // case 'venue':
-      //   displayHeaders.push('Promoter, Venue');
-      //   break;
-      // case 'participants':
-      //   displayHeaders.push('Orchestra & Soloists');
-      //   break;
-      // case 'attachments':
-      //   displayHeaders.push('');
-      //   break;
       default:
         displayHeaders.push(header.charAt(0).toUpperCase() + header.slice(1));
     }
