@@ -26,6 +26,17 @@ export default function Album() {
     }
   }
 
+  let albumcoverImage;
+  if (window.innerWidth <= parseInt(screen.mobile)) {
+    albumcoverImage = album?.img.large;
+  } else if (window.innerWidth <= 666) {
+    albumcoverImage = album?.img.small;
+  } else if (window.innerWidth <= parseInt(screen.tablet)) {
+    albumcoverImage = album?.img.medium;
+  } else { 
+    albumcoverImage = album?.img.large;
+  }
+
   return album?.error || content?.error ? (
     <FailedToLoad />
   ) : (
@@ -34,7 +45,7 @@ export default function Album() {
       <Container>
             {album && <StyledAlbum key={album.number}>
               <div>
-                <img src={album.img.large} alt={`${album.number} | ${album.title}`} />
+                <img src={albumcoverImage} alt={`${album.number} | ${album.title}`} />
               </div>
               <div>
                 <Heading h2 title={album.title} />
