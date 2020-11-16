@@ -13,7 +13,7 @@ const Media = lazy(() => import('./Media'));
 const Press = lazy(() => import('./Press'));
 const Gallery = lazy(() => import('./Gallery'));
 const Foundation = lazy(() => import('./Foundation'));
-const Commemorating = lazy(() => import('./Commemorating'));
+const Memories = lazy(() => import('./Memories'));
 const Legal = lazy(() => import('./Legal'));
 const Orchestras = lazy(() => import('./Orchestras'));
 const Repertoire = lazy(() => import('./Repertoire'));
@@ -36,7 +36,7 @@ function DefaultRoutes() {
         <Route exact path="/press" component={Press} />
         <Route exact path="/gallery" component={Gallery} />
         <Route exact path="/foundation" component={Foundation} />
-        <Route exact path="/memories" component={Commemorating} />
+        <Route exact path="/memories" component={Memories} />
         <Route exact path="/legal-notice" component={Legal} />
         <Route exact path="/privacy-policy" component={Legal} />
         <Route path="*" component={NotFound} />
