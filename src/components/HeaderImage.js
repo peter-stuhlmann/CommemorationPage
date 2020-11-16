@@ -11,7 +11,7 @@ export default function HeaderImage(props) {
   const headerImage = React.createRef();
 
   useEffect(() => {
-    window.onscroll = () => {
+    const updateBackgroundPosition = () => {
       headerImage.current.style.backgroundPositionY = `${
         window.pageYOffset * 0.3
       }px`;
@@ -21,13 +21,17 @@ export default function HeaderImage(props) {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener('resize', updateWindowWidth);
-    return () => window.removeEventListener('resize', updateWindowWidth);
+    window.addEventListener('scroll', updateBackgroundPosition);
+    return () => {
+      window.removeEventListener('resize', updateWindowWidth);
+      window.removeEventListener('scroll', updateBackgroundPosition);
+    };
   }, [headerImage]);
 
   return (
     <StyledHeaderImage
       ref={headerImage}
-      backgroundImage={data.response?.img.size}
+      backgroundImage={data.response?.img?.size}
       width={windowWidth}
     >
       <div>
