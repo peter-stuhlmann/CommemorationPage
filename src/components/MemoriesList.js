@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { screen } from '../helpers/variables';
 
 export default function MemoriesList(props) {
   const { content, setAuthor } = props;
@@ -29,14 +30,27 @@ const StyledMemoriesList = styled.ul`
 
   li {
     cursor: pointer;
-    flex: 0 0 15%;
+    display: flex;
+    flex: 0 0 16.666%;
+    flex-direction: column;
     list-style-type: none;
-    margin-right: 16px;
+    margin-bottom: 16px;
+    padding: 8px;
     text-align: center;
 
-    img {
-      border-radius: 50%;
-      width: 100%;
+    @media (max-width: calc(${screen.tablet} - 1px)) {
+      flex: 0 0 33.333%;
+    }
+
+    @media (max-width: calc(${screen.mobile} - 1px)) {
+      flex: 0 0 50%;
+    }
+
+    div {
+      img {
+        border-radius: 50%;
+        width: 100%;
+      }
     }
   }
 `;

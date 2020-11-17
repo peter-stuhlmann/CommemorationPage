@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
 
-import { font } from '../helpers/variables';
+import { font, screen } from '../helpers/variables';
 
 export default function MemoriesAuthorBio(props) {
   const { author, content } = props;
@@ -28,9 +28,23 @@ const StyledPaper = styled(Paper)`
 
   div {
     &:first-child {
-      max-width: 400px;
+      max-width: 350px;
       width: 100%;
       margin-right: 16px;
+
+      @media (max-width: calc(${screen.tablet} - 1px)) {
+        max-width: 280px;
+      }
+
+      @media (max-width: 666px) {
+        max-width: 200px;
+      }
+
+      @media (max-width: calc(${screen.mobile} - 1px)) {
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
 
       img {
         width: 100%;
