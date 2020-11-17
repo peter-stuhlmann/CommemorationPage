@@ -65,7 +65,7 @@ function Navbar({ open, setOpen }) {
       path: 'memories',
       exact: false,
       text: 'Memories',
-      disabled: true,
+      disabled: false,
     },
   ];
 
