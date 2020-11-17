@@ -1,63 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import '../css/Concerts.css';
-import YearHeading from './YearHeading';
-import ArchiveTable from './ArchiveTable';
-import { useFetch } from '../helpers/useFetch';
-import { FailedToLoad } from './Messages';
-import { Container } from './Container';
 import { Heading } from './Headings';
+import YearTabs from './YearTabs';
 
-export default function Archive() {
-  const [concerts, setConcerts] = useState(null);
+export default function Archive({ showNavbar }) {
   const [years, setYears] = useState(null);
-  const [tableHeaders, setTableHeaders] = useState(null);
 
   // TODO: lazyload
-  const data = useFetch(`${process.env.REACT_APP_API_URL}/concerts`);
-
-  const getYears = (concerts) => {
-    const years = [];
-    concerts.forEach((concert) => {
-      if (years.indexOf(concert.year) === -1) {
-        years.push(concert.year);
-      }
-    });
-    setYears(years);
-  };
-
   useEffect(() => {
-    if (data.response) {
-      setConcerts(data.response);
+    const archiveYears = [];
+    for (let i = 2000; i >= 1975; i--) {
+      archiveYears.push(i);
     }
-  }, [data.response]);
+    setYears(archiveYears);
+  }, []);
 
-  useEffect(() => {
-    if (concerts) {
-      const filteredHeaders = Object.keys(concerts[0]).filter(
-        (header) => header !== 'id' && header !== 'date'
-      );
-      setTableHeaders(filteredHeaders);
-      getYears(concerts);
-    }
-  }, [concerts]);
-
-  return data?.error ? (
-    <FailedToLoad />
-  ) : (
+  return (
     // TODO: add loading spinner
-    <Container full>
+    <Fragment>
       <Heading h1 title="Archive" />
-      {!years && <p>Loading...</p>}
-      {years &&
-        years.map((year, index) => (
-          <section key={year}>
-            <YearHeading year={year} />
-            <ArchiveTable
-              tableHeaders={tableHeaders}
-              concerts={concerts.filter((concert) => concert.year === year)}
-            />
-          </section>
-        ))}
-    </Container>
+      {!years ? (
+        <p>Loading...</p>
+      ) : (
+        <main>
+          {years?.length && <YearTabs years={years} showNavbar={showNavbar} />}
+        </main>
+      )}
+    </Fragment>
   );
 }

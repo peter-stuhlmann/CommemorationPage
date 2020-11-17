@@ -1,28 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { DownIcon } from './Icons';
+import { useFetch } from '../helpers/useFetch';
+import Spinner from './Spinner';
 
 export default function ArchiveTable(props) {
-  const { tableHeaders, concerts } = props;
-  const [headers, setHeaders] = useState([]);
+  const { year } = props;
+  const [concerts, setConcerts] = useState(null);
+  const [tableHeaders, setTableHeaders] = useState(null);
+
+  const data = useFetch(
+    `${process.env.REACT_APP_API_URL}/concerts?year=${year}`
+  );
 
   useEffect(() => {
-    const filteredHeaders = tableHeaders.filter(
-      (header) =>
-        header !== 'id' && header !== 'date' && header !== 'attachments'
-    );
-    setHeaders(filteredHeaders);
-  }, [tableHeaders]);
+    if (data.response) {
+      setConcerts(data.response);
+      const filteredHeaders = Object.keys(data.response[0]).filter(
+        (header) =>
+          header !== 'id' && header !== 'date' && header !== 'attachments'
+      );
+      setTableHeaders(filteredHeaders);
+    }
+  }, [data.response, year]);
 
   return (
-    <table role="table" className="table">
-      <TableHead headers={headers} />
-      <tbody>
-        {concerts &&
-          concerts.map((concert) => (
-            <TableRow concert={concert} headers={headers} key={concert.id} />
-          ))}
-      </tbody>
-    </table>
+    (!tableHeaders && <Spinner />) || (
+      <table role="table" className="table">
+        {tableHeaders && <TableHead headers={tableHeaders} />}
+        <tbody>
+          {concerts &&
+            concerts.map((concert) => (
+              <TableRow
+                concert={concert}
+                headers={tableHeaders}
+                key={concert.id}
+              />
+            ))}
+        </tbody>
+      </table>
+    )
   );
 }
 
@@ -37,21 +53,6 @@ function TableHead(props) {
       case 'displayDate':
         displayHeaders.push('Date');
         break;
-      // case 'program':
-      //   displayHeaders.push('Composer, Work');
-      //   break;
-      // case 'location':
-      //   displayHeaders.push('City, State');
-      //   break;
-      // case 'venue':
-      //   displayHeaders.push('Promoter, Venue');
-      //   break;
-      // case 'participants':
-      //   displayHeaders.push('Orchestra & Soloists');
-      //   break;
-      // case 'attachments':
-      //   displayHeaders.push('');
-      //   break;
       default:
         displayHeaders.push(header.charAt(0).toUpperCase() + header.slice(1));
     }
