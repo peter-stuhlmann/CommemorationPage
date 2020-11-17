@@ -4,6 +4,7 @@ import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
 import HeaderImage from './HeaderImage';
 import MemoriesList from './MemoriesList';
+import MemoriesAuthorBio from './MemoriesAuthorBio';
 import { FailedToLoad } from './Messages';
 
 export default function Memories() {
@@ -24,6 +25,7 @@ export default function Memories() {
         : content?.response 
           ? <Container>
               <MemoriesList author={author} setAuthor={setAuthor} content={content} />
+              <MemoriesAuthorBio author={author} content={content} />
             </Container>
           : "Loading..."
         }
