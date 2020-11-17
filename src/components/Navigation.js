@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-
 import { colors, font, screen, transition } from '../helpers/variables';
 
 const useOnClickOutside = (ref, handler) => {
@@ -20,13 +18,9 @@ const useOnClickOutside = (ref, handler) => {
   }, [ref, handler]);
 };
 
-export default function MainNavigation() {
-  const [show, setShow] = useState(false);
+export default function MainNavigation(props) {
+  const { show } = props;
   const [open, setOpen] = useState(false);
-
-  useScrollPosition(({ prevPos, currPos }) => {
-    setShow(currPos.y > prevPos.y);
-  });
 
   const node = useRef();
   useOnClickOutside(node, () => setOpen(false));
@@ -35,11 +29,15 @@ export default function MainNavigation() {
     <StyledMainNavigation ref={node} className={show ? 'show' : null}>
       <ToggleButton open={open} setOpen={setOpen} />
       <div className="site-title-desktop" onClick={() => window.scrollTo(0, 0)}>
-        <Link to="/"><img src="./img/logo.png" alt="Logo" height="36" /></Link>
+        <Link to="/">
+          <img src="./img/logo.png" alt="Logo" height="36" />
+        </Link>
       </div>
       <Navbar open={open} setOpen={setOpen} />
       <div className="site-title-mobile" onClick={() => window.scrollTo(0, 0)}>
-        <Link to="/"><img src="./img/logo.png" alt="Logo" height="36" /></Link>
+        <Link to="/">
+          <img src="./img/logo.png" alt="Logo" height="36" />
+        </Link>
       </div>
       <Backdrop open={open} />
     </StyledMainNavigation>
