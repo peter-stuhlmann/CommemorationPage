@@ -7,10 +7,21 @@ import { font, screen } from '../helpers/variables';
 export default function MemoriesAuthorBio(props) {
   const { author, content } = props;
 
+  let imageSize;
+  if (window.innerWidth <= parseInt(screen.mobile)) {
+    imageSize = content.response[author]?.author?.img.src.large;
+  } else if (window.innerWidth <= 666) {
+    imageSize = content.response[author]?.author?.img.src.small;
+  } else if (window.innerWidth <= parseInt(screen.tablet)) {
+    imageSize = content.response[author]?.author?.img.src.medium;
+  } else { 
+    imageSize = content.response[author]?.author?.img.src.large;
+  }
+
   return (
     author != null && 
       <StyledPaper elevation={3}> 
-        <div><img src={'/img/' + content.response[author]?.author?.img.src.medium} alt={content.response[author]?.author?.img.alt || ""} /></div>
+        <div><img src={'/img/' + imageSize} alt={content.response[author]?.author?.img.alt || ""} /></div>
         <div>
           {content.response[author]?.author?.biography.map((paragraph) => (
             <p>{paragraph}</p>
