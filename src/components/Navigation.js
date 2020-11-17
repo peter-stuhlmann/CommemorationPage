@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { colors, font, screen, transition } from '../helpers/variables';
+import { Logo } from './Icons';
 
 const useOnClickOutside = (ref, handler) => {
   useEffect(() => {
@@ -30,13 +31,13 @@ export default function MainNavigation(props) {
       <ToggleButton open={open} setOpen={setOpen} />
       <div className="site-title-desktop" onClick={() => window.scrollTo(0, 0)}>
         <Link to="/">
-          <img src="./img/logo.png" alt="Logo" height="36" />
+          <Logo color={font.color.septenary} height="36" />
         </Link>
       </div>
       <Navbar open={open} setOpen={setOpen} />
       <div className="site-title-mobile" onClick={() => window.scrollTo(0, 0)}>
         <Link to="/">
-          <img src="./img/logo.png" alt="Logo" height="36" />
+          <Logo color={font.color.septenary} height="36" />
         </Link>
       </div>
       <Backdrop open={open} />
@@ -49,8 +50,13 @@ function Navbar({ open, setOpen }) {
     { path: '/', exact: true, text: 'Home', disabled: false },
     { path: '/concerts', exact: false, text: 'Concerts', disabled: false },
     { path: '/gallery', exact: false, text: 'Gallery', disabled: false },
-    { path: '/about', exact: false, text: 'About', disabled: true },
-    { path: '/discography', exact: false, text: 'Discography', disabled: true },
+    { path: '/about', exact: false, text: 'About', disabled: false },
+    {
+      path: '/discography',
+      exact: false,
+      text: 'Discography',
+      disabled: false,
+    },
     // { path: 'media', exact: false, text: 'Media', disabled: true },
     // { path: 'press', exact: false, text: 'Press', disabled: true },
     // { path: 'foundation', exact: false, text: 'Foundation', disabled: true },
@@ -204,7 +210,7 @@ const StyledNavbar = styled.nav`
   }
 
   a {
-    color: ${font.color.tertiary};
+    color: ${font.color.primary};
     padding: 7px 12px;
     text-decoration: none;
     transition: ${transition.normal};
@@ -230,10 +236,10 @@ const StyledNavbar = styled.nav`
     }
 
     &.active {
-      color: ${font.color.primary};
+      color: ${font.color.secondary};
 
       &:hover {
-        color: ${font.color.primary};
+        color: ${font.color.secondary};
         opacity: 1;
       }
     }

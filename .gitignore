@@ -28,4 +28,5 @@ yarn-error.log*
 
 # static assets
 /public/img
+/public/pdf
 /src/data

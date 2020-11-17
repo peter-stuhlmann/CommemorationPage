@@ -8,7 +8,7 @@ import { FailedToLoad } from './Messages';
 
 export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
-  const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards`);
+  const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards?tags=home`);
 
   return content?.error ? (
     <FailedToLoad />
@@ -30,7 +30,7 @@ export default function Home() {
 
 const StyledHome = styled.div`
   .entry {
-    background-image: url('./img/1999-david-in-birstein-1000x658.jpg');
+    background-image: url('/img/1999-david-in-birstein-1000x658.jpg');
     background-position: left center;
     background-size: cover;
     display: flex;
