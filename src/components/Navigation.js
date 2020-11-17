@@ -57,7 +57,12 @@ function Navbar({ open, setOpen }) {
     { path: '/concerts', exact: false, text: 'Concerts', disabled: false },
     { path: '/gallery', exact: false, text: 'Gallery', disabled: false },
     { path: '/about', exact: false, text: 'About', disabled: false },
-    { path: '/discography', exact: false, text: 'Discography', disabled: true },
+    {
+      path: '/discography',
+      exact: false,
+      text: 'Discography',
+      disabled: false,
+    },
     // { path: 'media', exact: false, text: 'Media', disabled: true },
     // { path: 'press', exact: false, text: 'Press', disabled: true },
     // { path: 'foundation', exact: false, text: 'Foundation', disabled: true },
