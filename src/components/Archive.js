@@ -3,7 +3,7 @@ import '../css/Concerts.css';
 import { Heading } from './Headings';
 import YearTabs from './YearTabs';
 
-export default function Archive() {
+export default function Archive({ showNavbar }) {
   const [years, setYears] = useState(null);
 
   // TODO: lazyload
@@ -22,7 +22,9 @@ export default function Archive() {
       {!years ? (
         <p>Loading...</p>
       ) : (
-        <main>{years?.length && <YearTabs years={years} />}</main>
+        <main>
+          {years?.length && <YearTabs years={years} showNavbar={showNavbar} />}
+        </main>
       )}
     </Fragment>
   );

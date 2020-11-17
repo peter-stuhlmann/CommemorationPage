@@ -19,7 +19,7 @@ function App() {
       <CookieConsent />
       <GlobalStyles />
       <Navigation show={showNavbar} />
-      <AppRoutes />
+      <AppRoutes showNavbar={showNavbar} />
       <Footer />
     </Router>
   );

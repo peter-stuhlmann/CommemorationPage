@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import { Container } from './Container';
 import Box from '@material-ui/core/Box';
 import ArchiveTable from './ArchiveTable';
-import { colors, font } from '../helpers/variables';
+import { colors, font, screen } from '../helpers/variables';
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -39,9 +39,12 @@ function a11yProps(index) {
 const StyledAppBar = styled(AppBar)({
   backgroundColor: 'white',
   position: 'sticky',
-  top: '64px',
-  zIndex: 1010,
-  transition: 'top 0.6s',
+  top: (props) =>
+    window.innerWidth >= parseInt(screen.desktop) || props.shownavbar === 'true'
+      ? '64px'
+      : '0px',
+  zIndex: '1010',
+  transition: 'top 0.1s ease-out',
   left: 0,
   right: 0,
   '& button': {
@@ -63,7 +66,7 @@ const StyledTabs = styled(Tabs)({
 });
 
 export default function ScrollableTabsButtonAuto(props) {
-  const { years } = props;
+  const { years, showNavbar } = props;
   const [value, setValue] = React.useState(0);
   const yearTabBar = useRef(null);
 
@@ -76,6 +79,7 @@ export default function ScrollableTabsButtonAuto(props) {
       <StyledAppBar
         color="default"
         ref={yearTabBar}
+        shownavbar={showNavbar.toString()}
         onClick={() => {
           window.scrollTo(0, 200);
         }}
