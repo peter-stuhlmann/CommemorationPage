@@ -12,9 +12,11 @@ export default function HeaderImage(props) {
 
   useEffect(() => {
     const updateBackgroundPosition = () => {
-      headerImage.current.style.backgroundPositionY = `${
-        window.pageYOffset * 0.3
-      }px`;
+      if (headerImage.current) {
+        headerImage.current.style.backgroundPositionY = `${
+          window.pageYOffset * 0.3
+        }px`;
+      }
     };
 
     const updateWindowWidth = () => {
