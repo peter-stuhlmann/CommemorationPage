@@ -28,7 +28,7 @@ export default function About() {
               <div>{cv.year}</div>
               <ul>
                 {cv.events.map((event) => (
-                  <li key={event.title}>
+                  <li key={event.date + event.title}>
                     <p>
                       {event.date}, {event.title}
                     </p>
