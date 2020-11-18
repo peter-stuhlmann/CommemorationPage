@@ -5,10 +5,9 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@n8tb1t/use-scroll-position": "^1.0.43",
-    "axios": "^0.20.0",
     "bootstrap": "^4.4.1",
-    "js-cookie": "^2.2.1",
     "flex-cards": "^0.1.5",
+    "js-cookie": "^2.2.1",
     "p-retry": "^4.2.0",
     "react": "^16.11.0",
     "react-bootstrap": "^1.0.0",
@@ -23,8 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "server": "react-scripts build && nodemon server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
