@@ -6,9 +6,11 @@ import Tooltip from './Tooltip';
 import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
+import { meta } from '../helpers/meta';
 
 export default function Gallery() {
   const photos = useFetch(`${process.env.REACT_APP_API_URL}/pictures`);
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/gallery`);
 
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
@@ -24,6 +26,9 @@ export default function Gallery() {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
+
+  document.title = content?.response?.meta.title;
+  meta('name', 'description', content?.response?.meta.description);
 
   return photos?.error ? (
     <FailedToLoad />

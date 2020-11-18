@@ -7,10 +7,14 @@ import { FailedToLoad } from './Messages';
 import HeaderImage from './HeaderImage';
 import { font } from '../helpers/variables';
 import { PdfIcon } from '../components/Icons';
+import { meta } from '../helpers/meta';
 
 export default function About() {
   const data = useFetch(`${process.env.REACT_APP_API_URL}/cv`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/about`);
+
+  document.title = content?.response?.meta.title;
+  meta('name', 'description', content?.response?.meta.description);
 
   return data?.error || content?.error ? (
     <FailedToLoad />

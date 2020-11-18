@@ -5,10 +5,14 @@ import FlexCards from 'flex-cards';
 import { useFetch } from '../helpers/useFetch';
 import { colors, font, screen } from '../helpers/variables';
 import { FailedToLoad } from './Messages';
+import { meta } from '../helpers/meta';
 
 export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
   const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards?tags=home`);
+
+  document.title = content?.response?.meta.title;
+  meta('name', 'description', content?.response?.meta.description);
 
   return content?.error ? (
     <FailedToLoad />
