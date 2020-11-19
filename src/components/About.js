@@ -5,7 +5,7 @@ import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import HeaderImage from './HeaderImage';
-import { font } from '../helpers/variables';
+import { font, screen } from '../helpers/variables';
 import { PdfIcon } from '../components/Icons';
 
 export default function About() {
@@ -28,25 +28,28 @@ export default function About() {
                     <p>
                       {event.date}, {event.title}
                     </p>
-                    {event.media.map((mediaItem) => (
-                      <Fragment key={mediaItem.title}>
-                        {mediaItem.format === 'pdf' && (
-                          <a
-                            href={mediaItem.path}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <PdfIcon /> {mediaItem.title} (pdf)
-                          </a>
-                        )}
-                        {mediaItem.format === 'jpg' && (
-                          <img
-                            src={mediaItem.path}
-                            alt={mediaItem.title}
-                            title={mediaItem.title}
-                          />
-                        )}
+                    
+                    {event.media.pdf?.map((pdf) => (
+                      <Fragment>
+                        <a 
+                          href={pdf.path} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <PdfIcon /> {pdf.title} (PDF{pdf.language && `, ${pdf.language}`})
+                        </a>
+                        {event.media.img && <br />}
                       </Fragment>
+                    ))}
+
+                    {event.media.img?.map((img) => (
+                      <img
+                        src={img.path.large}
+                        srcSet={`${img.path.small} ${screen.mobile}w, ${img.path.medium} ${screen.tablet}w, ${img.path.large} ${screen.desktop}w`}
+                        alt={img.title}
+                        title={img.title}
+                        loading="lazy"
+                      />
                     ))}
                   </li>
                 ))}
