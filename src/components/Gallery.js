@@ -27,8 +27,8 @@ export default function Gallery() {
     setViewerIsOpen(false);
   };
 
-  document.title = content?.response?.meta.title;
-  meta('name', 'description', content?.response?.meta.description);
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return photos?.error ? (
     <FailedToLoad />

@@ -7,6 +7,7 @@ import MemoriesList from './MemoriesList';
 import MemoriesAuthorBio from './MemoriesAuthorBio';
 import MemoriesText from './MemoriesText';
 import { FailedToLoad } from './Messages';
+import { meta } from '../helpers/meta';
 
 export default function Memories() {
   const headerImage = useFetch(
@@ -15,6 +16,9 @@ export default function Memories() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/memories`);
 
   const [author, setAuthor] = useState(null);
+
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return content?.error || headerImage?.error ? (
     <FailedToLoad />

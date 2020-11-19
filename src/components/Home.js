@@ -11,8 +11,8 @@ export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
   const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards?tags=home`);
 
-  document.title = content?.response?.meta.title;
-  meta('name', 'description', content?.response?.meta.description);
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return content?.error ? (
     <FailedToLoad />

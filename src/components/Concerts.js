@@ -16,8 +16,8 @@ export default function Concerts() {
   );
   const cardsOrder = ['Archive', 'Repertoire', 'Orchestras', 'Choirs'];
 
-  document.title = content?.response?.meta.title;
-  meta('name', 'description', content?.response?.meta.description);
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return content?.error || cards?.error ? (
     <FailedToLoad />

@@ -20,8 +20,8 @@ export default function Discography() {
     return album;
   });
 
-  document.title = content?.response?.meta.title;
-  meta('name', 'description', content?.response?.meta.description);
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return albums?.error || content?.error ? (
     <FailedToLoad />

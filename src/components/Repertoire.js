@@ -11,8 +11,8 @@ export default function Repertoire() {
   const repertoire = useFetch(`${process.env.REACT_APP_API_URL}/repertoire`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/repertoire`);
 
-  document.title = content?.response?.meta.title;
-  meta('name', 'description', content?.response?.meta.description);
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return repertoire?.error || content?.error ? (
     <FailedToLoad />

@@ -19,8 +19,8 @@ export default function Archive({ showNavbar }) {
     setYears(archiveYears);
   }, []);
 
-  document.title = content?.response?.meta.title;
-  meta('name', 'description', content?.response?.meta.description);
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return (
     // TODO: add loading spinner
