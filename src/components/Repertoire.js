@@ -5,17 +5,22 @@ import { Heading } from './Headings';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { UnorderedList } from './StyledLists';
+import { meta } from '../helpers/meta';
 
 export default function Repertoire() {
-  const content = useFetch(`${process.env.REACT_APP_API_URL}/repertoire`);
+  const repertoire = useFetch(`${process.env.REACT_APP_API_URL}/repertoire`);
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/repertoire`);
 
-  return content?.error ? (
+  document.title = content?.response?.meta.title;
+  meta('name', 'description', content?.response?.meta.description);
+
+  return repertoire?.error || content?.error ? (
     <FailedToLoad />
   ) : (
     <Container>
       <Heading h1 title="Repertoire" />
       <UnorderedList>
-        {content?.response
+        {repertoire?.response
           ?.sort((a, b) => a.piece.plain - b.piece.plain)
           .map((repertoire) => {
             return (

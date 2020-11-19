@@ -7,6 +7,7 @@ import { Container } from './Container';
 import { useFetch } from '../helpers/useFetch';
 import { FailedToLoad } from './Messages';
 import { colors, font, screen } from '../helpers/variables';
+import { meta } from '../helpers/meta';
 
 export default function Concerts() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/concerts`);
@@ -14,6 +15,9 @@ export default function Concerts() {
     `${process.env.REACT_APP_API_URL}/cards?tags=concerts`
   );
   const cardsOrder = ['Archive', 'Repertoire', 'Orchestras', 'Choirs'];
+
+  document.title = content?.response?.meta.title;
+  meta('name', 'description', content?.response?.meta.description);
 
   return content?.error || cards?.error ? (
     <FailedToLoad />

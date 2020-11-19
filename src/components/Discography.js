@@ -7,6 +7,7 @@ import HeaderImage from './HeaderImage';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { screen } from '../helpers/variables';
+import { meta } from '../helpers/meta';
 
 export default function Discography() {
   const albums = useFetch(`${process.env.REACT_APP_API_URL}/discography`).response;
@@ -18,6 +19,9 @@ export default function Discography() {
     album.href = '/discography/' + album.number.toString();
     return album;
   });
+
+  document.title = content?.response?.meta.title;
+  meta('name', 'description', content?.response?.meta.description);
 
   return albums?.error || content?.error ? (
     <FailedToLoad />

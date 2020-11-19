@@ -4,6 +4,7 @@ import { Heading } from './Headings';
 import { Container } from './Container';
 import { useFetch } from '../helpers/useFetch';
 import { FailedToLoad } from './Messages';
+import { meta } from '../helpers/meta';
 
 export default function Legal() {
   let api;
@@ -18,6 +19,9 @@ export default function Legal() {
     default:
   }
   const content = useFetch(api);
+
+  document.title = content?.response?.meta.title;
+  meta('name', 'description', content?.response?.meta.description);
 
   return content?.error ? (
     <FailedToLoad />

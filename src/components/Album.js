@@ -7,10 +7,14 @@ import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { Heading } from './Headings';
 import { font, screen } from '../helpers/variables';
+import { meta } from '../helpers/meta';
 
 export default function Album() {
   const album = useFetch(`${process.env.REACT_APP_API_URL}${window.location.pathname}`).response;
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/discography`);
+
+  document.title = album?.title;
+  meta('name', 'description', album && `David Shallon Discography: ${album.title}, ${album.year}, ${album.label}`);
 
   const headerImageContent = {
     response: {
