@@ -5,23 +5,32 @@ import { boxShadow, screen } from '../helpers/variables';
 export default function MemoriesList(props) {
   const { content, author, setAuthor } = props;
 
-  console.log(author)
-  return (
-    content.response 
-    ? <StyledMemoriesList>
-        {content.response.map((memory, index) => (
-          <li key={memory.author.name.lastName} onClick={() => {setAuthor(index)}} className={author === index ? 'active' : null}>
-            <div>
-              <img src={'/img/' + memory.author.avatar.src} alt={memory.author.avatar.alt} title={`${memory.author.name.firstName} ${memory.author.name.lastName} | (c) ${memory.author.avatar.copyright}`} />
-            </div>
-            <div>
-              {memory.author.name.firstName} {memory.author.name.lastName}
-            </div>
-          </li>
-        ))}
-      </StyledMemoriesList>
-    : "Loading ..."
-  )
+  return content ? (
+    <StyledMemoriesList>
+      {content?.map((memory, index) => (
+        <li
+          key={memory.author.name.lastName}
+          onClick={() => {
+            setAuthor(index);
+          }}
+          className={author === index ? 'active' : null}
+        >
+          <div>
+            <img
+              src={'/img/' + memory.author.avatar.src}
+              alt={memory.author.avatar.alt}
+              title={`${memory.author.name.firstName} ${memory.author.name.lastName} | (c) ${memory.author.avatar.copyright}`}
+            />
+          </div>
+          <div>
+            {memory.author.name.firstName} {memory.author.name.lastName}
+          </div>
+        </li>
+      ))}
+    </StyledMemoriesList>
+  ) : (
+    'Loading ...'
+  );
 }
 
 const StyledMemoriesList = styled.ul`
@@ -41,7 +50,7 @@ const StyledMemoriesList = styled.ul`
 
     &.active {
       font-weight: bold;
-      
+
       img {
         box-shadow: ${boxShadow.primary};
       }

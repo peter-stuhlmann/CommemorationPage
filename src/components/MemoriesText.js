@@ -3,16 +3,17 @@ import styled from 'styled-components';
 
 export default function MemoriesText(props) {
   const { author, content } = props;
-  
+
   return (
-    author != null && 
+    author != null && (
       <StyledMemoriesText>
-        {content.response[author].text.map((paragraph) => (
+        {content[author].text.map((paragraph) => (
           <p key={paragraph} dangerouslySetInnerHTML={{ __html: paragraph }} />
         ))}
         <hr />
       </StyledMemoriesText>
-  )
+    )
+  );
 }
 
 const StyledMemoriesText = styled.article`

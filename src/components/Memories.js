@@ -22,9 +22,13 @@ export default function Memories() {
     <Fragment>
       <HeaderImage data={headerImage} />
       <Container>
-        <MemoriesList author={author} setAuthor={setAuthor} content={content} />
-        <MemoriesText author={author} content={content} />
-        <MemoriesAuthorBio author={author} content={content} />
+        <MemoriesList
+          author={author}
+          setAuthor={setAuthor}
+          content={content.response}
+        />
+        <MemoriesText author={author} content={content.response} />
+        <MemoriesAuthorBio author={author} content={content.response} />
       </Container>
     </Fragment>
   ) : (
