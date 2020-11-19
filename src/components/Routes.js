@@ -21,14 +21,18 @@ const Repertoire = lazy(() => import('./Repertoire'));
 const Choirs = lazy(() => import('./Choirs'));
 const NotFound = lazy(() => import('./NotFound'));
 
-function DefaultRoutes() {
+function DefaultRoutes({ showNavbar }) {
   return (
     <Suspense fallback={<Container>Loading...</Container>}>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
         <Route exact path="/concerts" component={Concerts} />
-        <Route exact path="/concerts/archive" component={Archive} />
+        <Route
+          exact
+          path="/concerts/archive"
+          render={() => <Archive showNavbar={showNavbar} />}
+        />
         <Route exact path="/concerts/choirs" component={Choirs} />
         <Route exact path="/concerts/orchestras" component={Orchestras} />
         <Route exact path="/concerts/repertoire" component={Repertoire} />
@@ -87,11 +91,11 @@ function Redirects() {
   );
 }
 
-export default function Routes() {
+export default function Routes({ showNavbar }) {
   return (
     <Fragment>
       <Redirects />
-      <DefaultRoutes />
+      <DefaultRoutes showNavbar={showNavbar} />
       <ScrollToTop />
     </Fragment>
   );
