@@ -36,7 +36,7 @@ export default function About() {
                     {event.media.pdf?.map((pdf) => (
                       <Fragment key={pdf.path}>
                         <a 
-                          href={pdf.path} 
+                          href={'/pdf/' + pdf.path} 
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -49,8 +49,8 @@ export default function About() {
                     {event.media.img?.map((img) => (
                       <img
                         key={img.path.large}
-                        src={img.path.large}
-                        srcSet={`${img.path.small} ${screen.mobile}w, ${img.path.medium} ${screen.tablet}w, ${img.path.large} ${screen.desktop}w`}
+                        src={'/img/' + img.path.large}
+                        srcSet={`/img/${img.path.small} ${screen.mobile}w, /img/${img.path.medium} ${screen.tablet}w, /img/${img.path.large} ${screen.desktop}w`}
                         alt={img.title}
                         title={img.title}
                         loading="lazy"
