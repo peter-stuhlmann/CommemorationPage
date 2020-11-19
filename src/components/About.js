@@ -50,7 +50,7 @@ export default function About() {
                       <img
                         key={img.path.large}
                         src={'/img/' + img.path.large}
-                        srcSet={`/img/${img.path.small} ${screen.mobile}w, /img/${img.path.medium} ${screen.tablet}w, /img/${img.path.large} ${screen.desktop}w`}
+                        srcSet={`/img/${img.path.small} ${parseInt(screen.mobile)}w, /img/${img.path.medium} ${parseInt(screen.tablet)}w, /img/${img.path.large} ${parseInt(screen.desktop)}w`}
                         alt={img.title}
                         title={img.title}
                         loading="lazy"
