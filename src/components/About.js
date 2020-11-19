@@ -24,13 +24,13 @@ export default function About() {
               <div>{cv.year}</div>
               <ul>
                 {cv.events.map((event) => (
-                  <li key={event.title}>
+                  <li key={event.date + event.title}>
                     <p>
                       {event.date}, {event.title}
                     </p>
                     
                     {event.media.pdf?.map((pdf) => (
-                      <Fragment>
+                      <Fragment key={pdf.path}>
                         <a 
                           href={pdf.path} 
                           target="_blank"
@@ -44,6 +44,7 @@ export default function About() {
 
                     {event.media.img?.map((img) => (
                       <img
+                        key={img.path.large}
                         src={img.path.large}
                         srcSet={`${img.path.small} ${screen.mobile}w, ${img.path.medium} ${screen.tablet}w, ${img.path.large} ${screen.desktop}w`}
                         alt={img.title}
