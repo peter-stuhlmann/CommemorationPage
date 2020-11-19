@@ -29,7 +29,7 @@ export default function About() {
                       {event.date}, {event.title}
                     </p>
                     
-                    {event.media.pdf?.map((pdf) => (
+                    {event.media?.pdf?.map((pdf) => (
                       <Fragment key={pdf.path}>
                         <a 
                           href={pdf.path} 
@@ -42,7 +42,7 @@ export default function About() {
                       </Fragment>
                     ))}
 
-                    {event.media.img?.map((img) => (
+                    {event.media?.img?.map((img) => (
                       <img
                         key={img.path.large}
                         src={img.path.large}
