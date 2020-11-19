@@ -25,6 +25,7 @@ export default function ScrollToTop(props) {
   // scroll top on route change
   useEffect(() => {
     scroll();
+    setScrollPosition(0);
   }, [pathname]);
 
   useScrollPosition(({ currPos }) => {
