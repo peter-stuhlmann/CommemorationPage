@@ -28,6 +28,7 @@ export default function Concerts() {
         {content?.response?.content?.slice(0,2).map((paragraph) => (
           <p dangerouslySetInnerHTML={{ __html: paragraph }} />
         ))}
+
       </Container>
       {cards.response && (
         <StyledFlexCards
