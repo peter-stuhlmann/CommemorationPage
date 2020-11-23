@@ -33,7 +33,7 @@ export default function HeaderImage(props) {
   return (
     <StyledHeaderImage
       ref={headerImage}
-      backgroundImage={`/img/headerimages/${data.response?.img?.size}`}
+      backgroundImage={data.response?.img?.size}
       width={windowWidth}
     >
       <div>
@@ -47,7 +47,8 @@ export default function HeaderImage(props) {
 }
 
 const StyledHeaderImage = styled.header`
-  background-image: url(${(props) => props.backgroundImage?.large});
+  background-image: url(/img/headerimages/${(props) =>
+    props.backgroundImage?.large});
   background-position: top;
   background-size: cover;
   height: calc(${(props) => props.width}px / 4.5);
@@ -58,12 +59,14 @@ const StyledHeaderImage = styled.header`
   }
 
   @media (max-width: ${screen.tablet}) {
-    background-image: url(${(props) => props.backgroundImage?.medium});
+    background-image: url(/img/headerimages/${(props) =>
+      props.backgroundImage?.medium});
     height: calc(${(props) => props.width}px / 3);
   }
 
   @media (max-width: ${screen.mobile}) {
-    background-image: url(${(props) => props.backgroundImage?.small});
+    background-image: url(/img/headerimages/${(props) =>
+      props.backgroundImage?.small});
     height: calc(${(props) => props.width}px / 2);
   }
 
