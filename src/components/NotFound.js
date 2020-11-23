@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { Heading } from './Headings';
+import HeaderImage from './HeaderImage';
 import { Container } from './Container';
+import { useFetch } from '../helpers/useFetch';
 import { meta } from '../helpers/meta';
 
 export default function NotFound() {
-  document.title = "Error 404 | David Shallon";
-  meta('name', 'description', 'There was an error on this page.');
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/error`);
+
+  document.title = content?.response?.meta?.title;
+  meta('name', 'description', content?.response?.meta?.description);
 
   return (
-    <Container>
-      <Heading h1 title="Error 404" />
-      <p>This page doesn't exist.</p>
-    </Container>
+    <Fragment>
+      <HeaderImage data={content} />
+      <Container>
+        <p>This page doesn't exist.</p>
+      </Container>
+    </Fragment>
   );
 }

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { Heading } from './Headings';
+import HeaderImage from './HeaderImage';
 import { Container } from './Container';
 import { useFetch } from '../helpers/useFetch';
 import { FailedToLoad } from './Messages';
@@ -26,9 +26,11 @@ export default function Legal() {
   return content?.error ? (
     <FailedToLoad />
   ) : (
-    <Container>
-      <Heading h1 title={content?.response?.title} />
-      <div dangerouslySetInnerHTML={{ __html: content?.response?.content }} />
-    </Container>
+    <Fragment>
+      <HeaderImage data={content} />
+      <Container>
+        <div dangerouslySetInnerHTML={{ __html: content?.response?.content }} />
+      </Container>
+    </Fragment>
   );
 }

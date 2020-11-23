@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import FlexCards from 'flex-cards';
 import styled from 'styled-components';
 
-import { Heading } from './Headings';
+import HeaderImage from './HeaderImage';
 import { Container } from './Container';
 import { useFetch } from '../helpers/useFetch';
 import { FailedToLoad } from './Messages';
@@ -23,8 +23,8 @@ export default function Concerts() {
     <FailedToLoad />
   ) : (
     <Fragment>
+      <HeaderImage data={content} />
       <Container margin="50px auto 0 auto">
-        <Heading h1 title={content.response?.title} />
         <div
           dangerouslySetInnerHTML={{ __html: content.response?.content[0] }}
         />

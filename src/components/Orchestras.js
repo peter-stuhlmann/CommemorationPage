@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { useFetch } from '../helpers/useFetch';
-import { Heading } from './Headings';
+import HeaderImage from './HeaderImage';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { UnorderedList } from './StyledLists';
@@ -17,13 +17,15 @@ export default function Orchestras() {
   return orchestras?.error || content?.error ? (
     <FailedToLoad />
   ) : (
-    <Container>
-      <Heading h1 title="Orchestras" />
-      <UnorderedList>
-        {orchestras?.response?.map((orchestra) => (
-          <li key={orchestra.orchestra}>{orchestra.orchestra}</li>
-        ))}
-      </UnorderedList>
-    </Container>
+    <Fragment>
+      <HeaderImage data={content} />
+      <Container>
+        <UnorderedList>
+          {orchestras?.response?.map((orchestra) => (
+            <li key={orchestra.orchestra}>{orchestra.orchestra}</li>
+          ))}
+        </UnorderedList>
+      </Container>
+    </Fragment>
   );
 }
