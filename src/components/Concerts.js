@@ -25,9 +25,10 @@ export default function Concerts() {
     <Fragment>
       <HeaderImage data={content} />
       <Container margin="50px auto 0 auto">
-        <div
-          dangerouslySetInnerHTML={{ __html: content.response?.content[0] }}
-        />
+        {content?.response?.content?.slice(0,2).map((paragraph) => (
+          <p dangerouslySetInnerHTML={{ __html: paragraph }} />
+        ))}
+
       </Container>
       {cards.response && (
         <StyledFlexCards
@@ -39,9 +40,9 @@ export default function Concerts() {
         />
       )}
       <Container>
-        <div
-          dangerouslySetInnerHTML={{ __html: content.response?.content[1] }}
-        />
+        {content?.response?.content?.slice(2).map((paragraph) => (
+          <p dangerouslySetInnerHTML={{ __html: paragraph }} />
+        ))}
       </Container>
     </Fragment>
   );
