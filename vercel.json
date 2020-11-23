@@ -4,9 +4,25 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "server-img.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server-pdf.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/img/(.*)",
+      "dest": "/server-img.js"
+    },
+    {
+      "src": "/pdf/(.*)",
+      "dest": "/server-pdf.js"
+    },
     {
       "src": "/(.*)",
       "dest": "/server.js"

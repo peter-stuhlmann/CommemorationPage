@@ -26,6 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "vercel-build": "react-scripts build && rm -rf build/img && rm -rf build/pdf",
     "server": "react-scripts build && nodemon server.js"
   },
   "eslintConfig": {
