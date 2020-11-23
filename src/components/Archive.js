@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 
 import '../css/Concerts.css';
-import { Heading } from './Headings';
+import HeaderImage from './HeaderImage';
 import YearTabs from './YearTabs';
 import { useFetch } from '../helpers/useFetch';
 import { meta } from '../helpers/meta';
@@ -25,7 +25,7 @@ export default function Archive({ showNavbar }) {
   return (
     // TODO: add loading spinner
     <Fragment>
-      <Heading h1 title="Archive" />
+      <HeaderImage data={content} />
       {!years ? (
         <p>Loading...</p>
       ) : (

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
+import HeaderImage from './HeaderImage';
+import { Container } from './Container';
 import { useFetch } from '../helpers/useFetch';
 import { meta } from '../helpers/meta';
 
@@ -9,5 +11,12 @@ export default function Press() {
   document.title = content?.response?.meta?.title;
   meta('name', 'description', content?.response?.meta?.description);
 
-  return <div className="App">Press</div>;
+  return (
+    <Fragment>
+      <HeaderImage data={content} />
+      <Container>
+        <p>Press</p>
+      </Container>
+    </Fragment>
+  );
 }

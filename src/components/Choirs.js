@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { useFetch } from '../helpers/useFetch';
-import { Heading } from './Headings';
+import HeaderImage from './HeaderImage';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { UnorderedList } from './StyledLists';
@@ -17,13 +17,15 @@ export default function Choirs() {
   return choirs?.error || content?.error ? (
     <FailedToLoad />
   ) : (
-    <Container>
-      <Heading h1 title="Choirs David Shallon conducted" />
-      <UnorderedList>
-        {choirs?.response?.map((choir) => (
-          <li key={choir.choir}>{choir.choir}</li>
-        ))}
-      </UnorderedList>
-    </Container>
+    <Fragment>
+      <HeaderImage data={content} />
+      <Container>
+        <UnorderedList>
+          {choirs?.response?.map((choir) => (
+            <li key={choir.choir}>{choir.choir}</li>
+          ))}
+        </UnorderedList>
+      </Container>
+    </Fragment>
   );
 }
