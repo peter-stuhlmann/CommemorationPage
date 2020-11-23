@@ -17,7 +17,7 @@ export default function MemoriesList(props) {
         >
           <div>
             <img
-              src={'/img/' + memory.author.avatar.src}
+              src={'/img/memories/' + memory.author.avatar.src}
               alt={memory.author.avatar.alt}
               title={`${memory.author.name.firstName} ${memory.author.name.lastName} | (c) ${memory.author.avatar.copyright}`}
             />

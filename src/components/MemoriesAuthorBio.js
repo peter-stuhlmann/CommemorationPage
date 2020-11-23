@@ -23,7 +23,7 @@ export default function MemoriesAuthorBio(props) {
       <StyledPaper elevation={3}>
         <div>
           <img
-            src={'/img/' + imageSize}
+            src={'/img/memories/' + imageSize}
             alt={content[author]?.author?.img.alt || ''}
           />
         </div>
