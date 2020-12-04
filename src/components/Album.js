@@ -10,11 +10,20 @@ import { font, screen } from '../helpers/variables';
 import { meta } from '../helpers/meta';
 
 export default function Album() {
-  const album = useFetch(`${process.env.REACT_APP_API_URL}${window.location.pathname}`).response;
-  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/discography`);
+  const album = useFetch(
+    `${process.env.REACT_APP_API_URL}${window.location.pathname}`
+  ).response;
+  const content = useFetch(
+    `${process.env.REACT_APP_API_URL}/pages/discography`
+  );
 
   document.title = album?.title;
-  meta('name', 'description', album && `David Shallon Discography: ${album.title}, ${album.year}, ${album.label}`);
+  meta(
+    'name',
+    'description',
+    album &&
+      `David Shallon Discography: ${album.title}, ${album.year}, ${album.label}`
+  );
 
   const headerImageContent = {
     response: {
@@ -25,20 +34,20 @@ export default function Album() {
           small: content?.response?.img.size.small,
           medium: content?.response?.img.size.medium,
           large: content?.response?.img.size.large,
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  };
 
   let albumcoverImage;
   if (window.innerWidth <= parseInt(screen.mobile)) {
-    albumcoverImage = album?.img.large;
+    albumcoverImage = album?.cover.format.original.large;
   } else if (window.innerWidth <= 666) {
-    albumcoverImage = album?.img.small;
+    albumcoverImage = album?.cover.format.original.small;
   } else if (window.innerWidth <= parseInt(screen.tablet)) {
-    albumcoverImage = album?.img.medium;
-  } else { 
-    albumcoverImage = album?.img.large;
+    albumcoverImage = album?.cover.format.original.medium;
+  } else {
+    albumcoverImage = album?.cover.format.original.large;
   }
 
   return album?.error || content?.error ? (
@@ -47,47 +56,64 @@ export default function Album() {
     <Fragment>
       <HeaderImage data={headerImageContent} />
       <Container>
-            {album && <StyledAlbum key={album.number}>
-              <div>
-                <img src={'/img/covers/' + albumcoverImage} alt={`${album.number} | ${album.title}`} />
+        {album && (
+          <StyledAlbum key={album.number}>
+            <div>
+              <img
+                src={'/img/covers/' + albumcoverImage}
+                alt={`${album.number} | ${album.title}`}
+              />
+            </div>
+            <div>
+              <Heading h2 title={album.title} />
+              <div className="meta">
+                {album.format} &middot; {album.year}
               </div>
               <div>
-                <Heading h2 title={album.title} />
-                <div className="meta">{album.format} &middot; {album.year}</div>
-                <div>
-                  <Heading h3 title="Contributing artists" />
-                  <ul className="artists">
-                    {album.contributingArtists.map((contributingArtist) => (
-                      <li key={contributingArtist.name}>{contributingArtist.name}, <i>{contributingArtist.instrument}</i></li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <Heading h3 title="Works" />
-                  <ul>
-                    {album.composer.map((composer) => (
-                      <li key={composer.name}>
-                        {composer.name} <i>({composer.years})</i>
-                        <ul className="works">
-                          {composer.works.map((work) => (
-                            <li key={work.title}>
-                              <div dangerouslySetInnerHTML={{ __html: work.title }} />
-                              <ol>
-                                {work.movements.map((movement) => (
-                                  <li key={movement} dangerouslySetInnerHTML={{ __html: movement }} />
-                                ))}
-                              </ol>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <hr />
-                <div className="meta">Published {album.year} &middot; {album.label}</div>
+                <Heading h3 title="Contributing artists" />
+                <ul className="artists">
+                  {album.contributingArtists.map((contributingArtist) => (
+                    <li key={contributingArtist.name}>
+                      {contributingArtist.name},{' '}
+                      <i>{contributingArtist.instrument}</i>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </StyledAlbum>}
+              <div>
+                <Heading h3 title="Works" />
+                <ul>
+                  {album.composer.map((composer) => (
+                    <li key={composer.name}>
+                      {composer.name} <i>({composer.years})</i>
+                      <ul className="works">
+                        {composer.works.map((work) => (
+                          <li key={work.title}>
+                            <div
+                              dangerouslySetInnerHTML={{ __html: work.title }}
+                            />
+                            <ol>
+                              {work.movements.map((movement) => (
+                                <li
+                                  key={movement}
+                                  dangerouslySetInnerHTML={{ __html: movement }}
+                                />
+                              ))}
+                            </ol>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <hr />
+              <div className="meta">
+                Published {album.year} &middot; {album.label}
+              </div>
+            </div>
+          </StyledAlbum>
+        )}
       </Container>
     </Fragment>
   );
@@ -149,7 +175,7 @@ const StyledAlbum = styled.li`
         padding: 0;
 
         &.artists {
-          margin-bottom: 48px; 
+          margin-bottom: 48px;
 
           li {
             color: ${font.color.senary};
@@ -184,4 +210,4 @@ const StyledAlbum = styled.li`
       }
     }
   }
-`
+`;
