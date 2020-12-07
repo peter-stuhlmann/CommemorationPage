@@ -7,8 +7,11 @@ export default function MemoriesText(props) {
   return (
     author != null && (
       <StyledMemoriesText>
-        {content[author].text.map((paragraph) => (
-          <p key={paragraph} dangerouslySetInnerHTML={{ __html: paragraph }} />
+        {content[author].text.map((paragraph, i) => (
+          <p
+            key={`paragraph${i}`}
+            dangerouslySetInnerHTML={{ __html: paragraph }}
+          />
         ))}
         <hr />
       </StyledMemoriesText>

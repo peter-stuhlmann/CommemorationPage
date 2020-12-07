@@ -28,8 +28,16 @@ export default function MemoriesAuthorBio(props) {
           />
         </div>
         <div>
-          {content[author]?.author?.biography.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+          <p>
+            <strong>
+              {`${content[author]?.author.name.firstName} ${content[author]?.author.name.lastName}`}
+            </strong>
+          </p>
+          {content[author]?.author?.biography.map((paragraph, i) => (
+            <p
+              key={`paragraph${i}`}
+              dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
           ))}
           <p>Photo: {content[author]?.author?.img.copyright}</p>
         </div>
@@ -75,6 +83,10 @@ const StyledPaper = styled(Paper)`
         &:last-child {
           color: ${font.color.tertiary};
           margin-bottom: 0;
+        }
+
+        > span {
+          white-space: nowrap;
         }
       }
     }

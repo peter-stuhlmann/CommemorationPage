@@ -41,13 +41,13 @@ export default function Album() {
 
   let albumcoverImage;
   if (window.innerWidth <= parseInt(screen.mobile)) {
-    albumcoverImage = album?.img.large;
+    albumcoverImage = album?.cover.format.original.large;
   } else if (window.innerWidth <= 666) {
-    albumcoverImage = album?.img.small;
+    albumcoverImage = album?.cover.format.original.small;
   } else if (window.innerWidth <= parseInt(screen.tablet)) {
-    albumcoverImage = album?.img.medium;
+    albumcoverImage = album?.cover.format.original.medium;
   } else {
-    albumcoverImage = album?.img.large;
+    albumcoverImage = album?.cover.format.original.large;
   }
 
   return album?.error || content?.error ? (
