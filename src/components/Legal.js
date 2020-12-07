@@ -20,7 +20,8 @@ export default function Legal() {
   }
   const content = useFetch(api);
 
-  document.title = content?.response?.meta?.title;
+  document.title =
+    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
   meta('name', 'description', content?.response?.meta?.description);
 
   return content?.error ? (

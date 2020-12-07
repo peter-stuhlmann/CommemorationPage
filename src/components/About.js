@@ -13,7 +13,8 @@ export default function About() {
   const data = useFetch(`${process.env.REACT_APP_API_URL}/cv`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/about`);
 
-  document.title = content?.response?.meta?.title;
+  document.title =
+    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
   meta('name', 'description', content?.response?.meta?.description);
 
   return data?.error || content?.error ? (
@@ -32,15 +33,16 @@ export default function About() {
                     <p>
                       {event.date}, {event.title}
                     </p>
-                    
+
                     {event.media.pdf?.map((pdf) => (
                       <Fragment key={pdf.path}>
-                        <a 
-                          href={'/pdf/' + pdf.path} 
+                        <a
+                          href={'/pdf/' + pdf.path}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <PdfIcon /> {pdf.title} (PDF{pdf.language && `, ${pdf.language}`})
+                          <PdfIcon /> {pdf.title} (PDF
+                          {pdf.language && `, ${pdf.language}`})
                         </a>
                         {event.media.img && <br />}
                       </Fragment>
@@ -50,7 +52,13 @@ export default function About() {
                       <img
                         key={img.path.large}
                         src={'/img/' + img.path.large}
-                        srcSet={`/img/${img.path.small} ${parseInt(screen.mobile)}w, /img/${img.path.medium} ${parseInt(screen.tablet)}w, /img/${img.path.large} ${parseInt(screen.desktop)}w`}
+                        srcSet={`/img/${img.path.small} ${parseInt(
+                          screen.mobile
+                        )}w, /img/${img.path.medium} ${parseInt(
+                          screen.tablet
+                        )}w, /img/${img.path.large} ${parseInt(
+                          screen.desktop
+                        )}w`}
                         alt={img.title}
                         title={img.title}
                         loading="lazy"

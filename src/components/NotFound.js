@@ -8,7 +8,8 @@ import { meta } from '../helpers/meta';
 export default function NotFound() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/error`);
 
-  document.title = content?.response?.meta?.title;
+  document.title =
+    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
   meta('name', 'description', content?.response?.meta?.description);
 
   return (

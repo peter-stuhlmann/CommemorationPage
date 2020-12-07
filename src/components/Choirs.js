@@ -11,7 +11,8 @@ export default function Choirs() {
   const choirs = useFetch(`${process.env.REACT_APP_API_URL}/choirs`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/choirs`);
 
-  document.title = content?.response?.meta?.title;
+  document.title =
+    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
   meta('name', 'description', content?.response?.meta?.description);
 
   return choirs?.error || content?.error ? (

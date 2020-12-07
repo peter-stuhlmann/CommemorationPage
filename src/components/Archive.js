@@ -19,7 +19,8 @@ export default function Archive({ showNavbar }) {
     setYears(archiveYears);
   }, []);
 
-  document.title = content?.response?.meta?.title;
+  document.title =
+    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
   meta('name', 'description', content?.response?.meta?.description);
 
   return (

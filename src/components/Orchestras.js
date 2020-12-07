@@ -11,7 +11,8 @@ export default function Orchestras() {
   const orchestras = useFetch(`${process.env.REACT_APP_API_URL}/orchestras`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/orchestras`);
 
-  document.title = content?.response?.meta?.title;
+  document.title =
+    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
   meta('name', 'description', content?.response?.meta?.description);
 
   return orchestras?.error || content?.error ? (

@@ -16,7 +16,8 @@ export default function Concerts() {
   );
   const cardsOrder = ['Archive', 'Repertoire', 'Orchestras', 'Choirs'];
 
-  document.title = content?.response?.meta?.title;
+  document.title =
+    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
   meta('name', 'description', content?.response?.meta?.description);
 
   return content?.error || cards?.error ? (
@@ -25,10 +26,9 @@ export default function Concerts() {
     <Fragment>
       <HeaderImage data={content} />
       <Container margin="50px auto 0 auto">
-        {content?.response?.content?.slice(0,2).map((paragraph) => (
+        {content?.response?.content?.slice(0, 2).map((paragraph) => (
           <p dangerouslySetInnerHTML={{ __html: paragraph }} />
         ))}
-
       </Container>
       {cards.response && (
         <StyledFlexCards
