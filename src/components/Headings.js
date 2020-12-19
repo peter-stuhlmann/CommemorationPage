@@ -65,7 +65,7 @@ const H1 = styled.h1`
 const H2 = styled.h2`
   ${baseStyles};
   font-size: 1.5em;
-  margin-top: 70px;
+  margin-top: 0 !important;
   margin-bottom: 35px;
 `;
 
