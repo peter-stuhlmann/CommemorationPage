@@ -7,6 +7,7 @@ import { FailedToLoad } from './Messages';
 import { UnorderedList } from './StyledLists';
 import { meta } from '../helpers/meta';
 import { Heading } from './Headings';
+import Spinner from './Spinner';
 
 export default function Repertoire() {
   const premieres = useFetch(`${process.env.REACT_APP_API_URL}/premieres`);
@@ -16,11 +17,12 @@ export default function Repertoire() {
   document.title = content?.response?.meta?.title;
   meta('name', 'description', content?.response?.meta?.description);
 
-  return repertoire?.error || content?.error ? (
+  return repertoire?.error || premieres?.error || content?.error ? (
     <FailedToLoad />
   ) : (
     <Fragment>
       <HeaderImage data={content} />
+      {!premieres?.response && !repertoire?.response && <Spinner />}
       {premieres?.response && (
         <Container>
           <Heading h2 title="World Premieres" />

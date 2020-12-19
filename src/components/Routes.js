@@ -1,8 +1,8 @@
 import React, { Fragment, lazy, Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import { Container } from './Container';
 import ScrollToTop from './ScrollToTop';
+import Spinner from './Spinner';
 
 const Home = lazy(() => import('./Home'));
 const About = lazy(() => import('./About'));
@@ -23,7 +23,7 @@ const NotFound = lazy(() => import('./NotFound'));
 
 function DefaultRoutes({ showNavbar }) {
   return (
-    <Suspense fallback={<Container>Loading...</Container>}>
+    <Suspense fallback={<Spinner />}>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
