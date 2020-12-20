@@ -16,7 +16,7 @@ To run this React app in localhost, clone this repository, install node modules 
 3. npm start
 ```
 
-The content of this website is called by a REST API. You can find the code for this API here: [Commemoration Page API](https://github.com/AtarDavid/commemoration-page.git).
+The content of this website is called by a REST API. You can find the repository for this API here: [Commemoration Page API](https://github.com/peter-stuhlmann/Commemoration-page-API).
 
 ## Contributors
 
