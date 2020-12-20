@@ -30,27 +30,43 @@ export default function About() {
                 {cv.events.map((event) => (
                   <li key={event.date + event.title}>
                     <p>
-                      {event.date}, {event.title}
+                      {event.date ? event.date + ', ' : ''}
+                      {event.title}
                     </p>
-                    
-                    {event.media.pdf?.map((pdf) => (
+                    <p>
+                      {event.description?.split('\n').map((line) => (
+                        <>
+                          <small>{line}</small>
+                          <br />
+                        </>
+                      ))}
+                    </p>
+
+                    {event.media?.pdf?.map((pdf) => (
                       <Fragment key={pdf.path}>
-                        <a 
-                          href={'/pdf/' + pdf.path} 
+                        <a
+                          href={'/pdf/' + pdf.path}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <PdfIcon /> {pdf.title} (PDF{pdf.language && `, ${pdf.language}`})
+                          <PdfIcon /> {pdf.title} (PDF
+                          {pdf.language && `, ${pdf.language}`})
                         </a>
                         {event.media.img && <br />}
                       </Fragment>
                     ))}
 
-                    {event.media.img?.map((img) => (
+                    {event.media?.img?.map((img) => (
                       <img
                         key={img.path.large}
                         src={'/img/' + img.path.large}
-                        srcSet={`/img/${img.path.small} ${parseInt(screen.mobile)}w, /img/${img.path.medium} ${parseInt(screen.tablet)}w, /img/${img.path.large} ${parseInt(screen.desktop)}w`}
+                        srcSet={`/img/${img.path.small} ${parseInt(
+                          screen.mobile
+                        )}w, /img/${img.path.medium} ${parseInt(
+                          screen.tablet
+                        )}w, /img/${img.path.large} ${parseInt(
+                          screen.desktop
+                        )}w`}
                         alt={img.title}
                         title={img.title}
                         loading="lazy"
@@ -102,7 +118,10 @@ const StyledList = styled.div`
       list-style-type: none;
       margin-bottom: 16px;
       width: 100%;
-      max-width: 700px;
+
+      p {
+        margin-bottom: 0.5em;
+      }
 
       svg {
         height: ${font.size.normal};
@@ -112,7 +131,7 @@ const StyledList = styled.div`
 
       img {
         margin-top: 16px;
-        max-width: 100%;
+        max-width: 700px;
       }
     }
   }
