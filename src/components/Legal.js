@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import HeaderImage from './HeaderImage';
 import { Container } from './Container';
@@ -20,8 +20,13 @@ export default function Legal() {
   }
   const content = useFetch(api);
 
-  document.title = content?.response?.meta?.title;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return content?.error ? (
     <FailedToLoad />

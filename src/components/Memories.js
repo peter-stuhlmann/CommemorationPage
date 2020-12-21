@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
@@ -17,8 +17,13 @@ export default function Memories() {
 
   const [author, setAuthor] = useState(null);
 
-  document.title = content?.response?.meta?.title;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return content?.error || headerImage?.error ? (
     <FailedToLoad />

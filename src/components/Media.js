@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import HeaderImage from './HeaderImage';
 import { Container } from './Container';
@@ -8,8 +8,13 @@ import { meta } from '../helpers/meta';
 export default function Media() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/media`);
 
-  document.title = content?.response?.meta?.title;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return (
     <Fragment>
