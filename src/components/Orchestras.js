@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import { useFetch } from '../helpers/useFetch';
 import HeaderImage from './HeaderImage';
@@ -11,9 +11,13 @@ export default function Orchestras() {
   const orchestras = useFetch(`${process.env.REACT_APP_API_URL}/orchestras`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/orchestras`);
 
-  document.title =
-    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return orchestras?.error || content?.error ? (
     <FailedToLoad />

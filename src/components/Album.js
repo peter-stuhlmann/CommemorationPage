@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useFetch } from '../helpers/useFetch';
@@ -17,13 +17,17 @@ export default function Album() {
     `${process.env.REACT_APP_API_URL}/pages/discography`
   );
 
-  document.title = album?.title || process.env.REACT_APP_TITLE;
-  meta(
-    'name',
-    'description',
-    album &&
-      `David Shallon Discography: ${album.title}, ${album.year}, ${album.label}`
-  );
+  useEffect(() => {
+    if (album) {
+      document.title = album?.title || process.env.REACT_APP_TITLE;
+      meta(
+        'name',
+        'description',
+        album &&
+          `David Shallon Discography: ${album.title}, ${album.year}, ${album.label}`
+      );
+    }
+  }, [album]);
 
   const headerImageContent = {
     response: {

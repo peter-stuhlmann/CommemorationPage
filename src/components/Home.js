@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
 import FlexCards from 'flex-cards';
 
@@ -11,9 +11,13 @@ export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
   const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards?tags=home`);
 
-  document.title =
-    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return content?.error ? (
     <FailedToLoad />

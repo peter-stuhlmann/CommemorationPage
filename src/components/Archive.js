@@ -19,9 +19,13 @@ export default function Archive({ showNavbar }) {
     setYears(archiveYears);
   }, []);
 
-  document.title =
-    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return (
     // TODO: add loading spinner

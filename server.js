@@ -18,13 +18,13 @@ async function fetchData(routeName) {
     return data
       .replace(
         /\$_TITLE_/g,
-        response.data.meta.title === undefined
+        response.data.meta.title
           ? process.env.REACT_APP_TITLE
           : response.data.meta.title
       )
       .replace(
         /\$_DESCRIPTION_/g,
-        response.data.meta.description === undefined
+        response.data.meta.description
           ? 'David Shallon, 1950-2000, was an Israeli conductor. He was music director in Düsseldorf, Jerusalem and Luxemburg and has two sons, Yuval and Jonathan.'
           : response.data.meta.description
       );

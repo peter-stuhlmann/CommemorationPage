@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PhotoGallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 import Tooltip from './Tooltip';
@@ -27,9 +27,13 @@ export default function Gallery() {
     setViewerIsOpen(false);
   };
 
-  document.title =
-    content?.response?.meta?.title || process.env.REACT_APP_TITLE;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return photos?.error ? (
     <FailedToLoad />
