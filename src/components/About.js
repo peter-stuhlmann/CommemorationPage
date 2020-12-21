@@ -40,10 +40,10 @@ export default function About() {
                     </p>
                     <p>
                       {event.description?.split('\n').map((line) => (
-                        <>
+                        <Fragment key={line}>
                           <small>{line}</small>
                           <br />
-                        </>
+                        </Fragment>
                       ))}
                     </p>
 
