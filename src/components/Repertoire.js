@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import { useFetch } from '../helpers/useFetch';
 import HeaderImage from './HeaderImage';
@@ -14,8 +14,13 @@ export default function Repertoire() {
   const repertoire = useFetch(`${process.env.REACT_APP_API_URL}/repertoire`);
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/repertoire`);
 
-  document.title = content?.response?.meta?.title;
-  meta('name', 'description', content?.response?.meta?.description);
+  useEffect(() => {
+    if (content?.response) {
+      document.title =
+        content?.response?.meta?.title || process.env.REACT_APP_TITLE;
+    }
+    meta('name', 'description', content?.response?.meta?.description);
+  }, [content]);
 
   return repertoire?.error || premieres?.error || content?.error ? (
     <FailedToLoad />
