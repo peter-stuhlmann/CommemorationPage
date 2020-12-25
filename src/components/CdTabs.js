@@ -10,14 +10,14 @@ import { Container } from './Container';
 import { Heading } from './Headings';
 
 function FlexCard(props) {
-  const { card, mobileBreakpoint, tabletBreakpoint } = props;
+  const { card, mobileBreakpoint, tabletBreakpoint, setLoadingAlbum } = props;
 
   return (
     <StyledFlexCard
       mobileBreakpoint={mobileBreakpoint}
       tabletBreakpoint={tabletBreakpoint}
     >
-      <Link to={card.href}>
+      <Link to={card.href} onClick={() => setLoadingAlbum(card.number)}>
         <div>
           <img src={card.img.src} alt={card.img.alt || card.title} />
         </div>
@@ -26,7 +26,7 @@ function FlexCard(props) {
   );
 }
 
-export default function CdTabs({ current }) {
+export default function CdTabs({ current, setLoadingAlbum }) {
   const albums = useFetch(`${process.env.REACT_APP_API_URL}/discography`)
     .response;
 
@@ -74,6 +74,7 @@ export default function CdTabs({ current }) {
                       card={album}
                       id={`scrollable-auto-tab-${album.number}`}
                       aria-controls={`scrollable-auto-tabpanel-${album.number}`}
+                      setLoadingAlbum={setLoadingAlbum}
                     />
                   );
                 })}

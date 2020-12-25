@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { useFetch } from '../helpers/useFetch';
@@ -9,26 +9,38 @@ import { Heading } from './Headings';
 import { font, screen } from '../helpers/variables';
 import { meta } from '../helpers/meta';
 import CdTabs from './CdTabs';
+import Spinner from './Spinner';
 
 export default function Album() {
-  const album = useFetch(
+  const currentAlbum = useFetch(
     `${process.env.REACT_APP_API_URL}${window.location.pathname}`
-  ).response;
+  );
   const content = useFetch(
     `${process.env.REACT_APP_API_URL}/pages/discography`
   );
 
+  const [album, setAlbum] = useState(null);
+  const [loadingAlbum, setLoadingAlbum] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    if (album) {
-      document.title = album?.title || process.env.REACT_APP_TITLE;
+    setLoading(true);
+    if (
+      (currentAlbum?.response && !loadingAlbum) ||
+      currentAlbum?.response?.number === loadingAlbum
+    ) {
+      setAlbum(currentAlbum.response);
+      setLoading(false);
+      document.title =
+        currentAlbum?.response?.title || process.env.REACT_APP_TITLE;
       meta(
         'name',
         'description',
-        album &&
-          `David Shallon Discography: ${album.title}, ${album.year}, ${album.label}`
+        currentAlbum?.response &&
+          `David Shallon Discography: ${currentAlbum?.response.title}, ${currentAlbum?.response.year}, ${currentAlbum?.response.label}`
       );
     }
-  }, [album]);
+  }, [currentAlbum, loadingAlbum]);
 
   const headerImageContent = {
     response: {
@@ -55,12 +67,13 @@ export default function Album() {
     albumcoverImage = album?.cover.format.original.large;
   }
 
-  return album?.error || content?.error ? (
+  return currentAlbum?.error || content?.error ? (
     <FailedToLoad />
   ) : (
     <Fragment>
       <HeaderImage data={headerImageContent} />
       <Container>
+        {loading && <Spinner inner />}
         {album && (
           <StyledAlbum key={album.number}>
             <div>
@@ -120,7 +133,9 @@ export default function Album() {
           </StyledAlbum>
         )}
       </Container>
-      {album && <CdTabs current={album.number} />}
+      {album && (
+        <CdTabs current={album.number} setLoadingAlbum={setLoadingAlbum} />
+      )}
     </Fragment>
   );
 }
