@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { link, screen, transition } from '../helpers/variables';
 
 export const Container = styled.div`
+  position: relative;
   margin: ${(props) => props.margin || '50px auto'};
   max-width: ${(props) => (props.full ? `100%` : `${screen.desktop}`)};
   padding: ${(props) => props.padding || '16px'};
@@ -33,6 +34,14 @@ export const Container = styled.div`
   ${(props) =>
     props.fixedCenter
       ? `position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+      display: flex; justify-content: center; align-items: center
+      `
+      : null}
+
+  ${(props) =>
+    props.spinner
+      ? `position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin:0;
+      background-color: rgba(255,255,255,.8);
       display: flex; justify-content: center; align-items: center
       `
       : null}
