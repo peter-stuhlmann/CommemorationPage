@@ -8,6 +8,7 @@ import { FailedToLoad } from './Messages';
 import { Heading } from './Headings';
 import { font, screen } from '../helpers/variables';
 import { meta } from '../helpers/meta';
+import CdTabs from './CdTabs';
 
 export default function Album() {
   const album = useFetch(
@@ -119,6 +120,7 @@ export default function Album() {
           </StyledAlbum>
         )}
       </Container>
+      {album && <CdTabs current={album.number} />}
     </Fragment>
   );
 }
