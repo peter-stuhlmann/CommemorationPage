@@ -4,7 +4,7 @@ import { link, screen, transition } from '../helpers/variables';
 export const Container = styled.div`
   margin: ${(props) => props.margin || '50px auto'};
   max-width: ${(props) => (props.full ? `100%` : `${screen.desktop}`)};
-  padding: 16px;
+  padding: ${(props) => props.padding || '16px'};
   width: 100%;
 
   h1 {
