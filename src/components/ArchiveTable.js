@@ -24,7 +24,7 @@ export default function ArchiveTable(props) {
   }, [data.response, year]);
 
   return (
-    (!tableHeaders && <Spinner />) || (
+    (!tableHeaders && <Spinner inner />) || (
       <table role="table" className="table">
         {tableHeaders && <TableHead headers={tableHeaders} />}
         <tbody>

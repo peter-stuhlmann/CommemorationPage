@@ -5,6 +5,7 @@ import HeaderImage from './HeaderImage';
 import YearTabs from './YearTabs';
 import { useFetch } from '../helpers/useFetch';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Archive({ showNavbar }) {
   const [years, setYears] = useState(null);
@@ -28,11 +29,10 @@ export default function Archive({ showNavbar }) {
   }, [content]);
 
   return (
-    // TODO: add loading spinner
     <Fragment>
       <HeaderImage data={content} />
       {!years ? (
-        <p>Loading...</p>
+        <Spinner />
       ) : (
         <main>
           {years?.length && <YearTabs years={years} showNavbar={showNavbar} />}
