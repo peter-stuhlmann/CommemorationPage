@@ -71,7 +71,7 @@ const StyledHeaderImage = styled.header`
   }
 
   & > div {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
