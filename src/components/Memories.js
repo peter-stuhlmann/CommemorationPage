@@ -8,12 +8,11 @@ import MemoriesAuthorBio from './MemoriesAuthorBio';
 import MemoriesText from './MemoriesText';
 import { FailedToLoad } from './Messages';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Memories() {
-  const headerImage = useFetch(
-    `${process.env.REACT_APP_API_URL}/pages/memories`
-  );
-  const content = useFetch(`${process.env.REACT_APP_API_URL}/memories`);
+  const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/memories`);
+  const memories = useFetch(`${process.env.REACT_APP_API_URL}/memories`);
 
   const [author, setAuthor] = useState(null);
 
@@ -25,22 +24,22 @@ export default function Memories() {
     meta('name', 'description', content?.response?.meta?.description);
   }, [content]);
 
-  return content?.error || headerImage?.error ? (
+  return content?.error || memories?.error ? (
     <FailedToLoad />
-  ) : content?.response ? (
+  ) : memories?.response ? (
     <Fragment>
-      <HeaderImage data={headerImage} />
+      <HeaderImage data={content} />
       <Container>
         <MemoriesList
           author={author}
           setAuthor={setAuthor}
-          content={content.response}
+          content={memories.response}
         />
-        <MemoriesText author={author} content={content.response} />
-        <MemoriesAuthorBio author={author} content={content.response} />
+        <MemoriesText author={author} content={memories.response} />
+        <MemoriesAuthorBio author={author} content={memories.response} />
       </Container>
     </Fragment>
   ) : (
-    'Loading...'
+    <Spinner />
   );
 }
