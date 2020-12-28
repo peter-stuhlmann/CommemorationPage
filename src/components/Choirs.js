@@ -6,6 +6,7 @@ import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { UnorderedList } from './StyledLists';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Choirs() {
   const choirs = useFetch(`${process.env.REACT_APP_API_URL}/choirs`);
@@ -21,7 +22,7 @@ export default function Choirs() {
 
   return choirs?.error || content?.error ? (
     <FailedToLoad />
-  ) : (
+  ) : choirs?.response ? (
     <Fragment>
       <HeaderImage data={content} />
       <Container>
@@ -32,5 +33,7 @@ export default function Choirs() {
         </UnorderedList>
       </Container>
     </Fragment>
+  ) : (
+    <Spinner />
   );
 }

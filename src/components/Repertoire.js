@@ -24,10 +24,9 @@ export default function Repertoire() {
 
   return repertoire?.error || premieres?.error || content?.error ? (
     <FailedToLoad />
-  ) : (
+  ) : repertoire?.response || premieres?.response ? (
     <Fragment>
       <HeaderImage data={content} />
-      {!premieres?.response && !repertoire?.response && <Spinner />}
       {premieres?.response && (
         <Container>
           <Heading h2 title="World Premieres" />
@@ -63,5 +62,7 @@ export default function Repertoire() {
         </Container>
       )}
     </Fragment>
+  ) : (
+    <Spinner />
   );
 }

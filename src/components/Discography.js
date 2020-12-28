@@ -8,15 +8,15 @@ import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { screen } from '../helpers/variables';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Discography() {
-  const albums = useFetch(`${process.env.REACT_APP_API_URL}/discography`)
-    .response;
+  const albums = useFetch(`${process.env.REACT_APP_API_URL}/discography`);
   const content = useFetch(
     `${process.env.REACT_APP_API_URL}/pages/discography`
   );
 
-  const albumCover = albums?.map((album) => {
+  const albumCover = albums?.response?.map((album) => {
     const cover = {
       img: {
         src:
@@ -42,13 +42,15 @@ export default function Discography() {
 
   return albums?.error || content?.error ? (
     <FailedToLoad />
-  ) : (
+  ) : albums?.response ? (
     <Fragment>
       <HeaderImage data={content} />
       <Container>
-        {albums && <StyledFlexCards cards={albumCover} noTextbox noLabel />}
+        {albumCover && <StyledFlexCards cards={albumCover} noTextbox noLabel />}
       </Container>
     </Fragment>
+  ) : (
+    <Spinner />
   );
 }
 

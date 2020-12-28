@@ -6,6 +6,7 @@ import { useFetch } from '../helpers/useFetch';
 import { colors, font, screen } from '../helpers/variables';
 import { FailedToLoad } from './Messages';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
@@ -21,7 +22,7 @@ export default function Home() {
 
   return content?.error ? (
     <FailedToLoad />
-  ) : (
+  ) : content?.response ? (
     <Fragment>
       <StyledHome
         dangerouslySetInnerHTML={{ __html: content?.response?.content }}
@@ -34,6 +35,8 @@ export default function Home() {
         />
       )}
     </Fragment>
+  ) : (
+    <Spinner />
   );
 }
 

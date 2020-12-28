@@ -8,6 +8,7 @@ import { useFetch } from '../helpers/useFetch';
 import { FailedToLoad } from './Messages';
 import { colors, font, screen } from '../helpers/variables';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Concerts() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/concerts`);
@@ -26,7 +27,7 @@ export default function Concerts() {
 
   return content?.error || cards?.error ? (
     <FailedToLoad />
-  ) : (
+  ) : content?.response && cards?.response ? (
     <Fragment>
       <HeaderImage data={content} />
       <Container margin="50px auto 0 auto">
@@ -49,6 +50,8 @@ export default function Concerts() {
         ))}
       </Container>
     </Fragment>
+  ) : (
+    <Spinner />
   );
 }
 

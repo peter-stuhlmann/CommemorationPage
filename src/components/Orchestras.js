@@ -6,6 +6,7 @@ import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { UnorderedList } from './StyledLists';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Orchestras() {
   const orchestras = useFetch(`${process.env.REACT_APP_API_URL}/orchestras`);
@@ -21,7 +22,7 @@ export default function Orchestras() {
 
   return orchestras?.error || content?.error ? (
     <FailedToLoad />
-  ) : (
+  ) : orchestras?.response ? (
     <Fragment>
       <HeaderImage data={content} />
       <Container>
@@ -32,5 +33,7 @@ export default function Orchestras() {
         </UnorderedList>
       </Container>
     </Fragment>
+  ) : (
+    <Spinner />
   );
 }

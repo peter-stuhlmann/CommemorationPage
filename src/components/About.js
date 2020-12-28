@@ -8,6 +8,7 @@ import HeaderImage from './HeaderImage';
 import { font, screen } from '../helpers/variables';
 import { PdfIcon } from '../components/Icons';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function About() {
   const data = useFetch(`${process.env.REACT_APP_API_URL}/cv`);
@@ -23,7 +24,7 @@ export default function About() {
 
   return data?.error || content?.error ? (
     <FailedToLoad />
-  ) : (
+  ) : data?.response ? (
     <Fragment>
       <HeaderImage data={content} />
       <Container>
@@ -85,6 +86,8 @@ export default function About() {
         })}
       </Container>
     </Fragment>
+  ) : (
+    <Spinner />
   );
 }
 

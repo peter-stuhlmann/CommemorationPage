@@ -7,6 +7,7 @@ import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
 import { FailedToLoad } from './Messages';
 import { meta } from '../helpers/meta';
+import Spinner from './Spinner';
 
 export default function Gallery() {
   const photos = useFetch(`${process.env.REACT_APP_API_URL}/pictures`);
@@ -37,44 +38,44 @@ export default function Gallery() {
 
   return photos?.error ? (
     <FailedToLoad />
+  ) : photos?.response ? (
+    <Container
+      full
+      style={{
+        margin: '2px 0 5px 0',
+        padding: 0,
+      }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        const imgClicked = e.target.getAttribute('src');
+        const imgCopyright = photos.response
+          .filter((photo) => photo.src === imgClicked)
+          .map((photo) => photo.copyright)
+          .join('');
+        setCopyright(imgCopyright);
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      }}
+    >
+      {copyright && (
+        <Tooltip label={`Photo: ${copyright}`} position={mousePosition} />
+      )}
+      <PhotoGallery photos={photos.response} onClick={openLightbox} />
+      <ModalGateway>
+        {viewerIsOpen ? (
+          <Modal onClose={closeLightbox}>
+            <Carousel
+              currentIndex={currentImage}
+              views={photos.response.map((x) => ({
+                ...x,
+                srcset: x.srcSet,
+                caption: x.title,
+              }))}
+            />
+          </Modal>
+        ) : null}
+      </ModalGateway>
+    </Container>
   ) : (
-    photos.response && (
-      <Container
-        full
-        style={{
-          margin: '2px 0 5px 0',
-          padding: 0,
-        }}
-        onContextMenu={(e) => {
-          e.preventDefault();
-          const imgClicked = e.target.getAttribute('src');
-          const imgCopyright = photos.response
-            .filter((photo) => photo.src === imgClicked)
-            .map((photo) => photo.copyright)
-            .join('');
-          setCopyright(imgCopyright);
-          setMousePosition({ x: e.clientX, y: e.clientY });
-        }}
-      >
-        {copyright && (
-          <Tooltip label={`Photo: ${copyright}`} position={mousePosition} />
-        )}
-        <PhotoGallery photos={photos.response} onClick={openLightbox} />
-        <ModalGateway>
-          {viewerIsOpen ? (
-            <Modal onClose={closeLightbox}>
-              <Carousel
-                currentIndex={currentImage}
-                views={photos.response.map((x) => ({
-                  ...x,
-                  srcset: x.srcSet,
-                  caption: x.title,
-                }))}
-              />
-            </Modal>
-          ) : null}
-        </ModalGateway>
-      </Container>
-    )
+    <Spinner />
   );
 }
