@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { boxShadow, screen } from '../helpers/variables';
 
 export default function MemoriesList(props) {
-  const { content, author, setAuthor } = props;
+  const { content, author, handleClick } = props;
 
   return content ? (
     <StyledMemoriesList>
@@ -11,7 +11,7 @@ export default function MemoriesList(props) {
         <li
           key={memory.author.name.lastName}
           onClick={() => {
-            setAuthor(index);
+            handleClick(index);
           }}
           className={author === index ? 'active' : null}
         >

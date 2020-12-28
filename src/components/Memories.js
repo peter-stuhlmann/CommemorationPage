@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 
 import { useFetch } from '../helpers/useFetch';
 import { Container } from './Container';
@@ -15,6 +15,15 @@ export default function Memories() {
   const memories = useFetch(`${process.env.REACT_APP_API_URL}/memories`);
 
   const [author, setAuthor] = useState(null);
+
+  const ref = useRef(null);
+
+  const handleClick = async (authorIndex) => {
+    await setAuthor(authorIndex);
+    if (ref.current) {
+      ref.current.scrollIntoView();
+    }
+  };
 
   useEffect(() => {
     if (content?.response) {
@@ -34,8 +43,13 @@ export default function Memories() {
           author={author}
           setAuthor={setAuthor}
           content={memories.response}
+          handleClick={handleClick}
         />
-        <MemoriesText author={author} content={memories.response} />
+        <MemoriesText
+          author={author}
+          content={memories.response}
+          textRef={ref}
+        />
         <MemoriesAuthorBio author={author} content={memories.response} />
       </Container>
     </Fragment>

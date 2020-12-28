@@ -2,19 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function MemoriesText(props) {
-  const { author, content } = props;
+  const { author, content, textRef } = props;
 
   return (
     author != null && (
-      <StyledMemoriesText>
-        {content[author].text.map((paragraph, i) => (
-          <p
-            key={`paragraph${i}`}
-            dangerouslySetInnerHTML={{ __html: paragraph }}
-          />
-        ))}
-        <hr />
-      </StyledMemoriesText>
+      <>
+        <span ref={textRef} />
+        <StyledMemoriesText>
+          {content[author].text.map((paragraph, i) => (
+            <p
+              key={`paragraph${i}`}
+              dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
+          ))}
+          <hr />
+        </StyledMemoriesText>
+      </>
     )
   );
 }
