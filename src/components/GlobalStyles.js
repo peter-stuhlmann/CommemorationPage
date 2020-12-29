@@ -13,12 +13,12 @@ import KalamRegular from '../assets/fonts/kalam/kalam-regular.ttf';
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Lato Regular';
-    src: url(${LatoRegular});
+    src: url(${LatoRegular}) format("truetype");
   }
 
   @font-face {
     font-family: 'Kalam Regular';
-    src: url(${KalamRegular});
+    src: url(${KalamRegular}) format("truetype");
   }
 
   html {
