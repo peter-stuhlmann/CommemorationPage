@@ -11,6 +11,7 @@ import Spinner from './Spinner';
 export default function Home() {
   const content = useFetch(`${process.env.REACT_APP_API_URL}/pages/start`);
   const cards = useFetch(`${process.env.REACT_APP_API_URL}/cards?tags=home`);
+  const cardsOrder = ['About', 'Discography', 'Gallery', 'Memories'];
 
   useEffect(() => {
     if (content?.response) {
@@ -29,7 +30,9 @@ export default function Home() {
       />
       {cards.response && (
         <StyledFlexCards
-          cards={cards.response}
+          cards={cards.response.sort(
+            (a, b) => cardsOrder.indexOf(a.title) - cardsOrder.indexOf(b.title)
+          )}
           maxWidth={screen.desktop}
           cardColor={colors.quaternary}
         />
