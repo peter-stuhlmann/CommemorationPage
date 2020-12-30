@@ -16,6 +16,7 @@ export default function MemoriesList(props) {
           className={author === index ? 'active' : null}
         >
           <div>
+            <div className="image-placeholder" />
             <img
               src={'/img/memories/' + memory.author.avatar.src}
               alt={memory.author.avatar.alt}
@@ -64,10 +65,19 @@ const StyledMemoriesList = styled.ul`
       flex: 0 0 50%;
     }
 
-    div {
-      img {
+    div:first-child {
+      position: relative;
+      padding-top: 100%;
+
+      img,
+      .image-placeholder {
         border-radius: 50%;
         width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
     }
   }

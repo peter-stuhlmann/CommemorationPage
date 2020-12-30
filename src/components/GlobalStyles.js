@@ -39,9 +39,58 @@ export const GlobalStyles = createGlobalStyle`
       // padding bottom is defined in Footer.js (= height of footer)
     }
 
-    img {
+    img, .image-placeholder {
       -webkit-user-select: none;
       -webkit-touch-callout: none;
+
+      background: linear-gradient(
+        309deg,
+        #f9f7f7,
+        #c3c3c3,
+        #d9d9d9,
+        #f9f7f7,
+        #d9d9d9,
+        #c3c3c3,
+        #f9f7f7
+      );
+      background-size: 1000% 1000%;
+
+      -webkit-animation: loading 5s ease infinite;
+      -moz-animation: loading 5s ease infinite;
+      -o-animation: loading 5s ease infinite;
+      animation: loading 5s ease infinite;
+      @-webkit-keyframes loading {
+        0% {
+          background-position: 100% 67%;
+        }
+        100% {
+          background-position: 0% 33%;
+        }
+      }
+      @-moz-keyframes loading {
+        0% {
+          background-position: 100% 67%;
+        }
+        100% {
+          background-position: 0% 33%;
+        }
+      }
+      @-o-keyframes loading {
+        0% {
+          background-position: 100% 67%;
+        }
+        100% {
+          background-position: 0% 33%;
+        }
+      }
+      @keyframes loading {
+        0% {
+          background-position: 100% 67%;
+        }
+        100% {
+          background-position: 0% 33%;
+        }
+      }
     }
 
     button {

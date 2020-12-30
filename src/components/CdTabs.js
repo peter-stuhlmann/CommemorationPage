@@ -96,6 +96,7 @@ const StyledFlexCard = styledcss.div`
   box-sizing: border-box;
 
     div {
+      position: relative;
       border-radius: 4px;
       box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14),
@@ -105,17 +106,25 @@ const StyledFlexCard = styledcss.div`
 
       margin: 10px;
       width: 100px;
+      padding-top: 100px;
 
       @media (min-width: ${(props) => props.tabletBreakpoint || '768px'}) {
         width: 200px;
+        padding-top: 200px;
         margin: 20px;
       }
 
       @media (min-width: ${(props) => props.mobileBreakpoint || '480px'}) {
         width: 150px;
+        padding-top: 150px;
       }
 
       img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         border-radius: 4px;
         object-fit: cover;
         transition: 0.2s;

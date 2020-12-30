@@ -76,7 +76,8 @@ export default function Album() {
         {loading && <Spinner inner />}
         {album && (
           <StyledAlbum key={album.number}>
-            <div>
+            <div className="image-container">
+              <div className="image-placeholder" />
               <img
                 src={'/img/covers/' + albumcoverImage}
                 alt={`${album.number} | ${album.title}`}
@@ -161,10 +162,6 @@ const StyledAlbum = styled.li`
         flex: 0 0 100%;
         margin-bottom: 32px;
       }
-
-      img {
-        width: 100%;
-      }
     }
 
     &:nth-child(2) {
@@ -228,6 +225,33 @@ const StyledAlbum = styled.li`
 
       h3 {
         margin-top: 32px;
+      }
+    }
+
+    &.image-container {
+      position: relative;
+      height: 300px;
+
+      @media (max-width: calc(${screen.tablet} - 1px)) {
+        height: 200px;
+      }
+
+      @media (max-width: 666px) {
+        height: 150px;
+      }
+
+      @media (max-width: calc(${screen.mobile} - 1px)) {
+        padding-top: 100%;
+      }
+
+      img,
+      .image-placeholder {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
     }
   }

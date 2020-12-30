@@ -57,5 +57,18 @@ export default function Discography() {
 const StyledFlexCards = styled(FlexCards)`
   li {
     cursor: pointer;
+
+    div {
+      width: 100%;
+      padding-top: 100%;
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
   }
 `;

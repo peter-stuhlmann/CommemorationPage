@@ -117,12 +117,20 @@ const StyledHome = styled.div`
       flex: 0 0 50%;
       padding: 16px;
 
-      @media (max-width: ${screen.tablet}) {
-        flex: 0 0 100%;
-      }
-
       img {
         width: 100%;
+        height: calc(
+          (50vw - 49px) * 616 / 850
+        ); // refers specifically to the ratio of the current image
+      }
+
+      @media (max-width: ${screen.tablet}) {
+        flex: 0 0 100%;
+        img {
+          height: calc(
+            (100vw - 49px) * 616 / 850
+          ); // refers specifically to the ratio of the current image
+        }
       }
     }
 
