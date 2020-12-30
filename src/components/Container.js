@@ -43,7 +43,8 @@ export const Container = styled.div`
       ? `position: absolute; top: 0; bottom: 0; left: 0; right: 0; 
       margin: 0 auto;
       background-color: rgba(255,255,255,.8);
-      display: flex; justify-content: center; align-items: center
+      display: flex; justify-content: center; align-items: center;
+      z-index: 10;
       `
       : null}
 `;
