@@ -61,9 +61,9 @@ function Navbar({ open, setOpen }) {
     // { path: '/press', exact: false, text: 'Press', disabled: true },
     // { path: '/foundation', exact: false, text: 'Foundation', disabled: true },
     {
-      path: '/memories',
+      path: '/memoirs',
       exact: false,
-      text: 'Memories',
+      text: 'Memoirs',
       disabled: false,
     },
   ];

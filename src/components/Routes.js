@@ -42,7 +42,7 @@ function DefaultRoutes({ showNavbar }) {
         <Route exact path="/press" component={Press} />
         <Route exact path="/gallery" component={Gallery} />
         <Route exact path="/foundation" component={Foundation} />
-        <Route exact path="/memories" component={Memories} />
+        <Route exact path="/memoirs" component={Memories} />
         <Route exact path="/legal-notice" component={Legal} />
         <Route exact path="/privacy-policy" component={Legal} />
         <Route path="*" component={NotFound} />
@@ -79,7 +79,7 @@ function Redirects() {
         <Redirect to="/foundation" />
       </Route>
       <Route exact path="/erinnerungen">
-        <Redirect to="/memories" />
+        <Redirect to="/memoirs" />
       </Route>
       <Route exact path="/impressum">
         <Redirect to="/legal-notice" />
