@@ -19,6 +19,7 @@ const Legal = lazy(() => import('./Legal'));
 const Orchestras = lazy(() => import('./Orchestras'));
 const Repertoire = lazy(() => import('./Repertoire'));
 const Choirs = lazy(() => import('./Choirs'));
+const Contact = lazy(() => import('./Contact'));
 const NotFound = lazy(() => import('./NotFound'));
 
 function DefaultRoutes({ showNavbar }) {
@@ -43,6 +44,7 @@ function DefaultRoutes({ showNavbar }) {
         <Route exact path="/gallery" component={Gallery} />
         <Route exact path="/foundation" component={Foundation} />
         <Route exact path="/memoirs" component={Memories} />
+        <Route exact path="/contact" component={Contact} />
         <Route exact path="/legal-notice" component={Legal} />
         <Route exact path="/privacy-policy" component={Legal} />
         <Route path="*" component={NotFound} />

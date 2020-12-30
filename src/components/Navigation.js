@@ -66,6 +66,7 @@ function Navbar({ open, setOpen }) {
       text: 'Memoirs',
       disabled: false,
     },
+    { path: '/contact', exact: false, text: 'Contact', disabled: false },
   ];
 
   return (
