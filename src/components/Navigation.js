@@ -48,7 +48,7 @@ export default function MainNavigation(props) {
 function Navbar({ open, setOpen }) {
   const routes = [
     { path: '/', exact: true, text: 'Home', disabled: false },
-    { path: '/about', exact: false, text: 'About', disabled: false },
+    { path: '/timeline', exact: false, text: 'Timeline', disabled: false },
     { path: '/concerts', exact: false, text: 'Concerts', disabled: false },
     {
       path: '/discography',

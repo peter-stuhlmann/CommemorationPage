@@ -26,7 +26,7 @@ function DefaultRoutes({ showNavbar }) {
     <Suspense fallback={<Spinner />}>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
+        <Route exact path="/timeline" component={About} />
         <Route exact path="/concerts" component={Concerts} />
         <Route
           exact
@@ -55,7 +55,10 @@ function Redirects() {
   return (
     <Fragment>
       <Route exact path="/ueber">
-        <Redirect to="/about" />
+        <Redirect to="/timeline" />
+      </Route>
+      <Route exact path="/about">
+        <Redirect to="/timeline" />
       </Route>
       <Route exact path="/konzerte">
         <Redirect to="/concerts" />
@@ -77,6 +80,9 @@ function Redirects() {
       </Route>
       <Route exact path="/stiftung">
         <Redirect to="/foundation" />
+      </Route>
+      <Route exact path="/memories">
+        <Redirect to="/memoirs" />
       </Route>
       <Route exact path="/erinnerungen">
         <Redirect to="/memoirs" />
