@@ -57,7 +57,7 @@ function Navbar({ open, setOpen }) {
       disabled: false,
     },
     { path: '/gallery', exact: false, text: 'Gallery', disabled: false },
-    // { path: '/media', exact: false, text: 'Media', disabled: true },
+    { path: '/media', exact: false, text: 'Media', disabled: false },
     // { path: '/press', exact: false, text: 'Press', disabled: true },
     // { path: '/foundation', exact: false, text: 'Foundation', disabled: true },
     {
