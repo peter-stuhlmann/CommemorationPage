@@ -44,11 +44,6 @@ export default function Concerts() {
           containerColor="transparent"
         />
       )}
-      <Container>
-        {content?.response?.content?.slice(2).map((paragraph) => (
-          <p dangerouslySetInnerHTML={{ __html: paragraph }} />
-        ))}
-      </Container>
     </Fragment>
   ) : (
     <Spinner />
@@ -56,6 +51,8 @@ export default function Concerts() {
 }
 
 const StyledFlexCards = styled(FlexCards)`
+  margin-bottom: 50px;
+
   li {
     transition: 0.2s;
 
