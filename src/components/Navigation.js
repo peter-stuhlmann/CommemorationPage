@@ -31,13 +31,13 @@ export default function MainNavigation(props) {
       <ToggleButton open={open} setOpen={setOpen} />
       <div className="site-title-desktop" onClick={() => window.scrollTo(0, 0)}>
         <Link to="/">
-          <Logo color={font.color.septenary} height="36" />
+          <Logo color={font.color.septenary} height="36px" />
         </Link>
       </div>
       <Navbar open={open} setOpen={setOpen} />
       <div className="site-title-mobile" onClick={() => window.scrollTo(0, 0)}>
         <Link to="/">
-          <Logo color={font.color.septenary} height="36" />
+          <Logo color={font.color.septenary} height="36px" />
         </Link>
       </div>
       <Backdrop open={open} />
