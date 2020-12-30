@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { screen } from '../helpers/variables';
+import { font, screen } from '../helpers/variables';
 
 export default function MemoriesText(props) {
   const { author, content, textRef } = props;
@@ -26,6 +26,14 @@ const StyledMemoriesText = styled.article`
 
   h2 {
     margin-top: 0;
+  }
+
+  p:first-child {
+    i.disclaimer {
+      display: block;
+      margin-bottom: 2rem;
+      color: ${font.color.tertiary};
+    }
   }
 
   @media (min-width: ${screen.desktop}) {
