@@ -23,7 +23,7 @@ export default function Media() {
         src="https://www.youtube-nocookie.com/embed/TGOqJ93AyZs"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
     </StyledContainer>
   );
