@@ -1,8 +1,8 @@
 # Commemoration page for a musician
 
-![Code size](https://img.shields.io/github/languages/code-size/AtarDavid/commemoration-page.svg)
-[![open issues](https://img.shields.io/github/issues/AtarDavid/commemoration-page.svg)](https://github.com/AtarDavid/commemoration-page/issues?q=is%3Aopen+is%3Aissue)
-[![closed issues](https://img.shields.io/github/issues-closed/AtarDavid/commemoration-page.svg)](https://github.com/AtarDavid/commemoration-page/issues?q=is%3Aissue+is%3Aclosed)
+![Code size](https://img.shields.io/github/languages/code-size/peter-stuhlmann/CommemorationPage.svg)
+[![open issues](https://img.shields.io/github/issues/peter-stuhlmann/CommemorationPage.svg)](https://github.com/peter-stuhlmann/CommemorationPage/issues?q=is%3Aopen+is%3Aissue)
+[![closed issues](https://img.shields.io/github/issues-closed/peter-stuhlmann/CommemorationPage.svg)](https://github.com/peter-stuhlmann/CommemorationPage/issues?q=is%3Aissue+is%3Aclosed)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -11,9 +11,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To run this React app in localhost, clone this repository, install node modules and run react-scripts.
 
 ```
-1. git clone https://github.com/AtarDavid/commemoration-page.git
-2. npm install
-3. npm start
+1. git clone https://github.com/peter-stuhlmann/CommemorationPage.git
+2. yarn install
+3. yarn start
 ```
 
 The content of this website is called by a REST API. You can find the repository for this API here: [Commemoration Page API](https://github.com/peter-stuhlmann/Commemoration-page-API).
